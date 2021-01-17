@@ -1,0 +1,155 @@
+syntax = "protoc3";
+import "google/protobuf/empty.proto";
+option go_package = ".;TalkService"
+
+package TalkService;
+
+enum ProfileKey {
+
+}
+message Profile {
+
+}
+message updateProfileAttributesRequest {
+    repeated ProfileKey keys = 1;
+    Profile profile = 2;
+}
+message updateProfileAttributesResponse {}
+
+enum ToType {
+    USER = 1;
+    ROOM = 2;
+    GROUP = 3;
+    CHAT = 4;
+}
+enum ContentType {
+    TEXT = 1;
+    IMAGE = 2;
+    VIDEO = 3;
+    AUDIO = 4;
+    STICKER = 5;
+}
+
+message Message {
+    string from_ = 1;
+    string to = 2;
+    ToType toType = 3;
+    string messageID = 4;
+    int64 createdTime = 5;
+    string text = 6;
+    map<string, string> contentMetadata = 7;
+    ContentType contentType = 8;
+    string relatedMessageId = 9;
+}
+
+message sendMessageRequest {
+    Message message = 1;
+}
+message sendMessageResponse {
+    string messageID = 1;
+}
+
+message editMessageRequest {}
+message editMessageResponse {}
+
+message resendMessageRequest {}
+message resendMessageResponse {}
+
+message unsendMessageRequest {}
+message unsendMessageResponse {}
+
+message readMessageRequest {}
+message readMessageResponse {}
+
+message unreadMessageRequest {}
+message unreadMessageResponse {}
+
+message reportMessageRequest {}
+message reportMessageResponse {}
+
+message removeAllMessagesRequest {}
+message removeAllMessagesResponse {}
+
+message actionMessageRequest {}
+message actionMessageResponse {}
+
+message announceMessageRequest {}
+message announceMessageResponse {}
+
+message Setting {}
+
+message updateSettingAttributesRequest {}
+message updateSettingAttributesResponse {}
+
+message createTagRequest {}
+message createTagResponse {}
+
+message updateTagRequest {}
+message updateTagResponse {}
+
+message registerTagsRequest {}
+message registerTagsResponse {}
+
+message getAllTagsRequest {}
+message getAllTagsResponse {}
+
+message deleteTagRequest {}
+message deleteTagResponse {}
+
+message addFriendRequest {}
+message addFriendResponse {}
+
+message deleteFriendsRequest {}
+message deleteFriendsResponse {}
+
+message blockFriendsRequest {}
+message blockFriendsResponse {}
+
+message unblockFriendsRequest {}
+message unblockFriendsResponse {}
+
+message addFriendsToFavoriteRequest {}
+message addFriendsToFavoriteResponse {}
+
+message removeFriendsFromFavoriteRequest {}
+message removeFriendsFromFavoriteResponse {}
+
+message updateFriendRequest {}
+message updateFriendResponse {}
+
+
+service TalkService {
+    rpc updateProfileAttributes (updateProfileAttributesRequest) return (updateProfileAttributesResponse);
+    rpc getProfile (google.protobuf.Empty) return (Profile);
+
+
+    rpc sendMessage(sendMessageRequest) return (sendMessageResponse);
+    rpc editMessage(editMessageRequest) return (editMessageResponse);
+    rpc resendMessage(resendMessageRequest) return (resendMessageResponse);
+    rpc unsendMessage (unsendMessageRequest) returns (unsendMessageResponse);
+    rpc readMessage (readMessageRequest) returns (readMessageResponse);
+    rpc unreadMessage (unreadMessageRequest) returns (unreadMessageResponse);
+    rpc reportMessage (reportMessageRequest) returns (reportMessageResponse);
+    rpc removeAllMessages (removeAllMessagesRequest) returns (removeAllMessagesResponse);
+    rpc actionMessage (actionMessageRequest) returns (actionMessageResponse);
+    rpc announceMessage (announceMessageRequest) returns (announceMessageResponse);
+
+    rpc getSetting (google.protobuf.Empty) return (Setting);
+    rpc updateSettingAttributes(updateSettingAttributesRequest) return (updateSettingAttributesResponse);
+
+
+    rpc createTag (createTagRequest) return (createTagResponse);
+    rpc updateTag (updateTagRequest) return (updateTagResponse);
+    rpc registerTags (registerTagsRequest) return (registerTagsResponse);
+    rpc getAllTags (getAllTagsRequest) return (getAllTagsResponse);
+    rpc deleteTag (deleteTagRequest) return (deleteTagResponse);
+    
+    rpc addFriend (addFriendRequest) return (addFriendResponse);
+    rpc deleteFriends (deleteFriendsRequest) return (deleteFriendsResponse);
+    rpc blockFriends (blockFriendsRequest) return (blockFriendsResponse);
+    rpc unblockFriends (unblockFriendsRequest) return (unblockFriendsResponse);
+    rpc addFriendsToFavorite (addFriendsToFavoriteRequest) return (addFriendsToFavoriteResponse);
+    rpc removeFriendsFromFavorite (removeFriendsFromFavoriteRequest) return (removeFriendsFromFavoriteResponse);
+    rpc updateFriend (updateFriendRequest) return (updateFriendResponse);
+}
+

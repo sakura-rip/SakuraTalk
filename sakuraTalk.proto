@@ -1,14 +1,50 @@
-syntax = "protoc3";
-import "google/protobuf/empty.proto";
-option go_package = ".;TalkService"
-
+syntax = "proto3";
 package TalkService;
+option go_package = ".;TalkService";
+
+message Empty {}
+
+service TalkService {
+    rpc updateProfileAttributes (updateProfileAttributesRequest) returns (updateProfileAttributesResponse);
+    rpc getProfile (Empty) returns (Profile);
+
+
+    rpc sendMessage(sendMessageRequest) returns (sendMessageResponse);
+    rpc editMessage(editMessageRequest) returns (editMessageResponse);
+    rpc resendMessage(resendMessageRequest) returns (resendMessageResponse);
+    rpc unsendMessage (unsendMessageRequest) returns (unsendMessageResponse);
+    rpc readMessage (readMessageRequest) returns (readMessageResponse);
+    rpc unreadMessage (unreadMessageRequest) returns (unreadMessageResponse);
+    rpc reportMessage (reportMessageRequest) returns (reportMessageResponse);
+    rpc removeAllMessages (removeAllMessagesRequest) returns (removeAllMessagesResponse);
+    rpc actionMessage (actionMessageRequest) returns (actionMessageResponse);
+    rpc announceMessage (announceMessageRequest) returns (announceMessageResponse);
+
+    rpc getSetting (Empty) returns (Setting);
+    rpc updateSettingAttributes(updateSettingAttributesRequest) returns (updateSettingAttributesResponse);
+
+
+    rpc createTag (createTagRequest) returns (createTagResponse);
+    rpc updateTag (updateTagRequest) returns (updateTagResponse);
+    rpc registerTags (registerTagsRequest) returns (registerTagsResponse);
+    rpc getAllTags (getAllTagsRequest) returns (getAllTagsResponse);
+    rpc deleteTag (deleteTagRequest) returns (deleteTagResponse);
+    
+    rpc addFriend (addFriendRequest) returns (addFriendResponse);
+    rpc deleteFriends (deleteFriendsRequest) returns (deleteFriendsResponse);
+    rpc blockFriends (blockFriendsRequest) returns (blockFriendsResponse);
+    rpc unblockFriends (unblockFriendsRequest) returns (unblockFriendsResponse);
+    rpc addFriendsToFavorite (addFriendsToFavoriteRequest) returns (addFriendsToFavoriteResponse);
+    rpc removeFriendsFromFavorite (removeFriendsFromFavoriteRequest) returns (removeFriendsFromFavoriteResponse);
+    rpc updateFriend (updateFriendRequest) returns (updateFriendResponse);
+}
+
 
 enum ProfileKey {
-
+    DISPLAY_NAME = 0;
 }
 message Profile {
-
+    string displayName = 1;
 }
 message updateProfileAttributesRequest {
     repeated ProfileKey keys = 1;
@@ -17,17 +53,17 @@ message updateProfileAttributesRequest {
 message updateProfileAttributesResponse {}
 
 enum ToType {
-    USER = 1;
-    ROOM = 2;
-    GROUP = 3;
-    CHAT = 4;
+    USER = 0;
+    ROOM = 1;
+    GROUP = 2;
+    CHAT = 3;
 }
 enum ContentType {
-    TEXT = 1;
-    IMAGE = 2;
-    VIDEO = 3;
-    AUDIO = 4;
-    STICKER = 5;
+    TEXT = 0;
+    IMAGE = 1;
+    VIDEO = 2;
+    AUDIO = 3;
+    STICKER = 4;
 }
 
 message Message {
@@ -116,40 +152,4 @@ message removeFriendsFromFavoriteResponse {}
 
 message updateFriendRequest {}
 message updateFriendResponse {}
-
-
-service TalkService {
-    rpc updateProfileAttributes (updateProfileAttributesRequest) return (updateProfileAttributesResponse);
-    rpc getProfile (google.protobuf.Empty) return (Profile);
-
-
-    rpc sendMessage(sendMessageRequest) return (sendMessageResponse);
-    rpc editMessage(editMessageRequest) return (editMessageResponse);
-    rpc resendMessage(resendMessageRequest) return (resendMessageResponse);
-    rpc unsendMessage (unsendMessageRequest) returns (unsendMessageResponse);
-    rpc readMessage (readMessageRequest) returns (readMessageResponse);
-    rpc unreadMessage (unreadMessageRequest) returns (unreadMessageResponse);
-    rpc reportMessage (reportMessageRequest) returns (reportMessageResponse);
-    rpc removeAllMessages (removeAllMessagesRequest) returns (removeAllMessagesResponse);
-    rpc actionMessage (actionMessageRequest) returns (actionMessageResponse);
-    rpc announceMessage (announceMessageRequest) returns (announceMessageResponse);
-
-    rpc getSetting (google.protobuf.Empty) return (Setting);
-    rpc updateSettingAttributes(updateSettingAttributesRequest) return (updateSettingAttributesResponse);
-
-
-    rpc createTag (createTagRequest) return (createTagResponse);
-    rpc updateTag (updateTagRequest) return (updateTagResponse);
-    rpc registerTags (registerTagsRequest) return (registerTagsResponse);
-    rpc getAllTags (getAllTagsRequest) return (getAllTagsResponse);
-    rpc deleteTag (deleteTagRequest) return (deleteTagResponse);
-    
-    rpc addFriend (addFriendRequest) return (addFriendResponse);
-    rpc deleteFriends (deleteFriendsRequest) return (deleteFriendsResponse);
-    rpc blockFriends (blockFriendsRequest) return (blockFriendsResponse);
-    rpc unblockFriends (unblockFriendsRequest) return (unblockFriendsResponse);
-    rpc addFriendsToFavorite (addFriendsToFavoriteRequest) return (addFriendsToFavoriteResponse);
-    rpc removeFriendsFromFavorite (removeFriendsFromFavoriteRequest) return (removeFriendsFromFavoriteResponse);
-    rpc updateFriend (updateFriendRequest) return (updateFriendResponse);
-}
 

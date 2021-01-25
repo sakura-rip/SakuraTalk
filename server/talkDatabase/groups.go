@@ -36,3 +36,8 @@ func (cl *DBClient) FetchGroupAttributes(gid string, attributes bson.D) (*Group,
 	}
 	return grp, nil
 }
+
+func (cl *DBClient) UpdateGroup(gid string, attToUpdate bson.D) error {
+	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": gid}, bson.D{{"$set", attToUpdate}})
+	return err
+}

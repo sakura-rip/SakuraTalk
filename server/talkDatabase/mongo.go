@@ -9,11 +9,18 @@ import (
 )
 
 type DBClient struct {
-	Session *mongo.Client
+	Session  *mongo.Client
+	UserCol  *mongo.Collection
+	GroupCol *mongo.Collection
 }
 
 func NewDBClient() *DBClient {
-	return &DBClient{Session: ConnectToMongoDB()}
+	cl := &DBClient{
+		Session: ConnectToMongoDB(),
+	}
+	cl.UserCol = cl.Session.Database("sakuraTalk").Collection("users")
+	cl.GroupCol = cl.Session.Database("sakuraTalk").Collection("groups")
+	return cl
 }
 
 // ConnectToMongoDB connect to mongo

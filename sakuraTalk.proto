@@ -138,6 +138,22 @@ message getContactsResponse {
     repeated Contact contacts = 1;
 }
 
+message Tag {
+  string TagID = 1;
+  string Name = 2;
+  string Description = 3;
+  string Color = 4;
+  string Creator = 5;
+  string CreatedTime = 6;
+}
+
+message getTagRequest {
+  string tagId = 1;
+}
+message getTagResponse {
+  Tag tag = 1;
+}
+
 message createTagRequest {}
 message createTagResponse {}
 

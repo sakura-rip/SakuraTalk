@@ -81,3 +81,43 @@ func (cl *DBClient) FetchUserGroup(mid, gid string) (*GroupSetting, error) {
 	}
 	return &value, nil
 }
+
+func (cl *DBClient) FetchUserJoinedGroupIds(mid string) ([]string, error) {
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"jGroupIds", 1}})
+	if err != nil {
+		return []string{}, err
+	}
+	return rs.JoinedGroupIds, err
+}
+
+func (cl *DBClient) FetchUserInvitedGroupIds(mid string) ([]string, error) {
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"iGroupIds", 1}})
+	if err != nil {
+		return []string{}, err
+	}
+	return rs.InvitedGroupIds, err
+}
+
+func (cl *DBClient) FetchUserFriendIds(mid string) ([]string, error) {
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"friendIds", 1}})
+	if err != nil {
+		return []string{}, err
+	}
+	return rs.FriendIds, err
+}
+
+func (cl *DBClient) FetchUserBlockedIds(mid string) ([]string, error) {
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"blockedIds", 1}})
+	if err != nil {
+		return []string{}, err
+	}
+	return rs.BlockedIds, err
+}
+
+func (cl *DBClient) FetchUserHashedPassword(mid string) (string, error) {
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"hashedPasswd", 1}})
+	if err != nil {
+		return "", err
+	}
+	return rs.HashedPassword, err
+}

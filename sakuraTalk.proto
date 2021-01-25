@@ -5,85 +5,86 @@ option go_package = ".;TalkService";
 message Empty {}
 
 service TalkService {
-    rpc updateProfileAttributes (updateProfileAttributesRequest) returns (updateProfileAttributesResponse);
-    rpc getProfile (Empty) returns (Profile);
+  rpc updateProfileAttributes (updateProfileAttributesRequest) returns (updateProfileAttributesResponse);
+  rpc getProfile (Empty) returns (Profile);
 
 
-    rpc sendMessage(sendMessageRequest) returns (sendMessageResponse);
-    rpc editMessage(editMessageRequest) returns (editMessageResponse);
-    rpc resendMessage(resendMessageRequest) returns (resendMessageResponse);
-    rpc unsendMessage (unsendMessageRequest) returns (unsendMessageResponse);
-    rpc readMessage (readMessageRequest) returns (readMessageResponse);
-    rpc unreadMessage (unreadMessageRequest) returns (unreadMessageResponse);
-    rpc reportMessage (reportMessageRequest) returns (reportMessageResponse);
-    rpc removeAllMessages (removeAllMessagesRequest) returns (removeAllMessagesResponse);
-    rpc actionMessage (actionMessageRequest) returns (actionMessageResponse);
-    rpc announceMessage (announceMessageRequest) returns (announceMessageResponse);
+  rpc sendMessage(sendMessageRequest) returns (sendMessageResponse);
+  rpc editMessage(editMessageRequest) returns (editMessageResponse);
+  rpc resendMessage(resendMessageRequest) returns (resendMessageResponse);
+  rpc unsendMessage (unsendMessageRequest) returns (unsendMessageResponse);
+  rpc readMessage (readMessageRequest) returns (readMessageResponse);
+  rpc unreadMessage (unreadMessageRequest) returns (unreadMessageResponse);
+  rpc reportMessage (reportMessageRequest) returns (reportMessageResponse);
+  rpc removeAllMessages (removeAllMessagesRequest) returns (removeAllMessagesResponse);
+  rpc actionMessage (actionMessageRequest) returns (actionMessageResponse);
+  rpc announceMessage (announceMessageRequest) returns (announceMessageResponse);
 
-    rpc getSetting (Empty) returns (Setting);
-    rpc updateSettingAttributes(updateSettingAttributesRequest) returns (updateSettingAttributesResponse);
+  rpc getSetting (Empty) returns (Setting);
+  rpc updateSettingAttributes(updateSettingAttributesRequest) returns (updateSettingAttributesResponse);
 
-    rpc getContacts (getContactsRequest) returns (getContactsResponse);
+  rpc getContacts (getContactsRequest) returns (getContactsResponse);
 
-    rpc createTag (createTagRequest) returns (createTagResponse);
-    rpc updateTag (updateTagRequest) returns (updateTagResponse);
-    rpc registerTags (registerTagsRequest) returns (registerTagsResponse);
-    rpc getAllTags (getAllTagsRequest) returns (getAllTagsResponse);
-    rpc deleteTag (deleteTagRequest) returns (deleteTagResponse);
+  rpc getTag (getTagRequest) returns (getTagResponse);
+  rpc createTag (createTagRequest) returns (createTagResponse);
+  rpc updateTag (updateTagRequest) returns (updateTagResponse);
+  rpc registerTags (registerTagsRequest) returns (registerTagsResponse);
+  rpc getAllTags (getAllTagsRequest) returns (getAllTagsResponse);
+  rpc deleteTag (deleteTagRequest) returns (deleteTagResponse);
 
-    rpc addFriend (addFriendRequest) returns (addFriendResponse);
-    rpc deleteFriends (deleteFriendsRequest) returns (deleteFriendsResponse);
-    rpc blockFriends (blockFriendsRequest) returns (blockFriendsResponse);
-    rpc unblockFriends (unblockFriendsRequest) returns (unblockFriendsResponse);
-    rpc addFriendsToFavorite (addFriendsToFavoriteRequest) returns (addFriendsToFavoriteResponse);
-    rpc removeFriendsFromFavorite (removeFriendsFromFavoriteRequest) returns (removeFriendsFromFavoriteResponse);
-    rpc updateFriend (updateFriendRequest) returns (updateFriendResponse);
+  rpc addFriend (addFriendRequest) returns (addFriendResponse);
+  rpc deleteFriends (deleteFriendsRequest) returns (deleteFriendsResponse);
+  rpc blockFriends (blockFriendsRequest) returns (blockFriendsResponse);
+  rpc unblockFriends (unblockFriendsRequest) returns (unblockFriendsResponse);
+  rpc addFriendsToFavorite (addFriendsToFavoriteRequest) returns (addFriendsToFavoriteResponse);
+  rpc removeFriendsFromFavorite (removeFriendsFromFavoriteRequest) returns (removeFriendsFromFavoriteResponse);
+  rpc updateFriend (updateFriendRequest) returns (updateFriendResponse);
 }
 
 
 enum ProfileKey {
-    DISPLAY_NAME = 0;
+  DISPLAY_NAME = 0;
 }
 message Profile {
-    string displayName = 1;
+  string displayName = 1;
 }
 message updateProfileAttributesRequest {
-    repeated ProfileKey keys = 1;
-    Profile profile = 2;
+  repeated ProfileKey keys = 1;
+  Profile profile = 2;
 }
 message updateProfileAttributesResponse {}
 
 enum ToType {
-    USER = 0;
-    ROOM = 1;
-    GROUP = 2;
-    CHAT = 3;
+  USER = 0;
+  ROOM = 1;
+  GROUP = 2;
+  CHAT = 3;
 }
 enum ContentType {
-    TEXT = 0;
-    IMAGE = 1;
-    VIDEO = 2;
-    AUDIO = 3;
-    STICKER = 4;
+  TEXT = 0;
+  IMAGE = 1;
+  VIDEO = 2;
+  AUDIO = 3;
+  STICKER = 4;
 }
 
 message Message {
-    string from_ = 1;
-    string to = 2;
-    ToType toType = 3;
-    string messageID = 4;
-    int64 createdTime = 5;
-    string text = 6;
-    map<string, string> contentMetadata = 7;
-    ContentType contentType = 8;
-    string relatedMessageId = 9;
+  string from_ = 1;
+  string to = 2;
+  ToType toType = 3;
+  string messageID = 4;
+  int64 createdTime = 5;
+  string text = 6;
+  map<string, string> contentMetadata = 7;
+  ContentType contentType = 8;
+  string relatedMessageId = 9;
 }
 
 message sendMessageRequest {
-    Message message = 1;
+  Message message = 1;
 }
 message sendMessageResponse {
-    string messageID = 1;
+  string messageID = 1;
 }
 
 message editMessageRequest {}
@@ -119,23 +120,23 @@ message updateSettingAttributesRequest {}
 message updateSettingAttributesResponse {}
 
 enum ContactStatus {
-    NO_RELATION = 0;
-    FRIEND = 1;
-    BLOCKED = 2;
-    DELETED = 3;
+  NO_RELATION = 0;
+  FRIEND = 1;
+  BLOCKED = 2;
+  DELETED = 3;
 }
 
 message Contact {
-    string displayName = 1;
-    string bio = 2;
-    ContactStatus status = 3;
+  string displayName = 1;
+  string bio = 2;
+  ContactStatus status = 3;
 }
 
 message getContactsRequest {
-    repeated string mids = 1;
+  repeated string mids = 1;
 }
 message getContactsResponse {
-    repeated Contact contacts = 1;
+  repeated Contact contacts = 1;
 }
 
 message Tag {

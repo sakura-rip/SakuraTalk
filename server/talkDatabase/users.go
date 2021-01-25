@@ -129,7 +129,7 @@ func (cl *DBClient) FetchUserHashedPassword(mid string) (string, error) {
 	return rs.HashedPassword, err
 }
 
-func (cl *DBClient) UpdateUser(mid string, attToUpdate bson.D) error {
-	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.D{{"$set", attToUpdate}})
+func (cl *DBClient) UpdateUser(mid string, attrToUpdate bson.D) error {
+	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$set": attrToUpdate})
 	return err
 }

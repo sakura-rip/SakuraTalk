@@ -1,4 +1,4 @@
-package RPC_server
+package talkServer
 
 import "github.com/sakura-rip/SakuraTalk/TalkService"
 

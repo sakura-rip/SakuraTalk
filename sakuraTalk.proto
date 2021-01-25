@@ -23,13 +23,14 @@ service TalkService {
     rpc getSetting (Empty) returns (Setting);
     rpc updateSettingAttributes(updateSettingAttributesRequest) returns (updateSettingAttributesResponse);
 
+    rpc getContacts (getContactsRequest) returns (getContactsResponse);
 
     rpc createTag (createTagRequest) returns (createTagResponse);
     rpc updateTag (updateTagRequest) returns (updateTagResponse);
     rpc registerTags (registerTagsRequest) returns (registerTagsResponse);
     rpc getAllTags (getAllTagsRequest) returns (getAllTagsResponse);
     rpc deleteTag (deleteTagRequest) returns (deleteTagResponse);
-    
+
     rpc addFriend (addFriendRequest) returns (addFriendResponse);
     rpc deleteFriends (deleteFriendsRequest) returns (deleteFriendsResponse);
     rpc blockFriends (blockFriendsRequest) returns (blockFriendsResponse);
@@ -116,6 +117,26 @@ message Setting {}
 
 message updateSettingAttributesRequest {}
 message updateSettingAttributesResponse {}
+
+enum ContactStatus {
+    NO_RELATION = 0;
+    FRIEND = 1;
+    BLOCKED = 2;
+    DELETED = 3;
+}
+
+message Contact {
+    string displayName = 1;
+    string bio = 2;
+    ContactStatus status = 3;
+}
+
+message getContactsRequest {
+    repeated string mids = 1;
+}
+message getContactsResponse {
+    repeated Contact contacts = 1;
+}
 
 message createTagRequest {}
 message createTagResponse {}

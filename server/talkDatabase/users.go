@@ -71,11 +71,11 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 }
 
 func (cl *DBClient) FetchUserGroup(mid, gid string) (*GroupSetting, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"groups", 1}})
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"groupSettings", 1}})
 	if err != nil {
 		return nil, err
 	}
-	value, ok := rs.Groups[gid]
+	value, ok := rs.GroupSettings[gid]
 	if !ok {
 		return nil, err
 	}

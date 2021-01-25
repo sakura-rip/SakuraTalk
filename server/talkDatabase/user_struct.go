@@ -12,9 +12,9 @@ type User struct {
 	FriendIds       []string `bson:"friendIds"`
 	BlockedIds      []string `bson:"blockedIds"`
 
-	Groups   map[string]GroupSetting `bson:"groups"`
-	Tags     map[string]Tag          `bson:"tags"`
-	Contacts map[string]Contact      `bson:"contacts"`
+	GroupSettings map[string]GroupSetting `bson:"groupSettings"`
+	Tags          map[string]Tag          `bson:"tags"`
+	Contacts      map[string]Contact      `bson:"contacts"`
 }
 
 func NewUser() *User {

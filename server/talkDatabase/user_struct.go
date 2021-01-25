@@ -17,6 +17,10 @@ type User struct {
 	Contacts map[string]Contact      `bson:"contacts"`
 }
 
+func NewUser() *User {
+	return &User{}
+}
+
 type GroupSetting struct {
 	//新規メッセージの通知など
 	EnableNotification bool `bson:"enNotify"`
@@ -31,6 +35,10 @@ type GroupSetting struct {
 	TagIds          []string `bson:"tagIds"`
 }
 
+func NewGroupSetting() *GroupSetting {
+	return &GroupSetting{}
+}
+
 type Profile struct {
 	Name      string `bson:"name"`
 	Bio       string `bson:"bio"`
@@ -43,6 +51,10 @@ type Profile struct {
 	Status   string `bson:"status"`
 }
 
+func NewProfile() *Profile {
+	return &Profile{}
+}
+
 type Setting struct {
 	PrivateUserID string `bson:"pUserID"`
 	Email         string `bson:"email"`
@@ -51,6 +63,10 @@ type Setting struct {
 	AllowSearchByPrivateUserID bool `bson:"asByPUserID"`
 	AllowSearchByEmail         bool `bson:"asByUserID"`
 	AllowSearchByUserTicket    bool `bson:"asByUserTicket"`
+}
+
+func NewSetting() *Setting {
+	return &Setting{}
 }
 
 type Tag struct {
@@ -62,10 +78,18 @@ type Tag struct {
 	CreatedTime int64  `bson:"createdTime"`
 }
 
+func NewTag() *Tag {
+	return &Tag{}
+}
+
 type Contact struct {
 	MID             string   `bson:"mid"`
 	OverWrittenName string   `bson:"owName"`
 	TagIds          []string `bson:"tagIds"`
 
 	ContactStatus int64 `bson:"cStatus"`
+}
+
+func NewContact() *Contact {
+	return &Contact{}
 }

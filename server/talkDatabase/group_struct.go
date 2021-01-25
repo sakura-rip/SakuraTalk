@@ -14,3 +14,7 @@ type Group struct {
 	GroupTicket            string `bson:"gTicket"`
 	AllowJoinByGroupTicket bool   `bson:"ajByGTicket"`
 }
+
+func NewGroup() *Group {
+	return &Group{}
+}

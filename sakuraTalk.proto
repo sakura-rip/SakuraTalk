@@ -130,6 +130,7 @@ message Contact {
   string displayName = 1;
   string bio = 2;
   ContactStatus status = 3;
+  repeated Tag tags = 4;
 }
 
 message getContactsRequest {

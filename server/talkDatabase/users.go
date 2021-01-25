@@ -47,19 +47,13 @@ func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
 }
 
 func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
-	otherProfile, err := cl.FetchUserProfile(contactMid)
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"contacts", 1}})
 	if err != nil {
 		return nil, err
 	}
-	contact := &Contact{
-		MID:           contactMid,
-		ContactStatus: 0,
-	}
-	user, err := cl.FetchUserAttribute(mid, bson.D{{"contacts", 1}})
-	if err != nil {
+	value, ok := rs.Contacts[contactMid]
+	if !ok {
 		return nil, err
 	}
-	if len(user.Contacts) == 0 {
-		contact.ContactStatus = 1
-	}
+	return &value, nil
 }

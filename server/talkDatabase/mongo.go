@@ -10,6 +10,7 @@ import (
 
 type DBClient struct {
 	Session  *mongo.Client
+	Ctx      context.Context
 	UserCol  *mongo.Collection
 	GroupCol *mongo.Collection
 }
@@ -17,6 +18,7 @@ type DBClient struct {
 func NewDBClient() *DBClient {
 	cl := &DBClient{
 		Session: ConnectToMongoDB(),
+		Ctx:     context.Background(),
 	}
 	cl.UserCol = cl.Session.Database("sakuraTalk").Collection("users")
 	cl.GroupCol = cl.Session.Database("sakuraTalk").Collection("groups")

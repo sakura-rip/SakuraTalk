@@ -174,6 +174,58 @@ func (ContentType) EnumDescriptor() ([]byte, []int) {
 	return file_sakuraTalk_proto_rawDescGZIP(), []int{2}
 }
 
+type ContactStatus int32
+
+const (
+	ContactStatus_NO_RELATION ContactStatus = 0
+	ContactStatus_FRIEND      ContactStatus = 1
+	ContactStatus_BLOCKED     ContactStatus = 2
+	ContactStatus_DELETED     ContactStatus = 3
+)
+
+// Enum value maps for ContactStatus.
+var (
+	ContactStatus_name = map[int32]string{
+		0: "NO_RELATION",
+		1: "FRIEND",
+		2: "BLOCKED",
+		3: "DELETED",
+	}
+	ContactStatus_value = map[string]int32{
+		"NO_RELATION": 0,
+		"FRIEND":      1,
+		"BLOCKED":     2,
+		"DELETED":     3,
+	}
+)
+
+func (x ContactStatus) Enum() *ContactStatus {
+	p := new(ContactStatus)
+	*p = x
+	return p
+}
+
+func (x ContactStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ContactStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_sakuraTalk_proto_enumTypes[3].Descriptor()
+}
+
+func (ContactStatus) Type() protoreflect.EnumType {
+	return &file_sakuraTalk_proto_enumTypes[3]
+}
+
+func (x ContactStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ContactStatus.Descriptor instead.
+func (ContactStatus) EnumDescriptor() ([]byte, []int) {
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{3}
+}
+
 type Empty struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1355,6 +1407,163 @@ func (*UpdateSettingAttributesResponse) Descriptor() ([]byte, []int) {
 	return file_sakuraTalk_proto_rawDescGZIP(), []int{27}
 }
 
+type Contact struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DisplayName string        `protobuf:"bytes,1,opt,name=displayName,proto3" json:"displayName,omitempty"`
+	Bio         string        `protobuf:"bytes,2,opt,name=bio,proto3" json:"bio,omitempty"`
+	Status      ContactStatus `protobuf:"varint,3,opt,name=status,proto3,enum=TalkService.ContactStatus" json:"status,omitempty"`
+}
+
+func (x *Contact) Reset() {
+	*x = Contact{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sakuraTalk_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Contact) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Contact) ProtoMessage() {}
+
+func (x *Contact) ProtoReflect() protoreflect.Message {
+	mi := &file_sakuraTalk_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Contact.ProtoReflect.Descriptor instead.
+func (*Contact) Descriptor() ([]byte, []int) {
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *Contact) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *Contact) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
+func (x *Contact) GetStatus() ContactStatus {
+	if x != nil {
+		return x.Status
+	}
+	return ContactStatus_NO_RELATION
+}
+
+type GetContactsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Mids []string `protobuf:"bytes,1,rep,name=mids,proto3" json:"mids,omitempty"`
+}
+
+func (x *GetContactsRequest) Reset() {
+	*x = GetContactsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sakuraTalk_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetContactsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetContactsRequest) ProtoMessage() {}
+
+func (x *GetContactsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sakuraTalk_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetContactsRequest.ProtoReflect.Descriptor instead.
+func (*GetContactsRequest) Descriptor() ([]byte, []int) {
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *GetContactsRequest) GetMids() []string {
+	if x != nil {
+		return x.Mids
+	}
+	return nil
+}
+
+type GetContactsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Contacts []*Contact `protobuf:"bytes,1,rep,name=contacts,proto3" json:"contacts,omitempty"`
+}
+
+func (x *GetContactsResponse) Reset() {
+	*x = GetContactsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sakuraTalk_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetContactsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetContactsResponse) ProtoMessage() {}
+
+func (x *GetContactsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sakuraTalk_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetContactsResponse.ProtoReflect.Descriptor instead.
+func (*GetContactsResponse) Descriptor() ([]byte, []int) {
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *GetContactsResponse) GetContacts() []*Contact {
+	if x != nil {
+		return x.Contacts
+	}
+	return nil
+}
+
 type CreateTagRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1364,7 +1573,7 @@ type CreateTagRequest struct {
 func (x *CreateTagRequest) Reset() {
 	*x = CreateTagRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[28]
+		mi := &file_sakuraTalk_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1377,7 +1586,7 @@ func (x *CreateTagRequest) String() string {
 func (*CreateTagRequest) ProtoMessage() {}
 
 func (x *CreateTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[28]
+	mi := &file_sakuraTalk_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1390,7 +1599,7 @@ func (x *CreateTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTagRequest.ProtoReflect.Descriptor instead.
 func (*CreateTagRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{28}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{31}
 }
 
 type CreateTagResponse struct {
@@ -1402,7 +1611,7 @@ type CreateTagResponse struct {
 func (x *CreateTagResponse) Reset() {
 	*x = CreateTagResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[29]
+		mi := &file_sakuraTalk_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1415,7 +1624,7 @@ func (x *CreateTagResponse) String() string {
 func (*CreateTagResponse) ProtoMessage() {}
 
 func (x *CreateTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[29]
+	mi := &file_sakuraTalk_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1428,7 +1637,7 @@ func (x *CreateTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTagResponse.ProtoReflect.Descriptor instead.
 func (*CreateTagResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{29}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{32}
 }
 
 type UpdateTagRequest struct {
@@ -1440,7 +1649,7 @@ type UpdateTagRequest struct {
 func (x *UpdateTagRequest) Reset() {
 	*x = UpdateTagRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[30]
+		mi := &file_sakuraTalk_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1453,7 +1662,7 @@ func (x *UpdateTagRequest) String() string {
 func (*UpdateTagRequest) ProtoMessage() {}
 
 func (x *UpdateTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[30]
+	mi := &file_sakuraTalk_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1466,7 +1675,7 @@ func (x *UpdateTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTagRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTagRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{30}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{33}
 }
 
 type UpdateTagResponse struct {
@@ -1478,7 +1687,7 @@ type UpdateTagResponse struct {
 func (x *UpdateTagResponse) Reset() {
 	*x = UpdateTagResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[31]
+		mi := &file_sakuraTalk_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1491,7 +1700,7 @@ func (x *UpdateTagResponse) String() string {
 func (*UpdateTagResponse) ProtoMessage() {}
 
 func (x *UpdateTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[31]
+	mi := &file_sakuraTalk_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1504,7 +1713,7 @@ func (x *UpdateTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTagResponse.ProtoReflect.Descriptor instead.
 func (*UpdateTagResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{31}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{34}
 }
 
 type RegisterTagsRequest struct {
@@ -1516,7 +1725,7 @@ type RegisterTagsRequest struct {
 func (x *RegisterTagsRequest) Reset() {
 	*x = RegisterTagsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[32]
+		mi := &file_sakuraTalk_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1529,7 +1738,7 @@ func (x *RegisterTagsRequest) String() string {
 func (*RegisterTagsRequest) ProtoMessage() {}
 
 func (x *RegisterTagsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[32]
+	mi := &file_sakuraTalk_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1542,7 +1751,7 @@ func (x *RegisterTagsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterTagsRequest.ProtoReflect.Descriptor instead.
 func (*RegisterTagsRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{32}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{35}
 }
 
 type RegisterTagsResponse struct {
@@ -1554,7 +1763,7 @@ type RegisterTagsResponse struct {
 func (x *RegisterTagsResponse) Reset() {
 	*x = RegisterTagsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[33]
+		mi := &file_sakuraTalk_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1567,7 +1776,7 @@ func (x *RegisterTagsResponse) String() string {
 func (*RegisterTagsResponse) ProtoMessage() {}
 
 func (x *RegisterTagsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[33]
+	mi := &file_sakuraTalk_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1580,7 +1789,7 @@ func (x *RegisterTagsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterTagsResponse.ProtoReflect.Descriptor instead.
 func (*RegisterTagsResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{33}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{36}
 }
 
 type GetAllTagsRequest struct {
@@ -1592,7 +1801,7 @@ type GetAllTagsRequest struct {
 func (x *GetAllTagsRequest) Reset() {
 	*x = GetAllTagsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[34]
+		mi := &file_sakuraTalk_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1605,7 +1814,7 @@ func (x *GetAllTagsRequest) String() string {
 func (*GetAllTagsRequest) ProtoMessage() {}
 
 func (x *GetAllTagsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[34]
+	mi := &file_sakuraTalk_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1618,7 +1827,7 @@ func (x *GetAllTagsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllTagsRequest.ProtoReflect.Descriptor instead.
 func (*GetAllTagsRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{34}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{37}
 }
 
 type GetAllTagsResponse struct {
@@ -1630,7 +1839,7 @@ type GetAllTagsResponse struct {
 func (x *GetAllTagsResponse) Reset() {
 	*x = GetAllTagsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[35]
+		mi := &file_sakuraTalk_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1643,7 +1852,7 @@ func (x *GetAllTagsResponse) String() string {
 func (*GetAllTagsResponse) ProtoMessage() {}
 
 func (x *GetAllTagsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[35]
+	mi := &file_sakuraTalk_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1656,7 +1865,7 @@ func (x *GetAllTagsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllTagsResponse.ProtoReflect.Descriptor instead.
 func (*GetAllTagsResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{35}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{38}
 }
 
 type DeleteTagRequest struct {
@@ -1668,7 +1877,7 @@ type DeleteTagRequest struct {
 func (x *DeleteTagRequest) Reset() {
 	*x = DeleteTagRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[36]
+		mi := &file_sakuraTalk_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1681,7 +1890,7 @@ func (x *DeleteTagRequest) String() string {
 func (*DeleteTagRequest) ProtoMessage() {}
 
 func (x *DeleteTagRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[36]
+	mi := &file_sakuraTalk_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1694,7 +1903,7 @@ func (x *DeleteTagRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTagRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTagRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{36}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{39}
 }
 
 type DeleteTagResponse struct {
@@ -1706,7 +1915,7 @@ type DeleteTagResponse struct {
 func (x *DeleteTagResponse) Reset() {
 	*x = DeleteTagResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[37]
+		mi := &file_sakuraTalk_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1719,7 +1928,7 @@ func (x *DeleteTagResponse) String() string {
 func (*DeleteTagResponse) ProtoMessage() {}
 
 func (x *DeleteTagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[37]
+	mi := &file_sakuraTalk_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1732,7 +1941,7 @@ func (x *DeleteTagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTagResponse.ProtoReflect.Descriptor instead.
 func (*DeleteTagResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{37}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{40}
 }
 
 type AddFriendRequest struct {
@@ -1744,7 +1953,7 @@ type AddFriendRequest struct {
 func (x *AddFriendRequest) Reset() {
 	*x = AddFriendRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[38]
+		mi := &file_sakuraTalk_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1757,7 +1966,7 @@ func (x *AddFriendRequest) String() string {
 func (*AddFriendRequest) ProtoMessage() {}
 
 func (x *AddFriendRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[38]
+	mi := &file_sakuraTalk_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1770,7 +1979,7 @@ func (x *AddFriendRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddFriendRequest.ProtoReflect.Descriptor instead.
 func (*AddFriendRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{38}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{41}
 }
 
 type AddFriendResponse struct {
@@ -1782,7 +1991,7 @@ type AddFriendResponse struct {
 func (x *AddFriendResponse) Reset() {
 	*x = AddFriendResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[39]
+		mi := &file_sakuraTalk_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1795,7 +2004,7 @@ func (x *AddFriendResponse) String() string {
 func (*AddFriendResponse) ProtoMessage() {}
 
 func (x *AddFriendResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[39]
+	mi := &file_sakuraTalk_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1808,7 +2017,7 @@ func (x *AddFriendResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddFriendResponse.ProtoReflect.Descriptor instead.
 func (*AddFriendResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{39}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{42}
 }
 
 type DeleteFriendsRequest struct {
@@ -1820,7 +2029,7 @@ type DeleteFriendsRequest struct {
 func (x *DeleteFriendsRequest) Reset() {
 	*x = DeleteFriendsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[40]
+		mi := &file_sakuraTalk_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1833,7 +2042,7 @@ func (x *DeleteFriendsRequest) String() string {
 func (*DeleteFriendsRequest) ProtoMessage() {}
 
 func (x *DeleteFriendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[40]
+	mi := &file_sakuraTalk_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1846,7 +2055,7 @@ func (x *DeleteFriendsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFriendsRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFriendsRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{40}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{43}
 }
 
 type DeleteFriendsResponse struct {
@@ -1858,7 +2067,7 @@ type DeleteFriendsResponse struct {
 func (x *DeleteFriendsResponse) Reset() {
 	*x = DeleteFriendsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[41]
+		mi := &file_sakuraTalk_proto_msgTypes[44]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1871,7 +2080,7 @@ func (x *DeleteFriendsResponse) String() string {
 func (*DeleteFriendsResponse) ProtoMessage() {}
 
 func (x *DeleteFriendsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[41]
+	mi := &file_sakuraTalk_proto_msgTypes[44]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1884,7 +2093,7 @@ func (x *DeleteFriendsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFriendsResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFriendsResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{41}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{44}
 }
 
 type BlockFriendsRequest struct {
@@ -1896,7 +2105,7 @@ type BlockFriendsRequest struct {
 func (x *BlockFriendsRequest) Reset() {
 	*x = BlockFriendsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[42]
+		mi := &file_sakuraTalk_proto_msgTypes[45]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1909,7 +2118,7 @@ func (x *BlockFriendsRequest) String() string {
 func (*BlockFriendsRequest) ProtoMessage() {}
 
 func (x *BlockFriendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[42]
+	mi := &file_sakuraTalk_proto_msgTypes[45]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1922,7 +2131,7 @@ func (x *BlockFriendsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockFriendsRequest.ProtoReflect.Descriptor instead.
 func (*BlockFriendsRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{42}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{45}
 }
 
 type BlockFriendsResponse struct {
@@ -1934,7 +2143,7 @@ type BlockFriendsResponse struct {
 func (x *BlockFriendsResponse) Reset() {
 	*x = BlockFriendsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[43]
+		mi := &file_sakuraTalk_proto_msgTypes[46]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1947,7 +2156,7 @@ func (x *BlockFriendsResponse) String() string {
 func (*BlockFriendsResponse) ProtoMessage() {}
 
 func (x *BlockFriendsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[43]
+	mi := &file_sakuraTalk_proto_msgTypes[46]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1960,7 +2169,7 @@ func (x *BlockFriendsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BlockFriendsResponse.ProtoReflect.Descriptor instead.
 func (*BlockFriendsResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{43}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{46}
 }
 
 type UnblockFriendsRequest struct {
@@ -1972,7 +2181,7 @@ type UnblockFriendsRequest struct {
 func (x *UnblockFriendsRequest) Reset() {
 	*x = UnblockFriendsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[44]
+		mi := &file_sakuraTalk_proto_msgTypes[47]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1985,7 +2194,7 @@ func (x *UnblockFriendsRequest) String() string {
 func (*UnblockFriendsRequest) ProtoMessage() {}
 
 func (x *UnblockFriendsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[44]
+	mi := &file_sakuraTalk_proto_msgTypes[47]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1998,7 +2207,7 @@ func (x *UnblockFriendsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnblockFriendsRequest.ProtoReflect.Descriptor instead.
 func (*UnblockFriendsRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{44}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{47}
 }
 
 type UnblockFriendsResponse struct {
@@ -2010,7 +2219,7 @@ type UnblockFriendsResponse struct {
 func (x *UnblockFriendsResponse) Reset() {
 	*x = UnblockFriendsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[45]
+		mi := &file_sakuraTalk_proto_msgTypes[48]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2023,7 +2232,7 @@ func (x *UnblockFriendsResponse) String() string {
 func (*UnblockFriendsResponse) ProtoMessage() {}
 
 func (x *UnblockFriendsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[45]
+	mi := &file_sakuraTalk_proto_msgTypes[48]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2036,7 +2245,7 @@ func (x *UnblockFriendsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnblockFriendsResponse.ProtoReflect.Descriptor instead.
 func (*UnblockFriendsResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{45}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{48}
 }
 
 type AddFriendsToFavoriteRequest struct {
@@ -2048,7 +2257,7 @@ type AddFriendsToFavoriteRequest struct {
 func (x *AddFriendsToFavoriteRequest) Reset() {
 	*x = AddFriendsToFavoriteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[46]
+		mi := &file_sakuraTalk_proto_msgTypes[49]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2061,7 +2270,7 @@ func (x *AddFriendsToFavoriteRequest) String() string {
 func (*AddFriendsToFavoriteRequest) ProtoMessage() {}
 
 func (x *AddFriendsToFavoriteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[46]
+	mi := &file_sakuraTalk_proto_msgTypes[49]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2074,7 +2283,7 @@ func (x *AddFriendsToFavoriteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddFriendsToFavoriteRequest.ProtoReflect.Descriptor instead.
 func (*AddFriendsToFavoriteRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{46}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{49}
 }
 
 type AddFriendsToFavoriteResponse struct {
@@ -2086,7 +2295,7 @@ type AddFriendsToFavoriteResponse struct {
 func (x *AddFriendsToFavoriteResponse) Reset() {
 	*x = AddFriendsToFavoriteResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[47]
+		mi := &file_sakuraTalk_proto_msgTypes[50]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2099,7 +2308,7 @@ func (x *AddFriendsToFavoriteResponse) String() string {
 func (*AddFriendsToFavoriteResponse) ProtoMessage() {}
 
 func (x *AddFriendsToFavoriteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[47]
+	mi := &file_sakuraTalk_proto_msgTypes[50]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2112,7 +2321,7 @@ func (x *AddFriendsToFavoriteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddFriendsToFavoriteResponse.ProtoReflect.Descriptor instead.
 func (*AddFriendsToFavoriteResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{47}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{50}
 }
 
 type RemoveFriendsFromFavoriteRequest struct {
@@ -2124,7 +2333,7 @@ type RemoveFriendsFromFavoriteRequest struct {
 func (x *RemoveFriendsFromFavoriteRequest) Reset() {
 	*x = RemoveFriendsFromFavoriteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[48]
+		mi := &file_sakuraTalk_proto_msgTypes[51]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2137,7 +2346,7 @@ func (x *RemoveFriendsFromFavoriteRequest) String() string {
 func (*RemoveFriendsFromFavoriteRequest) ProtoMessage() {}
 
 func (x *RemoveFriendsFromFavoriteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[48]
+	mi := &file_sakuraTalk_proto_msgTypes[51]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2150,7 +2359,7 @@ func (x *RemoveFriendsFromFavoriteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveFriendsFromFavoriteRequest.ProtoReflect.Descriptor instead.
 func (*RemoveFriendsFromFavoriteRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{48}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{51}
 }
 
 type RemoveFriendsFromFavoriteResponse struct {
@@ -2162,7 +2371,7 @@ type RemoveFriendsFromFavoriteResponse struct {
 func (x *RemoveFriendsFromFavoriteResponse) Reset() {
 	*x = RemoveFriendsFromFavoriteResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[49]
+		mi := &file_sakuraTalk_proto_msgTypes[52]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2175,7 +2384,7 @@ func (x *RemoveFriendsFromFavoriteResponse) String() string {
 func (*RemoveFriendsFromFavoriteResponse) ProtoMessage() {}
 
 func (x *RemoveFriendsFromFavoriteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[49]
+	mi := &file_sakuraTalk_proto_msgTypes[52]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2188,7 +2397,7 @@ func (x *RemoveFriendsFromFavoriteResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use RemoveFriendsFromFavoriteResponse.ProtoReflect.Descriptor instead.
 func (*RemoveFriendsFromFavoriteResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{49}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{52}
 }
 
 type UpdateFriendRequest struct {
@@ -2200,7 +2409,7 @@ type UpdateFriendRequest struct {
 func (x *UpdateFriendRequest) Reset() {
 	*x = UpdateFriendRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[50]
+		mi := &file_sakuraTalk_proto_msgTypes[53]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2213,7 +2422,7 @@ func (x *UpdateFriendRequest) String() string {
 func (*UpdateFriendRequest) ProtoMessage() {}
 
 func (x *UpdateFriendRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[50]
+	mi := &file_sakuraTalk_proto_msgTypes[53]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2226,7 +2435,7 @@ func (x *UpdateFriendRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFriendRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFriendRequest) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{50}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{53}
 }
 
 type UpdateFriendResponse struct {
@@ -2238,7 +2447,7 @@ type UpdateFriendResponse struct {
 func (x *UpdateFriendResponse) Reset() {
 	*x = UpdateFriendResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_sakuraTalk_proto_msgTypes[51]
+		mi := &file_sakuraTalk_proto_msgTypes[54]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2251,7 +2460,7 @@ func (x *UpdateFriendResponse) String() string {
 func (*UpdateFriendResponse) ProtoMessage() {}
 
 func (x *UpdateFriendResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sakuraTalk_proto_msgTypes[51]
+	mi := &file_sakuraTalk_proto_msgTypes[54]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2264,7 +2473,7 @@ func (x *UpdateFriendResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFriendResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFriendResponse) Descriptor() ([]byte, []int) {
-	return file_sakuraTalk_proto_rawDescGZIP(), []int{51}
+	return file_sakuraTalk_proto_rawDescGZIP(), []int{54}
 }
 
 var File_sakuraTalk_proto protoreflect.FileDescriptor
@@ -2353,130 +2562,154 @@ var file_sakuraTalk_proto_rawDesc = []byte{
 	0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
 	0x21, 0x0a, 0x1f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67,
 	0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x13, 0x0a, 0x11, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x75,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
-	0x13, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x15, 0x0a, 0x13, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72,
-	0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x16, 0x0a, 0x14, 0x72,
-	0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x13, 0x0a, 0x11, 0x67, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x54, 0x61, 0x67,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x14, 0x0a, 0x12, 0x67, 0x65, 0x74, 0x41,
-	0x6c, 0x6c, 0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12,
-	0x0a, 0x10, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x22, 0x13, 0x0a, 0x11, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x61, 0x64, 0x64, 0x46, 0x72,
-	0x69, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x13, 0x0a, 0x11, 0x61,
-	0x64, 0x64, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x16, 0x0a, 0x14, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x17, 0x0a, 0x15, 0x64, 0x65, 0x6c, 0x65,
-	0x74, 0x65, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x15, 0x0a, 0x13, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x16, 0x0a, 0x14, 0x62, 0x6c, 0x6f, 0x63,
-	0x6b, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x17, 0x0a, 0x15, 0x75, 0x6e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x46, 0x72, 0x69, 0x65, 0x6e,
-	0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x18, 0x0a, 0x16, 0x75, 0x6e, 0x62,
-	0x6c, 0x6f, 0x63, 0x6b, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x1d, 0x0a, 0x1b, 0x61, 0x64, 0x64, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64,
-	0x73, 0x54, 0x6f, 0x46, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x22, 0x1e, 0x0a, 0x1c, 0x61, 0x64, 0x64, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73,
-	0x54, 0x6f, 0x46, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x22, 0x0a, 0x20, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x46, 0x72, 0x69, 0x65,
-	0x6e, 0x64, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x46, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x23, 0x0a, 0x21, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65,
-	0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x46, 0x61, 0x76, 0x6f, 0x72,
-	0x69, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x15, 0x0a, 0x13, 0x75,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x22, 0x16, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x46, 0x72, 0x69, 0x65,
-	0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2a, 0x1e, 0x0a, 0x0a, 0x50, 0x72,
-	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4b, 0x65, 0x79, 0x12, 0x10, 0x0a, 0x0c, 0x44, 0x49, 0x53, 0x50,
-	0x4c, 0x41, 0x59, 0x5f, 0x4e, 0x41, 0x4d, 0x45, 0x10, 0x00, 0x2a, 0x31, 0x0a, 0x06, 0x54, 0x6f,
-	0x54, 0x79, 0x70, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x55, 0x53, 0x45, 0x52, 0x10, 0x00, 0x12, 0x08,
-	0x0a, 0x04, 0x52, 0x4f, 0x4f, 0x4d, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x47, 0x52, 0x4f, 0x55,
-	0x50, 0x10, 0x02, 0x12, 0x08, 0x0a, 0x04, 0x43, 0x48, 0x41, 0x54, 0x10, 0x03, 0x2a, 0x45, 0x0a,
-	0x0b, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x08, 0x0a, 0x04,
-	0x54, 0x45, 0x58, 0x54, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x49, 0x4d, 0x41, 0x47, 0x45, 0x10,
-	0x01, 0x12, 0x09, 0x0a, 0x05, 0x56, 0x49, 0x44, 0x45, 0x4f, 0x10, 0x02, 0x12, 0x09, 0x0a, 0x05,
-	0x41, 0x55, 0x44, 0x49, 0x4f, 0x10, 0x03, 0x12, 0x0b, 0x0a, 0x07, 0x53, 0x54, 0x49, 0x43, 0x4b,
-	0x45, 0x52, 0x10, 0x04, 0x32, 0xf3, 0x11, 0x0a, 0x0b, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x12, 0x74, 0x0a, 0x17, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72,
-	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x12,
-	0x2b, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x41, 0x74, 0x74, 0x72, 0x69,
-	0x62, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x54,
-	0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74,
-	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x0a, 0x67, 0x65,
-	0x74, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x12, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x14, 0x2e, 0x54,
-	0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x12, 0x50, 0x0a, 0x0b, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x73, 0x65, 0x22, 0x71, 0x0a, 0x07, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x12, 0x20, 0x0a,
+	0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0b, 0x64, 0x69, 0x73, 0x70, 0x6c, 0x61, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x12,
+	0x10, 0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x62, 0x69,
+	0x6f, 0x12, 0x32, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x1a, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x28, 0x0a, 0x12, 0x67, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x74,
+	0x61, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6d,
+	0x69, 0x64, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x6d, 0x69, 0x64, 0x73, 0x22,
+	0x47, 0x0a, 0x13, 0x67, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x08, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x63,
+	0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x52, 0x08,
+	0x63, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x73, 0x22, 0x12, 0x0a, 0x10, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x13, 0x0a, 0x11,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x12, 0x0a, 0x10, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x13, 0x0a, 0x11, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54,
+	0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x15, 0x0a, 0x13, 0x72, 0x65,
+	0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x22, 0x16, 0x0a, 0x14, 0x72, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x54, 0x61, 0x67,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x13, 0x0a, 0x11, 0x67, 0x65, 0x74,
+	0x41, 0x6c, 0x6c, 0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x14,
+	0x0a, 0x12, 0x67, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a, 0x10, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x61,
+	0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x13, 0x0a, 0x11, 0x64, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x12, 0x0a,
+	0x10, 0x61, 0x64, 0x64, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x22, 0x13, 0x0a, 0x11, 0x61, 0x64, 0x64, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x16, 0x0a, 0x14, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x17,
+	0x0a, 0x15, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x15, 0x0a, 0x13, 0x62, 0x6c, 0x6f, 0x63, 0x6b,
+	0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x16,
+	0x0a, 0x14, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x17, 0x0a, 0x15, 0x75, 0x6e, 0x62, 0x6c, 0x6f, 0x63,
+	0x6b, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
+	0x18, 0x0a, 0x16, 0x75, 0x6e, 0x62, 0x6c, 0x6f, 0x63, 0x6b, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1d, 0x0a, 0x1b, 0x61, 0x64, 0x64,
+	0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x54, 0x6f, 0x46, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x1e, 0x0a, 0x1c, 0x61, 0x64, 0x64, 0x46,
+	0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x54, 0x6f, 0x46, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x22, 0x0a, 0x20, 0x72, 0x65, 0x6d, 0x6f,
+	0x76, 0x65, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x46, 0x72, 0x6f, 0x6d, 0x46, 0x61, 0x76,
+	0x6f, 0x72, 0x69, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x23, 0x0a, 0x21,
+	0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x73, 0x46, 0x72, 0x6f,
+	0x6d, 0x46, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x15, 0x0a, 0x13, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x46, 0x72, 0x69, 0x65, 0x6e,
+	0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x16, 0x0a, 0x14, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x46, 0x72, 0x69, 0x65, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x2a, 0x1e, 0x0a, 0x0a, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4b, 0x65, 0x79, 0x12, 0x10,
+	0x0a, 0x0c, 0x44, 0x49, 0x53, 0x50, 0x4c, 0x41, 0x59, 0x5f, 0x4e, 0x41, 0x4d, 0x45, 0x10, 0x00,
+	0x2a, 0x31, 0x0a, 0x06, 0x54, 0x6f, 0x54, 0x79, 0x70, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x55, 0x53,
+	0x45, 0x52, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x52, 0x4f, 0x4f, 0x4d, 0x10, 0x01, 0x12, 0x09,
+	0x0a, 0x05, 0x47, 0x52, 0x4f, 0x55, 0x50, 0x10, 0x02, 0x12, 0x08, 0x0a, 0x04, 0x43, 0x48, 0x41,
+	0x54, 0x10, 0x03, 0x2a, 0x45, 0x0a, 0x0b, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x54, 0x79,
+	0x70, 0x65, 0x12, 0x08, 0x0a, 0x04, 0x54, 0x45, 0x58, 0x54, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05,
+	0x49, 0x4d, 0x41, 0x47, 0x45, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x56, 0x49, 0x44, 0x45, 0x4f,
+	0x10, 0x02, 0x12, 0x09, 0x0a, 0x05, 0x41, 0x55, 0x44, 0x49, 0x4f, 0x10, 0x03, 0x12, 0x0b, 0x0a,
+	0x07, 0x53, 0x54, 0x49, 0x43, 0x4b, 0x45, 0x52, 0x10, 0x04, 0x2a, 0x46, 0x0a, 0x0d, 0x43, 0x6f,
+	0x6e, 0x74, 0x61, 0x63, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x0f, 0x0a, 0x0b, 0x4e,
+	0x4f, 0x5f, 0x52, 0x45, 0x4c, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x10, 0x00, 0x12, 0x0a, 0x0a, 0x06,
+	0x46, 0x52, 0x49, 0x45, 0x4e, 0x44, 0x10, 0x01, 0x12, 0x0b, 0x0a, 0x07, 0x42, 0x4c, 0x4f, 0x43,
+	0x4b, 0x45, 0x44, 0x10, 0x02, 0x12, 0x0b, 0x0a, 0x07, 0x44, 0x45, 0x4c, 0x45, 0x54, 0x45, 0x44,
+	0x10, 0x03, 0x32, 0xc5, 0x12, 0x0a, 0x0b, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x12, 0x74, 0x0a, 0x17, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x12, 0x2b, 0x2e,
+	0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x54, 0x61, 0x6c,
+	0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
+	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x0a, 0x67, 0x65, 0x74, 0x50,
+	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x12, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x14, 0x2e, 0x54, 0x61, 0x6c,
+	0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
+	0x12, 0x50, 0x0a, 0x0b, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12,
+	0x1f, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x73, 0x65,
+	0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x20, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x73,
+	0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x50, 0x0a, 0x0b, 0x65, 0x64, 0x69, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
 	0x65, 0x12, 0x1f, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
-	0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x65, 0x64, 0x69, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x1a, 0x20, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x2e, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x0b, 0x65, 0x64, 0x69, 0x74, 0x4d, 0x65, 0x73, 0x73,
+	0x2e, 0x65, 0x64, 0x69, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0d, 0x72, 0x65, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x21, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x2e, 0x72, 0x65, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x72, 0x65, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0d,
+	0x75, 0x6e, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x21, 0x2e,
+	0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x6e, 0x73, 0x65,
+	0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x22, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75,
+	0x6e, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x0b, 0x72, 0x65, 0x61, 0x64, 0x4d, 0x65, 0x73, 0x73,
 	0x61, 0x67, 0x65, 0x12, 0x1f, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x2e, 0x65, 0x64, 0x69, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71,
+	0x65, 0x2e, 0x72, 0x65, 0x61, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x2e, 0x65, 0x64, 0x69, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0d, 0x72, 0x65, 0x73, 0x65, 0x6e, 0x64,
+	0x63, 0x65, 0x2e, 0x72, 0x65, 0x61, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0d, 0x75, 0x6e, 0x72, 0x65, 0x61, 0x64,
 	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x21, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x72, 0x65, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x6e, 0x72, 0x65, 0x61, 0x64, 0x4d, 0x65, 0x73, 0x73,
 	0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x54, 0x61, 0x6c,
-	0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x72, 0x65, 0x73, 0x65, 0x6e, 0x64, 0x4d,
+	0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x6e, 0x72, 0x65, 0x61, 0x64, 0x4d,
 	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56,
-	0x0a, 0x0d, 0x75, 0x6e, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12,
-	0x21, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x6e,
-	0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x0a, 0x0d, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12,
+	0x21, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x72, 0x65,
+	0x70, 0x6f, 0x72, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x1a, 0x22, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x2e, 0x75, 0x6e, 0x73, 0x65, 0x6e, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50, 0x0a, 0x0b, 0x72, 0x65, 0x61, 0x64, 0x4d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x1f, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x2e, 0x72, 0x65, 0x61, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x2e, 0x72, 0x65, 0x61, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0d, 0x75, 0x6e, 0x72, 0x65,
-	0x61, 0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x21, 0x2e, 0x54, 0x61, 0x6c, 0x6b,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x6e, 0x72, 0x65, 0x61, 0x64, 0x4d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x54,
-	0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75, 0x6e, 0x72, 0x65, 0x61,
-	0x64, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x56, 0x0a, 0x0d, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x12, 0x21, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
-	0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x2e, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a, 0x11, 0x72, 0x65, 0x6d, 0x6f,
-	0x76, 0x65, 0x41, 0x6c, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x12, 0x25, 0x2e,
-	0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x72, 0x65, 0x6d, 0x6f,
-	0x76, 0x65, 0x41, 0x6c, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x2e, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x41, 0x6c, 0x6c, 0x4d, 0x65, 0x73, 0x73,
-	0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0d,
-	0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x21, 0x2e,
-	0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x61, 0x63, 0x74, 0x69,
-	0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x22, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x61,
-	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5c, 0x0a, 0x0f, 0x61, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65,
-	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x23, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x61, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x4d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x54,
-	0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x61, 0x6e, 0x6e, 0x6f, 0x75,
-	0x6e, 0x63, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x36, 0x0a, 0x0a, 0x67, 0x65, 0x74, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67,
-	0x12, 0x12, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x45,
-	0x6d, 0x70, 0x74, 0x79, 0x1a, 0x14, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x2e, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x12, 0x74, 0x0a, 0x17, 0x75, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x41, 0x74, 0x74, 0x72, 0x69,
-	0x62, 0x75, 0x74, 0x65, 0x73, 0x12, 0x2b, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x2e, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e,
-	0x67, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x2e, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x41, 0x74,
-	0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x2e, 0x72, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a, 0x11, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65,
+	0x41, 0x6c, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x12, 0x25, 0x2e, 0x54, 0x61,
+	0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65,
+	0x41, 0x6c, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x26, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x2e, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x41, 0x6c, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0d, 0x61, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x21, 0x2e, 0x54, 0x61,
+	0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22,
+	0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x61, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x5c, 0x0a, 0x0f, 0x61, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x4d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x23, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x2e, 0x61, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x54, 0x61, 0x6c,
+	0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x61, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63,
+	0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x36, 0x0a, 0x0a, 0x67, 0x65, 0x74, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x12, 0x12,
+	0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x45, 0x6d, 0x70,
+	0x74, 0x79, 0x1a, 0x14, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x2e, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x12, 0x74, 0x0a, 0x17, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x65, 0x73, 0x12, 0x2b, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x2e, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x2c, 0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x65, 0x74, 0x74, 0x69, 0x6e, 0x67, 0x41, 0x74, 0x74, 0x72,
+	0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x50,
+	0x0a, 0x0b, 0x67, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x73, 0x12, 0x1f, 0x2e,
+	0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x67, 0x65, 0x74, 0x43,
+	0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20,
+	0x2e, 0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x67, 0x65, 0x74,
+	0x43, 0x6f, 0x6e, 0x74, 0x61, 0x63, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x12, 0x4a, 0x0a, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x12, 0x1d, 0x2e,
 	0x54, 0x61, 0x6c, 0x6b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x63, 0x72, 0x65, 0x61,
 	0x74, 0x65, 0x54, 0x61, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x54,
@@ -2559,130 +2792,138 @@ func file_sakuraTalk_proto_rawDescGZIP() []byte {
 	return file_sakuraTalk_proto_rawDescData
 }
 
-var file_sakuraTalk_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_sakuraTalk_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
+var file_sakuraTalk_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_sakuraTalk_proto_msgTypes = make([]protoimpl.MessageInfo, 56)
 var file_sakuraTalk_proto_goTypes = []interface{}{
 	(ProfileKey)(0),                           // 0: TalkService.ProfileKey
 	(ToType)(0),                               // 1: TalkService.ToType
 	(ContentType)(0),                          // 2: TalkService.ContentType
-	(*Empty)(nil),                             // 3: TalkService.Empty
-	(*Profile)(nil),                           // 4: TalkService.Profile
-	(*UpdateProfileAttributesRequest)(nil),    // 5: TalkService.updateProfileAttributesRequest
-	(*UpdateProfileAttributesResponse)(nil),   // 6: TalkService.updateProfileAttributesResponse
-	(*Message)(nil),                           // 7: TalkService.Message
-	(*SendMessageRequest)(nil),                // 8: TalkService.sendMessageRequest
-	(*SendMessageResponse)(nil),               // 9: TalkService.sendMessageResponse
-	(*EditMessageRequest)(nil),                // 10: TalkService.editMessageRequest
-	(*EditMessageResponse)(nil),               // 11: TalkService.editMessageResponse
-	(*ResendMessageRequest)(nil),              // 12: TalkService.resendMessageRequest
-	(*ResendMessageResponse)(nil),             // 13: TalkService.resendMessageResponse
-	(*UnsendMessageRequest)(nil),              // 14: TalkService.unsendMessageRequest
-	(*UnsendMessageResponse)(nil),             // 15: TalkService.unsendMessageResponse
-	(*ReadMessageRequest)(nil),                // 16: TalkService.readMessageRequest
-	(*ReadMessageResponse)(nil),               // 17: TalkService.readMessageResponse
-	(*UnreadMessageRequest)(nil),              // 18: TalkService.unreadMessageRequest
-	(*UnreadMessageResponse)(nil),             // 19: TalkService.unreadMessageResponse
-	(*ReportMessageRequest)(nil),              // 20: TalkService.reportMessageRequest
-	(*ReportMessageResponse)(nil),             // 21: TalkService.reportMessageResponse
-	(*RemoveAllMessagesRequest)(nil),          // 22: TalkService.removeAllMessagesRequest
-	(*RemoveAllMessagesResponse)(nil),         // 23: TalkService.removeAllMessagesResponse
-	(*ActionMessageRequest)(nil),              // 24: TalkService.actionMessageRequest
-	(*ActionMessageResponse)(nil),             // 25: TalkService.actionMessageResponse
-	(*AnnounceMessageRequest)(nil),            // 26: TalkService.announceMessageRequest
-	(*AnnounceMessageResponse)(nil),           // 27: TalkService.announceMessageResponse
-	(*Setting)(nil),                           // 28: TalkService.Setting
-	(*UpdateSettingAttributesRequest)(nil),    // 29: TalkService.updateSettingAttributesRequest
-	(*UpdateSettingAttributesResponse)(nil),   // 30: TalkService.updateSettingAttributesResponse
-	(*CreateTagRequest)(nil),                  // 31: TalkService.createTagRequest
-	(*CreateTagResponse)(nil),                 // 32: TalkService.createTagResponse
-	(*UpdateTagRequest)(nil),                  // 33: TalkService.updateTagRequest
-	(*UpdateTagResponse)(nil),                 // 34: TalkService.updateTagResponse
-	(*RegisterTagsRequest)(nil),               // 35: TalkService.registerTagsRequest
-	(*RegisterTagsResponse)(nil),              // 36: TalkService.registerTagsResponse
-	(*GetAllTagsRequest)(nil),                 // 37: TalkService.getAllTagsRequest
-	(*GetAllTagsResponse)(nil),                // 38: TalkService.getAllTagsResponse
-	(*DeleteTagRequest)(nil),                  // 39: TalkService.deleteTagRequest
-	(*DeleteTagResponse)(nil),                 // 40: TalkService.deleteTagResponse
-	(*AddFriendRequest)(nil),                  // 41: TalkService.addFriendRequest
-	(*AddFriendResponse)(nil),                 // 42: TalkService.addFriendResponse
-	(*DeleteFriendsRequest)(nil),              // 43: TalkService.deleteFriendsRequest
-	(*DeleteFriendsResponse)(nil),             // 44: TalkService.deleteFriendsResponse
-	(*BlockFriendsRequest)(nil),               // 45: TalkService.blockFriendsRequest
-	(*BlockFriendsResponse)(nil),              // 46: TalkService.blockFriendsResponse
-	(*UnblockFriendsRequest)(nil),             // 47: TalkService.unblockFriendsRequest
-	(*UnblockFriendsResponse)(nil),            // 48: TalkService.unblockFriendsResponse
-	(*AddFriendsToFavoriteRequest)(nil),       // 49: TalkService.addFriendsToFavoriteRequest
-	(*AddFriendsToFavoriteResponse)(nil),      // 50: TalkService.addFriendsToFavoriteResponse
-	(*RemoveFriendsFromFavoriteRequest)(nil),  // 51: TalkService.removeFriendsFromFavoriteRequest
-	(*RemoveFriendsFromFavoriteResponse)(nil), // 52: TalkService.removeFriendsFromFavoriteResponse
-	(*UpdateFriendRequest)(nil),               // 53: TalkService.updateFriendRequest
-	(*UpdateFriendResponse)(nil),              // 54: TalkService.updateFriendResponse
-	nil,                                       // 55: TalkService.Message.ContentMetadataEntry
+	(ContactStatus)(0),                        // 3: TalkService.ContactStatus
+	(*Empty)(nil),                             // 4: TalkService.Empty
+	(*Profile)(nil),                           // 5: TalkService.Profile
+	(*UpdateProfileAttributesRequest)(nil),    // 6: TalkService.updateProfileAttributesRequest
+	(*UpdateProfileAttributesResponse)(nil),   // 7: TalkService.updateProfileAttributesResponse
+	(*Message)(nil),                           // 8: TalkService.Message
+	(*SendMessageRequest)(nil),                // 9: TalkService.sendMessageRequest
+	(*SendMessageResponse)(nil),               // 10: TalkService.sendMessageResponse
+	(*EditMessageRequest)(nil),                // 11: TalkService.editMessageRequest
+	(*EditMessageResponse)(nil),               // 12: TalkService.editMessageResponse
+	(*ResendMessageRequest)(nil),              // 13: TalkService.resendMessageRequest
+	(*ResendMessageResponse)(nil),             // 14: TalkService.resendMessageResponse
+	(*UnsendMessageRequest)(nil),              // 15: TalkService.unsendMessageRequest
+	(*UnsendMessageResponse)(nil),             // 16: TalkService.unsendMessageResponse
+	(*ReadMessageRequest)(nil),                // 17: TalkService.readMessageRequest
+	(*ReadMessageResponse)(nil),               // 18: TalkService.readMessageResponse
+	(*UnreadMessageRequest)(nil),              // 19: TalkService.unreadMessageRequest
+	(*UnreadMessageResponse)(nil),             // 20: TalkService.unreadMessageResponse
+	(*ReportMessageRequest)(nil),              // 21: TalkService.reportMessageRequest
+	(*ReportMessageResponse)(nil),             // 22: TalkService.reportMessageResponse
+	(*RemoveAllMessagesRequest)(nil),          // 23: TalkService.removeAllMessagesRequest
+	(*RemoveAllMessagesResponse)(nil),         // 24: TalkService.removeAllMessagesResponse
+	(*ActionMessageRequest)(nil),              // 25: TalkService.actionMessageRequest
+	(*ActionMessageResponse)(nil),             // 26: TalkService.actionMessageResponse
+	(*AnnounceMessageRequest)(nil),            // 27: TalkService.announceMessageRequest
+	(*AnnounceMessageResponse)(nil),           // 28: TalkService.announceMessageResponse
+	(*Setting)(nil),                           // 29: TalkService.Setting
+	(*UpdateSettingAttributesRequest)(nil),    // 30: TalkService.updateSettingAttributesRequest
+	(*UpdateSettingAttributesResponse)(nil),   // 31: TalkService.updateSettingAttributesResponse
+	(*Contact)(nil),                           // 32: TalkService.Contact
+	(*GetContactsRequest)(nil),                // 33: TalkService.getContactsRequest
+	(*GetContactsResponse)(nil),               // 34: TalkService.getContactsResponse
+	(*CreateTagRequest)(nil),                  // 35: TalkService.createTagRequest
+	(*CreateTagResponse)(nil),                 // 36: TalkService.createTagResponse
+	(*UpdateTagRequest)(nil),                  // 37: TalkService.updateTagRequest
+	(*UpdateTagResponse)(nil),                 // 38: TalkService.updateTagResponse
+	(*RegisterTagsRequest)(nil),               // 39: TalkService.registerTagsRequest
+	(*RegisterTagsResponse)(nil),              // 40: TalkService.registerTagsResponse
+	(*GetAllTagsRequest)(nil),                 // 41: TalkService.getAllTagsRequest
+	(*GetAllTagsResponse)(nil),                // 42: TalkService.getAllTagsResponse
+	(*DeleteTagRequest)(nil),                  // 43: TalkService.deleteTagRequest
+	(*DeleteTagResponse)(nil),                 // 44: TalkService.deleteTagResponse
+	(*AddFriendRequest)(nil),                  // 45: TalkService.addFriendRequest
+	(*AddFriendResponse)(nil),                 // 46: TalkService.addFriendResponse
+	(*DeleteFriendsRequest)(nil),              // 47: TalkService.deleteFriendsRequest
+	(*DeleteFriendsResponse)(nil),             // 48: TalkService.deleteFriendsResponse
+	(*BlockFriendsRequest)(nil),               // 49: TalkService.blockFriendsRequest
+	(*BlockFriendsResponse)(nil),              // 50: TalkService.blockFriendsResponse
+	(*UnblockFriendsRequest)(nil),             // 51: TalkService.unblockFriendsRequest
+	(*UnblockFriendsResponse)(nil),            // 52: TalkService.unblockFriendsResponse
+	(*AddFriendsToFavoriteRequest)(nil),       // 53: TalkService.addFriendsToFavoriteRequest
+	(*AddFriendsToFavoriteResponse)(nil),      // 54: TalkService.addFriendsToFavoriteResponse
+	(*RemoveFriendsFromFavoriteRequest)(nil),  // 55: TalkService.removeFriendsFromFavoriteRequest
+	(*RemoveFriendsFromFavoriteResponse)(nil), // 56: TalkService.removeFriendsFromFavoriteResponse
+	(*UpdateFriendRequest)(nil),               // 57: TalkService.updateFriendRequest
+	(*UpdateFriendResponse)(nil),              // 58: TalkService.updateFriendResponse
+	nil,                                       // 59: TalkService.Message.ContentMetadataEntry
 }
 var file_sakuraTalk_proto_depIdxs = []int32{
 	0,  // 0: TalkService.updateProfileAttributesRequest.keys:type_name -> TalkService.ProfileKey
-	4,  // 1: TalkService.updateProfileAttributesRequest.profile:type_name -> TalkService.Profile
+	5,  // 1: TalkService.updateProfileAttributesRequest.profile:type_name -> TalkService.Profile
 	1,  // 2: TalkService.Message.toType:type_name -> TalkService.ToType
-	55, // 3: TalkService.Message.contentMetadata:type_name -> TalkService.Message.ContentMetadataEntry
+	59, // 3: TalkService.Message.contentMetadata:type_name -> TalkService.Message.ContentMetadataEntry
 	2,  // 4: TalkService.Message.contentType:type_name -> TalkService.ContentType
-	7,  // 5: TalkService.sendMessageRequest.message:type_name -> TalkService.Message
-	5,  // 6: TalkService.TalkService.updateProfileAttributes:input_type -> TalkService.updateProfileAttributesRequest
-	3,  // 7: TalkService.TalkService.getProfile:input_type -> TalkService.Empty
-	8,  // 8: TalkService.TalkService.sendMessage:input_type -> TalkService.sendMessageRequest
-	10, // 9: TalkService.TalkService.editMessage:input_type -> TalkService.editMessageRequest
-	12, // 10: TalkService.TalkService.resendMessage:input_type -> TalkService.resendMessageRequest
-	14, // 11: TalkService.TalkService.unsendMessage:input_type -> TalkService.unsendMessageRequest
-	16, // 12: TalkService.TalkService.readMessage:input_type -> TalkService.readMessageRequest
-	18, // 13: TalkService.TalkService.unreadMessage:input_type -> TalkService.unreadMessageRequest
-	20, // 14: TalkService.TalkService.reportMessage:input_type -> TalkService.reportMessageRequest
-	22, // 15: TalkService.TalkService.removeAllMessages:input_type -> TalkService.removeAllMessagesRequest
-	24, // 16: TalkService.TalkService.actionMessage:input_type -> TalkService.actionMessageRequest
-	26, // 17: TalkService.TalkService.announceMessage:input_type -> TalkService.announceMessageRequest
-	3,  // 18: TalkService.TalkService.getSetting:input_type -> TalkService.Empty
-	29, // 19: TalkService.TalkService.updateSettingAttributes:input_type -> TalkService.updateSettingAttributesRequest
-	31, // 20: TalkService.TalkService.createTag:input_type -> TalkService.createTagRequest
-	33, // 21: TalkService.TalkService.updateTag:input_type -> TalkService.updateTagRequest
-	35, // 22: TalkService.TalkService.registerTags:input_type -> TalkService.registerTagsRequest
-	37, // 23: TalkService.TalkService.getAllTags:input_type -> TalkService.getAllTagsRequest
-	39, // 24: TalkService.TalkService.deleteTag:input_type -> TalkService.deleteTagRequest
-	41, // 25: TalkService.TalkService.addFriend:input_type -> TalkService.addFriendRequest
-	43, // 26: TalkService.TalkService.deleteFriends:input_type -> TalkService.deleteFriendsRequest
-	45, // 27: TalkService.TalkService.blockFriends:input_type -> TalkService.blockFriendsRequest
-	47, // 28: TalkService.TalkService.unblockFriends:input_type -> TalkService.unblockFriendsRequest
-	49, // 29: TalkService.TalkService.addFriendsToFavorite:input_type -> TalkService.addFriendsToFavoriteRequest
-	51, // 30: TalkService.TalkService.removeFriendsFromFavorite:input_type -> TalkService.removeFriendsFromFavoriteRequest
-	53, // 31: TalkService.TalkService.updateFriend:input_type -> TalkService.updateFriendRequest
-	6,  // 32: TalkService.TalkService.updateProfileAttributes:output_type -> TalkService.updateProfileAttributesResponse
-	4,  // 33: TalkService.TalkService.getProfile:output_type -> TalkService.Profile
-	9,  // 34: TalkService.TalkService.sendMessage:output_type -> TalkService.sendMessageResponse
-	11, // 35: TalkService.TalkService.editMessage:output_type -> TalkService.editMessageResponse
-	13, // 36: TalkService.TalkService.resendMessage:output_type -> TalkService.resendMessageResponse
-	15, // 37: TalkService.TalkService.unsendMessage:output_type -> TalkService.unsendMessageResponse
-	17, // 38: TalkService.TalkService.readMessage:output_type -> TalkService.readMessageResponse
-	19, // 39: TalkService.TalkService.unreadMessage:output_type -> TalkService.unreadMessageResponse
-	21, // 40: TalkService.TalkService.reportMessage:output_type -> TalkService.reportMessageResponse
-	23, // 41: TalkService.TalkService.removeAllMessages:output_type -> TalkService.removeAllMessagesResponse
-	25, // 42: TalkService.TalkService.actionMessage:output_type -> TalkService.actionMessageResponse
-	27, // 43: TalkService.TalkService.announceMessage:output_type -> TalkService.announceMessageResponse
-	28, // 44: TalkService.TalkService.getSetting:output_type -> TalkService.Setting
-	30, // 45: TalkService.TalkService.updateSettingAttributes:output_type -> TalkService.updateSettingAttributesResponse
-	32, // 46: TalkService.TalkService.createTag:output_type -> TalkService.createTagResponse
-	34, // 47: TalkService.TalkService.updateTag:output_type -> TalkService.updateTagResponse
-	36, // 48: TalkService.TalkService.registerTags:output_type -> TalkService.registerTagsResponse
-	38, // 49: TalkService.TalkService.getAllTags:output_type -> TalkService.getAllTagsResponse
-	40, // 50: TalkService.TalkService.deleteTag:output_type -> TalkService.deleteTagResponse
-	42, // 51: TalkService.TalkService.addFriend:output_type -> TalkService.addFriendResponse
-	44, // 52: TalkService.TalkService.deleteFriends:output_type -> TalkService.deleteFriendsResponse
-	46, // 53: TalkService.TalkService.blockFriends:output_type -> TalkService.blockFriendsResponse
-	48, // 54: TalkService.TalkService.unblockFriends:output_type -> TalkService.unblockFriendsResponse
-	50, // 55: TalkService.TalkService.addFriendsToFavorite:output_type -> TalkService.addFriendsToFavoriteResponse
-	52, // 56: TalkService.TalkService.removeFriendsFromFavorite:output_type -> TalkService.removeFriendsFromFavoriteResponse
-	54, // 57: TalkService.TalkService.updateFriend:output_type -> TalkService.updateFriendResponse
-	32, // [32:58] is the sub-list for method output_type
-	6,  // [6:32] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	8,  // 5: TalkService.sendMessageRequest.message:type_name -> TalkService.Message
+	3,  // 6: TalkService.Contact.status:type_name -> TalkService.ContactStatus
+	32, // 7: TalkService.getContactsResponse.contacts:type_name -> TalkService.Contact
+	6,  // 8: TalkService.TalkService.updateProfileAttributes:input_type -> TalkService.updateProfileAttributesRequest
+	4,  // 9: TalkService.TalkService.getProfile:input_type -> TalkService.Empty
+	9,  // 10: TalkService.TalkService.sendMessage:input_type -> TalkService.sendMessageRequest
+	11, // 11: TalkService.TalkService.editMessage:input_type -> TalkService.editMessageRequest
+	13, // 12: TalkService.TalkService.resendMessage:input_type -> TalkService.resendMessageRequest
+	15, // 13: TalkService.TalkService.unsendMessage:input_type -> TalkService.unsendMessageRequest
+	17, // 14: TalkService.TalkService.readMessage:input_type -> TalkService.readMessageRequest
+	19, // 15: TalkService.TalkService.unreadMessage:input_type -> TalkService.unreadMessageRequest
+	21, // 16: TalkService.TalkService.reportMessage:input_type -> TalkService.reportMessageRequest
+	23, // 17: TalkService.TalkService.removeAllMessages:input_type -> TalkService.removeAllMessagesRequest
+	25, // 18: TalkService.TalkService.actionMessage:input_type -> TalkService.actionMessageRequest
+	27, // 19: TalkService.TalkService.announceMessage:input_type -> TalkService.announceMessageRequest
+	4,  // 20: TalkService.TalkService.getSetting:input_type -> TalkService.Empty
+	30, // 21: TalkService.TalkService.updateSettingAttributes:input_type -> TalkService.updateSettingAttributesRequest
+	33, // 22: TalkService.TalkService.getContacts:input_type -> TalkService.getContactsRequest
+	35, // 23: TalkService.TalkService.createTag:input_type -> TalkService.createTagRequest
+	37, // 24: TalkService.TalkService.updateTag:input_type -> TalkService.updateTagRequest
+	39, // 25: TalkService.TalkService.registerTags:input_type -> TalkService.registerTagsRequest
+	41, // 26: TalkService.TalkService.getAllTags:input_type -> TalkService.getAllTagsRequest
+	43, // 27: TalkService.TalkService.deleteTag:input_type -> TalkService.deleteTagRequest
+	45, // 28: TalkService.TalkService.addFriend:input_type -> TalkService.addFriendRequest
+	47, // 29: TalkService.TalkService.deleteFriends:input_type -> TalkService.deleteFriendsRequest
+	49, // 30: TalkService.TalkService.blockFriends:input_type -> TalkService.blockFriendsRequest
+	51, // 31: TalkService.TalkService.unblockFriends:input_type -> TalkService.unblockFriendsRequest
+	53, // 32: TalkService.TalkService.addFriendsToFavorite:input_type -> TalkService.addFriendsToFavoriteRequest
+	55, // 33: TalkService.TalkService.removeFriendsFromFavorite:input_type -> TalkService.removeFriendsFromFavoriteRequest
+	57, // 34: TalkService.TalkService.updateFriend:input_type -> TalkService.updateFriendRequest
+	7,  // 35: TalkService.TalkService.updateProfileAttributes:output_type -> TalkService.updateProfileAttributesResponse
+	5,  // 36: TalkService.TalkService.getProfile:output_type -> TalkService.Profile
+	10, // 37: TalkService.TalkService.sendMessage:output_type -> TalkService.sendMessageResponse
+	12, // 38: TalkService.TalkService.editMessage:output_type -> TalkService.editMessageResponse
+	14, // 39: TalkService.TalkService.resendMessage:output_type -> TalkService.resendMessageResponse
+	16, // 40: TalkService.TalkService.unsendMessage:output_type -> TalkService.unsendMessageResponse
+	18, // 41: TalkService.TalkService.readMessage:output_type -> TalkService.readMessageResponse
+	20, // 42: TalkService.TalkService.unreadMessage:output_type -> TalkService.unreadMessageResponse
+	22, // 43: TalkService.TalkService.reportMessage:output_type -> TalkService.reportMessageResponse
+	24, // 44: TalkService.TalkService.removeAllMessages:output_type -> TalkService.removeAllMessagesResponse
+	26, // 45: TalkService.TalkService.actionMessage:output_type -> TalkService.actionMessageResponse
+	28, // 46: TalkService.TalkService.announceMessage:output_type -> TalkService.announceMessageResponse
+	29, // 47: TalkService.TalkService.getSetting:output_type -> TalkService.Setting
+	31, // 48: TalkService.TalkService.updateSettingAttributes:output_type -> TalkService.updateSettingAttributesResponse
+	34, // 49: TalkService.TalkService.getContacts:output_type -> TalkService.getContactsResponse
+	36, // 50: TalkService.TalkService.createTag:output_type -> TalkService.createTagResponse
+	38, // 51: TalkService.TalkService.updateTag:output_type -> TalkService.updateTagResponse
+	40, // 52: TalkService.TalkService.registerTags:output_type -> TalkService.registerTagsResponse
+	42, // 53: TalkService.TalkService.getAllTags:output_type -> TalkService.getAllTagsResponse
+	44, // 54: TalkService.TalkService.deleteTag:output_type -> TalkService.deleteTagResponse
+	46, // 55: TalkService.TalkService.addFriend:output_type -> TalkService.addFriendResponse
+	48, // 56: TalkService.TalkService.deleteFriends:output_type -> TalkService.deleteFriendsResponse
+	50, // 57: TalkService.TalkService.blockFriends:output_type -> TalkService.blockFriendsResponse
+	52, // 58: TalkService.TalkService.unblockFriends:output_type -> TalkService.unblockFriendsResponse
+	54, // 59: TalkService.TalkService.addFriendsToFavorite:output_type -> TalkService.addFriendsToFavoriteResponse
+	56, // 60: TalkService.TalkService.removeFriendsFromFavorite:output_type -> TalkService.removeFriendsFromFavoriteResponse
+	58, // 61: TalkService.TalkService.updateFriend:output_type -> TalkService.updateFriendResponse
+	35, // [35:62] is the sub-list for method output_type
+	8,  // [8:35] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_sakuraTalk_proto_init() }
@@ -3028,7 +3269,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateTagRequest); i {
+			switch v := v.(*Contact); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3040,7 +3281,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateTagResponse); i {
+			switch v := v.(*GetContactsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3052,7 +3293,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateTagRequest); i {
+			switch v := v.(*GetContactsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3064,7 +3305,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateTagResponse); i {
+			switch v := v.(*CreateTagRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3076,7 +3317,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RegisterTagsRequest); i {
+			switch v := v.(*CreateTagResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3088,7 +3329,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RegisterTagsResponse); i {
+			switch v := v.(*UpdateTagRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3100,7 +3341,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAllTagsRequest); i {
+			switch v := v.(*UpdateTagResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3112,7 +3353,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAllTagsResponse); i {
+			switch v := v.(*RegisterTagsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3124,7 +3365,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteTagRequest); i {
+			switch v := v.(*RegisterTagsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3136,7 +3377,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteTagResponse); i {
+			switch v := v.(*GetAllTagsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3148,7 +3389,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddFriendRequest); i {
+			switch v := v.(*GetAllTagsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3160,7 +3401,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddFriendResponse); i {
+			switch v := v.(*DeleteTagRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3172,7 +3413,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteFriendsRequest); i {
+			switch v := v.(*DeleteTagResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3184,7 +3425,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteFriendsResponse); i {
+			switch v := v.(*AddFriendRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3196,7 +3437,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BlockFriendsRequest); i {
+			switch v := v.(*AddFriendResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3208,7 +3449,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BlockFriendsResponse); i {
+			switch v := v.(*DeleteFriendsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3220,7 +3461,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UnblockFriendsRequest); i {
+			switch v := v.(*DeleteFriendsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3232,7 +3473,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UnblockFriendsResponse); i {
+			switch v := v.(*BlockFriendsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3244,7 +3485,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddFriendsToFavoriteRequest); i {
+			switch v := v.(*BlockFriendsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3256,7 +3497,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddFriendsToFavoriteResponse); i {
+			switch v := v.(*UnblockFriendsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3268,7 +3509,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RemoveFriendsFromFavoriteRequest); i {
+			switch v := v.(*UnblockFriendsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3280,7 +3521,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RemoveFriendsFromFavoriteResponse); i {
+			switch v := v.(*AddFriendsToFavoriteRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3292,7 +3533,7 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateFriendRequest); i {
+			switch v := v.(*AddFriendsToFavoriteResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3304,6 +3545,42 @@ func file_sakuraTalk_proto_init() {
 			}
 		}
 		file_sakuraTalk_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RemoveFriendsFromFavoriteRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sakuraTalk_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RemoveFriendsFromFavoriteResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sakuraTalk_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateFriendRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sakuraTalk_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateFriendResponse); i {
 			case 0:
 				return &v.state
@@ -3321,8 +3598,8 @@ func file_sakuraTalk_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_sakuraTalk_proto_rawDesc,
-			NumEnums:      3,
-			NumMessages:   53,
+			NumEnums:      4,
+			NumMessages:   56,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -3363,6 +3640,7 @@ type TalkServiceClient interface {
 	AnnounceMessage(ctx context.Context, in *AnnounceMessageRequest, opts ...grpc.CallOption) (*AnnounceMessageResponse, error)
 	GetSetting(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Setting, error)
 	UpdateSettingAttributes(ctx context.Context, in *UpdateSettingAttributesRequest, opts ...grpc.CallOption) (*UpdateSettingAttributesResponse, error)
+	GetContacts(ctx context.Context, in *GetContactsRequest, opts ...grpc.CallOption) (*GetContactsResponse, error)
 	CreateTag(ctx context.Context, in *CreateTagRequest, opts ...grpc.CallOption) (*CreateTagResponse, error)
 	UpdateTag(ctx context.Context, in *UpdateTagRequest, opts ...grpc.CallOption) (*UpdateTagResponse, error)
 	RegisterTags(ctx context.Context, in *RegisterTagsRequest, opts ...grpc.CallOption) (*RegisterTagsResponse, error)
@@ -3511,6 +3789,15 @@ func (c *talkServiceClient) UpdateSettingAttributes(ctx context.Context, in *Upd
 	return out, nil
 }
 
+func (c *talkServiceClient) GetContacts(ctx context.Context, in *GetContactsRequest, opts ...grpc.CallOption) (*GetContactsResponse, error) {
+	out := new(GetContactsResponse)
+	err := c.cc.Invoke(ctx, "/TalkService.TalkService/getContacts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *talkServiceClient) CreateTag(ctx context.Context, in *CreateTagRequest, opts ...grpc.CallOption) (*CreateTagResponse, error) {
 	out := new(CreateTagResponse)
 	err := c.cc.Invoke(ctx, "/TalkService.TalkService/createTag", in, out, opts...)
@@ -3635,6 +3922,7 @@ type TalkServiceServer interface {
 	AnnounceMessage(context.Context, *AnnounceMessageRequest) (*AnnounceMessageResponse, error)
 	GetSetting(context.Context, *Empty) (*Setting, error)
 	UpdateSettingAttributes(context.Context, *UpdateSettingAttributesRequest) (*UpdateSettingAttributesResponse, error)
+	GetContacts(context.Context, *GetContactsRequest) (*GetContactsResponse, error)
 	CreateTag(context.Context, *CreateTagRequest) (*CreateTagResponse, error)
 	UpdateTag(context.Context, *UpdateTagRequest) (*UpdateTagResponse, error)
 	RegisterTags(context.Context, *RegisterTagsRequest) (*RegisterTagsResponse, error)
@@ -3694,6 +3982,9 @@ func (*UnimplementedTalkServiceServer) GetSetting(context.Context, *Empty) (*Set
 }
 func (*UnimplementedTalkServiceServer) UpdateSettingAttributes(context.Context, *UpdateSettingAttributesRequest) (*UpdateSettingAttributesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateSettingAttributes not implemented")
+}
+func (*UnimplementedTalkServiceServer) GetContacts(context.Context, *GetContactsRequest) (*GetContactsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetContacts not implemented")
 }
 func (*UnimplementedTalkServiceServer) CreateTag(context.Context, *CreateTagRequest) (*CreateTagResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTag not implemented")
@@ -3988,6 +4279,24 @@ func _TalkService_UpdateSettingAttributes_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TalkService_GetContacts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetContactsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TalkServiceServer).GetContacts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/TalkService.TalkService/GetContacts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TalkServiceServer).GetContacts(ctx, req.(*GetContactsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TalkService_CreateTag_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTagRequest)
 	if err := dec(in); err != nil {
@@ -4263,6 +4572,10 @@ var _TalkService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "updateSettingAttributes",
 			Handler:    _TalkService_UpdateSettingAttributes_Handler,
+		},
+		{
+			MethodName: "getContacts",
+			Handler:    _TalkService_GetContacts_Handler,
 		},
 		{
 			MethodName: "createTag",

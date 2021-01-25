@@ -57,3 +57,27 @@ func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
 	}
 	return &value, nil
 }
+
+func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"tags", 1}})
+	if err != nil {
+		return nil, err
+	}
+	value, ok := rs.Tags[tagId]
+	if !ok {
+		return nil, err
+	}
+	return &value, nil
+}
+
+func (cl *DBClient) FetchUserGroup(mid, gid string) (*GroupSetting, error) {
+	rs, err := cl.FetchUserAttribute(mid, bson.D{{"groups", 1}})
+	if err != nil {
+		return nil, err
+	}
+	value, ok := rs.Groups[gid]
+	if !ok {
+		return nil, err
+	}
+	return &value, nil
+}

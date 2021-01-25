@@ -30,6 +30,7 @@ type GroupSetting struct {
 	OverWrittenName string   `bson:"owName"`
 	TagIds          []string `bson:"tagIds"`
 }
+
 type Profile struct {
 	Name      string `bson:"name"`
 	Bio       string `bson:"bio"`

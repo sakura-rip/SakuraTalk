@@ -70,7 +70,7 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 	return &value, nil
 }
 
-func (cl *DBClient) FetchUserGroup(mid, gid string) (*GroupSetting, error) {
+func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"groupSettings", 1}})
 	if err != nil {
 		return nil, err

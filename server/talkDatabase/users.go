@@ -12,11 +12,6 @@ func (cl *DBClient) InsertNewUser(user *User) error {
 	return err
 }
 
-func (cl *DBClient) InsertNewGroup(group *Group) error {
-	_, err := cl.GroupCol.InsertOne(cl.Ctx, group)
-	return err
-}
-
 func (cl *DBClient) FetchUserAttribute(mid string, attributes bson.D) (*User, error) {
 	rs := cl.UserCol.FindOne(
 		cl.Ctx,

@@ -7,15 +7,24 @@ type User struct {
 	Profile Profile `bson:"profile"`
 	Setting Setting `bson:"setting"`
 
-	JoinedGroupIds  []string `bson:"jGroupIds"`
-	InvitedGroupIds []string `bson:"iGroupIds"`
-	FriendIds       []string `bson:"friendIds"`
-	BlockedIds      []string `bson:"blockedIds"`
+	JoinedGroupIds  map[string]GroupSetting `bson:"jGroupIds"`
+	InvitedGroupIds []string                `bson:"iGroupIds"`
+	FriendIds       []string                `bson:"friendIds"`
+	BlockedIds      []string                `bson:"blockedIds"`
 
 	Tags     map[string]Tag     `bson:"tags"`
 	Contacts map[string]Contact `bson:"contacts"`
 }
-
+type GroupSetting struct {
+	//新規メッセージの通知など
+	EnableNotification bool `bson:""`
+	//メンションの通知
+	EnableNotificationMention bool `bson:""`
+	//誰かが新規参加した時の通知
+	EnableNotificationOnJoin bool `bson:""`
+	//誰かが誰かをキックした時の通知
+	EnableNotificationOnKick bool `bson:""`
+}
 type Profile struct {
 	Name      string `bson:"name"`
 	Bio       string `bson:"bio"`

@@ -12,6 +12,10 @@ type DBClient struct {
 	Session *mongo.Client
 }
 
+func NewDBClient() *DBClient {
+	return &DBClient{Session: ConnectToMongoDB()}
+}
+
 // ConnectToMongoDB connect to mongo
 func ConnectToMongoDB() *mongo.Client {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)

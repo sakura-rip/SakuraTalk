@@ -1,6 +1,9 @@
 package talkServer
 
-import "github.com/sakura-rip/SakuraTalk/TalkService"
+import (
+	"context"
+	"github.com/sakura-rip/SakuraTalk/TalkService"
+)
 
 func (t TalkHandler) SendMessage(ctx context.Context, request *TalkService.SendMessageRequest) (*TalkService.SendMessageResponse, error) {
 	panic("implement me")

@@ -24,6 +24,7 @@ service TalkService {
   rpc updateSettingAttributes(updateSettingAttributesRequest) returns (updateSettingAttributesResponse);
 
   rpc getContacts (getContactsRequest) returns (getContactsResponse);
+  rpc updateContact (updateContactRequest) returns (updateContactResponse);
 
   rpc getTag (getTagRequest) returns (getTagResponse);
   rpc createTag (createTagRequest) returns (createTagResponse);
@@ -44,10 +45,33 @@ service TalkService {
 
 enum ProfileKey {
   DISPLAY_NAME = 0;
+  BIO = 1;
+  ICON_PATH = 2;
+  COVER_PATH = 3;
+  TWITTER_ID = 4;
+  INSTAGRAM_ID = 5;
+  GITHUB_ID = 6;
+  WEB_SITE_URL = 7;
+  LOCATION = 8;
+  BIRTH_DAY = 9;
+  STATUS = 10;
 }
+
 message Profile {
-  string displayName = 1;
+  string mid  = 1;
+  string displayName = 2;
+  string bio = 3;
+  string iconPath = 4;
+  string coverPath = 5;
+  string twitterID = 6;
+  string instagramID = 7;
+  string githubID = 8;
+  string webSiteURL = 9;
+  string location = 10;
+  int64 birthDay = 11;
+  string status = 12;
 }
+
 message updateProfileAttributesRequest {
   repeated ProfileKey keys = 1;
   Profile profile = 2;
@@ -60,6 +84,7 @@ enum ToType {
   GROUP = 2;
   CHAT = 3;
 }
+
 enum ContentType {
   TEXT = 0;
   IMAGE = 1;
@@ -114,7 +139,15 @@ message actionMessageResponse {}
 message announceMessageRequest {}
 message announceMessageResponse {}
 
-message Setting {}
+message Setting {
+  string privateUserID = 1;
+  string email = 2;
+  string userTicket = 3;
+
+  bool allowSearchByPrivateUserID = 4;
+  bool allowSearchByEmail = 5;
+  bool allowSearchByUserTicket = 6;
+}
 
 message updateSettingAttributesRequest {}
 message updateSettingAttributesResponse {}
@@ -127,26 +160,46 @@ enum ContactStatus {
 }
 
 message Contact {
-  string displayName = 1;
-  string bio = 2;
-  ContactStatus status = 3;
-  repeated Tag tags = 4;
+  string mid = 1;
+  string displayName = 2;
+  string overWrittenName = 3;
+  string bio = 4;
+  string iconPath= 5;
+  string coverPath = 6;
+  string twitterID = 7;
+  string instagramID = 8;
+  string githubID = 9;
+  string webSiteURL = 10;
+  string location = 11;
+  int64 birthDay = 12;
+  string status = 13;
+  ContactStatus contactStatus = 14;
 }
 
 message getContactsRequest {
   repeated string mids = 1;
 }
 message getContactsResponse {
-  repeated Contact contacts = 1;
+  map<string, Contact> contacts = 1;
 }
 
+enum ContactKey {
+  OVER_WRITTEN_NAME = 0;
+}
+
+message updateContactRequest {
+  repeated ContactKey keys = 1;
+  Contact contact = 2;
+}
+message updateContactResponse {}
+
 message Tag {
-  string TagID = 1;
-  string Name = 2;
-  string Description = 3;
-  string Color = 4;
-  string Creator = 5;
-  string CreatedTime = 6;
+  string tagID = 1;
+  string name = 2;
+  string description = 3;
+  string color = 4;
+  string creator = 5;
+  string createdTime = 6;
 }
 
 message getTagRequest {

@@ -24,3 +24,7 @@ func (t TalkHandler) GetAllTags(ctx context.Context, request *TalkService.GetAll
 func (t TalkHandler) DeleteTag(ctx context.Context, request *TalkService.DeleteTagRequest) (*TalkService.DeleteTagResponse, error) {
 	panic("implement me")
 }
+
+func (t TalkHandler) GetTag(ctx context.Context, request *TalkService.GetTagRequest) (*TalkService.GetTagResponse, error) {
+	panic("implement me")
+}

@@ -17,7 +17,7 @@ var ctx context.Context
 // init firebase authentication
 func init() {
 	ctx = context.Background()
-	opt := option.WithCredentialsFile(os.Getenv("FIREBASE_SECRET"))
+	opt := option.WithCredentialsFile(os.Getenv("GOOGLE_APPLICATION_CREDENTIALS"))
 	app, err := firebase.NewApp(ctx, nil, opt)
 	if err != nil {
 		panic(fmt.Errorf("error on init firebase auth: %v", err))

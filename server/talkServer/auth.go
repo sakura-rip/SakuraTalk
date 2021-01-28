@@ -34,8 +34,7 @@ func getHeader(ctx context.Context, key string) (token string, ok bool) {
 	if !ok {
 		return "", false
 	}
-	token = headers.Get(key)[0]
-	return
+	return headers.Get(key)[0], ok
 }
 
 //VerifyTokenAndGetUUID check token and get token's user id

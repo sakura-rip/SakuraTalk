@@ -17,7 +17,7 @@ func (t TalkHandler) RegisterTags(ctx context.Context, request *TalkService.Regi
 	panic("implement me")
 }
 
-func (t TalkHandler) GetAllTags(ctx context.Context, request *TalkService.GetAllTagsRequest) (*TalkService.GetAllTagsResponse, error) {
+func (t TalkHandler) GetAllTags(ctx2 context.Context, empty *TalkService.Empty) (*TalkService.GetAllTagsResponse, error) {
 	panic("implement me")
 }
 

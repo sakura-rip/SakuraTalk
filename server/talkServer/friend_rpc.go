@@ -28,7 +28,3 @@ func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *TalkServ
 func (t TalkHandler) RemoveFriendsFromFavorite(ctx context.Context, request *TalkService.RemoveFriendsFromFavoriteRequest) (*TalkService.RemoveFriendsFromFavoriteResponse, error) {
 	panic("implement me")
 }
-
-func (t TalkHandler) UpdateFriend(ctx context.Context, request *TalkService.UpdateFriendRequest) (*TalkService.UpdateFriendResponse, error) {
-	panic("implement me")
-}

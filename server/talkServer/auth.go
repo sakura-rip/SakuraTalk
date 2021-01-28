@@ -38,17 +38,14 @@ func getHeader(ctx context.Context, key string) (token string, ok bool) {
 }
 
 //VerifyTokenAndGetUUID check token and get token's user id
-func VerifyTokenAndGetUUID(ctx context.Context) (uuid string, ok bool, claims map[string]interface{}) {
-	token, ok := getHeader(ctx, "X-Chat-Access")
+func VerifyTokenAndGetUUID(ctx context.Context) (uuid string, claims map[string]interface{}) {
+	token, ok := getHeader(ctx, "X-Sakura-Access")
 	if !ok {
-		return "", false, nil
+		return "", nil
 	}
 	jwt, err := auth.VerifyIDToken(context.Background(), token)
 	if err != nil {
-		return "", false, nil
+		return "", nil
 	}
-	if value, ok := jwt.Claims["registered"]; value == true && ok == true {
-		return jwt.UID, false, jwt.Claims
-	}
-	return jwt.UID, ok, jwt.Claims
+	return jwt.UID, jwt.Claims
 }

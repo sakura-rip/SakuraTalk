@@ -30,7 +30,7 @@ service TalkService {
   rpc createTag (createTagRequest) returns (createTagResponse);
   rpc updateTag (updateTagRequest) returns (updateTagResponse);
   rpc registerTags (registerTagsRequest) returns (registerTagsResponse);
-  rpc getAllTags (getAllTagsRequest) returns (getAllTagsResponse);
+  rpc getAllTags (Empty) returns (getAllTagsResponse);
   rpc deleteTag (deleteTagRequest) returns (deleteTagResponse);
 
   rpc addFriend (addFriendRequest) returns (addFriendResponse);
@@ -39,7 +39,6 @@ service TalkService {
   rpc unblockFriends (unblockFriendsRequest) returns (unblockFriendsResponse);
   rpc addFriendsToFavorite (addFriendsToFavoriteRequest) returns (addFriendsToFavoriteResponse);
   rpc removeFriendsFromFavorite (removeFriendsFromFavoriteRequest) returns (removeFriendsFromFavoriteResponse);
-  rpc updateFriend (updateFriendRequest) returns (updateFriendResponse);
 }
 
 
@@ -112,31 +111,57 @@ message sendMessageResponse {
   string messageID = 1;
 }
 
-message editMessageRequest {}
-message editMessageResponse {}
+message editMessageRequest {
+  string messageID = 1;
+  Message message = 2;
+}
+message editMessageResponse {
+  Message message = 1;
+}
 
 message resendMessageRequest {}
 message resendMessageResponse {}
 
-message unsendMessageRequest {}
+message unsendMessageRequest {
+  string messageID = 1;
+}
 message unsendMessageResponse {}
 
-message readMessageRequest {}
+message readMessageRequest {
+  string messageID = 1;
+}
 message readMessageResponse {}
 
-message unreadMessageRequest {}
+message unreadMessageRequest {
+  string messageID = 1;
+}
 message unreadMessageResponse {}
 
-message reportMessageRequest {}
+message reportMessageRequest {
+  string messageID = 1;
+  map<string, string> metaData = 2;
+}
 message reportMessageResponse {}
 
-message removeAllMessagesRequest {}
+message removeAllMessagesRequest {
+  string messageID = 1;
+}
 message removeAllMessagesResponse {}
 
-message actionMessageRequest {}
+enum MessageAction {
+  GOOD = 0;
+}
+
+message actionMessageRequest {
+  string messageID = 1;
+  MessageAction actionType = 2;
+}
 message actionMessageResponse {}
 
-message announceMessageRequest {}
+message announceMessageRequest {
+  string messageID = 1;
+  string text = 2;
+}
 message announceMessageResponse {}
 
 message Setting {
@@ -209,39 +234,59 @@ message getTagResponse {
   Tag tag = 1;
 }
 
-message createTagRequest {}
-message createTagResponse {}
+message createTagRequest {
+  Tag tag = 1;
+}
+message createTagResponse {
+  string tagID = 1;
+}
 
-message updateTagRequest {}
+message updateTagRequest {
+  Tag tag = 1;
+}
 message updateTagResponse {}
 
-message registerTagsRequest {}
+message registerTagsRequest {
+  string tagID = 1;
+  string mid = 2;
+}
 message registerTagsResponse {}
 
-message getAllTagsRequest {}
-message getAllTagsResponse {}
+message getAllTagsResponse {
+  repeated string tagIds = 1;
+}
 
-message deleteTagRequest {}
+message deleteTagRequest {
+  string tagId = 1;
+}
 message deleteTagResponse {}
 
-message addFriendRequest {}
+message addFriendRequest {
+  string mid = 1;
+}
 message addFriendResponse {}
 
-message deleteFriendsRequest {}
+message deleteFriendsRequest {
+  string mid = 1;
+}
 message deleteFriendsResponse {}
 
-message blockFriendsRequest {}
+message blockFriendsRequest {
+  string mid = 1;
+}
 message blockFriendsResponse {}
 
-message unblockFriendsRequest {}
+message unblockFriendsRequest {
+  string mid = 1;
+}
 message unblockFriendsResponse {}
 
-message addFriendsToFavoriteRequest {}
+message addFriendsToFavoriteRequest {
+  string mid = 1;
+}
 message addFriendsToFavoriteResponse {}
 
-message removeFriendsFromFavoriteRequest {}
+message removeFriendsFromFavoriteRequest {
+  string mid = 1;
+}
 message removeFriendsFromFavoriteResponse {}
-
-message updateFriendRequest {}
-message updateFriendResponse {}
-

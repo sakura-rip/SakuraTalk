@@ -3,6 +3,8 @@ package talkServer
 import (
 	"context"
 	"fmt"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"os"
 
 	firebase "firebase.google.com/go"
@@ -38,14 +40,14 @@ func getHeader(ctx context.Context, key string) (token string, ok bool) {
 }
 
 //VerifyTokenAndGetUUID check token and get token's user id
-func VerifyTokenAndGetUUID(ctx context.Context) (uuid string, claims map[string]interface{}) {
+func VerifyTokenAndGetUUID(ctx context.Context) (string, map[string]interface{}, error) {
 	token, ok := getHeader(ctx, "X-Sakura-Access")
 	if !ok {
-		return "", nil
+		return "", nil, status.New(codes.Unauthenticated, "authentication failed").Err()
 	}
 	jwt, err := auth.VerifyIDToken(context.Background(), token)
 	if err != nil {
-		return "", nil
+		return "", nil, status.New(codes.Unauthenticated, "authentication failed").Err()
 	}
-	return jwt.UID, jwt.Claims
+	return jwt.UID, jwt.Claims, nil
 }

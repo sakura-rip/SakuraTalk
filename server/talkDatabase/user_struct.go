@@ -45,6 +45,11 @@ type Profile struct {
 	IconPath  string `bson:"iPath"`
 	CoverPath string `bson:"cPath"`
 
+	TwitterID   string `bson:"twitterID"`
+	InstagramID string `bson:"instagramID"`
+	GithubID    string `bson:"githubID"`
+	WebSiteURL  string `bson:"webSiteURL"`
+
 	Location string `bson:"location"`
 	WebSite  string `bson:"website"`
 	BirthDay int64  `bson:"birthday"`

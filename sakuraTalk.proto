@@ -39,6 +39,8 @@ service TalkService {
   rpc unblockFriends (unblockFriendsRequest) returns (unblockFriendsResponse);
   rpc addFriendsToFavorite (addFriendsToFavoriteRequest) returns (addFriendsToFavoriteResponse);
   rpc removeFriendsFromFavorite (removeFriendsFromFavoriteRequest) returns (removeFriendsFromFavoriteResponse);
+
+  rpc registerPrimary(registerPrimaryRequest) returns (registerPrimaryResponse);
 }
 
 
@@ -290,3 +292,6 @@ message removeFriendsFromFavoriteRequest {
   string mid = 1;
 }
 message removeFriendsFromFavoriteResponse {}
+
+message registerPrimaryRequest {}
+message registerPrimaryResponse {}

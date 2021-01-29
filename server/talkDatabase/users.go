@@ -144,7 +144,7 @@ func (cl *DBClient) DeleteUserTag(mid, tagID string) error {
 	return nil
 }
 
-func (cl *DBClient) InsertUserTag(mid string, tag Tag) error {
+func (cl *DBClient) InsertOrUpdateUserTag(mid string, tag Tag) error {
 	err := cl.UpdateUser(mid, bson.D{{
 		"tags." + tag.TagID, Tag{
 			TagID:       tag.TagID,

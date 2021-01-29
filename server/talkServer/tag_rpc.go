@@ -18,7 +18,7 @@ func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRe
 		Creator:     request.Tag.Creator,
 		CreatedTime: request.Tag.CreatedTime,
 	}
-	err := dbClient.InsertUserTag(utils.GetUUID(ctx), dbTag)
+	err := dbClient.InsertOrUpdateUserTag(utils.GetUUID(ctx), dbTag)
 	if err != nil {
 		return nil, err
 	}
@@ -34,7 +34,7 @@ func (t TalkHandler) UpdateTag(ctx context.Context, request *service.UpdateTagRe
 		Creator:     request.Tag.Creator,
 		CreatedTime: request.Tag.CreatedTime,
 	}
-	err := dbClient.InsertUserTag(utils.GetUUID(ctx), dbTag)
+	err := dbClient.InsertOrUpdateUserTag(utils.GetUUID(ctx), dbTag)
 	if err != nil {
 		return nil, err
 	}

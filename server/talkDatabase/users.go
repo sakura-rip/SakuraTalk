@@ -143,14 +143,17 @@ func (cl *DBClient) DeleteUserTag(mid, tagID string) error {
 
 func (cl *DBClient) InsertOrUpdateUserTag(mid string, tag Tag) error {
 	err := cl.UpdateUser(mid, bson.D{{
-		"tags." + tag.TagID, Tag{
-			TagID:       tag.TagID,
-			Name:        tag.Name,
-			Description: tag.Description,
-			Color:       tag.Color,
-			Creator:     tag.Creator,
-			CreatedTime: tag.CreatedTime,
-		},
+		"tags." + tag.TagID, tag,
+	}})
+	if err != nil {
+		return status.New(codes.Internal, "db error").Err()
+	}
+	return nil
+}
+
+func (cl *DBClient) InsertOrUpdateUserContact(mid string, contact Contact) error {
+	err := cl.UpdateUser(mid, bson.D{{
+		"contacts." + contact.MID, contact,
 	}})
 	if err != nil {
 		return status.New(codes.Internal, "db error").Err()

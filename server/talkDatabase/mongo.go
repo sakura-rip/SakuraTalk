@@ -29,7 +29,7 @@ func NewDBClient() *DBClient {
 func ConnectToMongoDB() *mongo.Client {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	db, err := mongo.Connect(ctx, options.Client().ApplyURI("mangodb://localhost:27017"))
+	db, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		panic(fmt.Errorf("error on init mongo db: %v", err))
 	}

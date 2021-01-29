@@ -3,6 +3,8 @@ package talkServer
 import (
 	"context"
 	service "github.com/sakura-rip/SakuraTalk/talkService"
+	"github.com/sakura-rip/SakuraTalk/utils"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRequest) (*service.CreateTagResponse, error) {
@@ -17,8 +19,17 @@ func (t TalkHandler) RegisterTags(ctx context.Context, request *service.Register
 	panic("implement me")
 }
 
-func (t TalkHandler) GetAllTags(ctx2 context.Context, empty *service.Empty) (*service.GetAllTagsResponse, error) {
-	panic("implement me")
+func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*service.GetAllTagsResponse, error) {
+	var tagIds []string
+	user, err := dbClient.FetchUserAttribute(utils.GetUUID(ctx), bson.D{{"tags", 1}})
+	if err != nil {
+		return nil, err
+	}
+	for tagID := range user.Tags {
+		tagIds = append(tagIds, tagID)
+	}
+	response := &service.GetAllTagsResponse{TagIds: tagIds}
+	return response, err
 }
 
 func (t TalkHandler) DeleteTag(ctx context.Context, request *service.DeleteTagRequest) (*service.DeleteTagResponse, error) {

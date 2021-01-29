@@ -54,7 +54,7 @@ func newDefaultMiddleWare() DefaultMiddleWare {
 		if !ok {
 			return ctx, status.New(codes.Unauthenticated, "authentication failed").Err()
 		}
-		jwt, err := auth.VerifyIDToken(ctx, token)
+		jwt, err := authClient.VerifyIDToken(ctx, token)
 		if err != nil {
 			return ctx, status.New(codes.Unauthenticated, "authentication failed").Err()
 		}

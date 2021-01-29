@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\r.;TalkService',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10sakuraTalk.proto\x12\x0bTalkService\"\x07\n\x05\x45mpty\"\xdf\x01\n\x07Profile\x12\x0b\n\x03mid\x18\x01 \x01(\t\x12\x13\n\x0b\x64isplayName\x18\x02 \x01(\t\x12\x0b\n\x03\x62io\x18\x03 \x01(\t\x12\x10\n\x08iconPath\x18\x04 \x01(\t\x12\x11\n\tcoverPath\x18\x05 \x01(\t\x12\x11\n\ttwitterID\x18\x06 \x01(\t\x12\x13\n\x0binstagramID\x18\x07 \x01(\t\x12\x10\n\x08githubID\x18\x08 \x01(\t\x12\x12\n\nwebSiteURL\x18\t \x01(\t\x12\x10\n\x08location\x18\n \x01(\t\x12\x10\n\x08\x62irthDay\x18\x0b \x01(\x03\x12\x0e\n\x06status\x18\x0c \x01(\t\"n\n\x1eupdateProfileAttributesRequest\x12%\n\x04keys\x18\x01 \x03(\x0e\x32\x17.TalkService.ProfileKey\x12%\n\x07profile\x18\x02 \x01(\x0b\x32\x14.TalkService.Profile\"!\n\x1fupdateProfileAttributesResponse\"\xc4\x02\n\x07Message\x12\r\n\x05\x66rom_\x18\x01 \x01(\t\x12\n\n\x02to\x18\x02 \x01(\t\x12#\n\x06toType\x18\x03 \x01(\x0e\x32\x13.TalkService.ToType\x12\x11\n\tmessageID\x18\x04 \x01(\t\x12\x13\n\x0b\x63reatedTime\x18\x05 \x01(\x03\x12\x0c\n\x04text\x18\x06 \x01(\t\x12\x42\n\x0f\x63ontentMetadata\x18\x07 \x03(\x0b\x32).TalkService.Message.ContentMetadataEntry\x12-\n\x0b\x63ontentType\x18\x08 \x01(\x0e\x32\x18.TalkService.ContentType\x12\x18\n\x10relatedMessageId\x18\t \x01(\t\x1a\x36\n\x14\x43ontentMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\";\n\x12sendMessageRequest\x12%\n\x07message\x18\x01 \x01(\x0b\x32\x14.TalkService.Message\"(\n\x13sendMessageResponse\x12\x11\n\tmessageID\x18\x01 \x01(\t\"N\n\x12\x65\x64itMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\x12%\n\x07message\x18\x02 \x01(\x0b\x32\x14.TalkService.Message\"<\n\x13\x65\x64itMessageResponse\x12%\n\x07message\x18\x01 \x01(\x0b\x32\x14.TalkService.Message\"\x16\n\x14resendMessageRequest\"\x17\n\x15resendMessageResponse\")\n\x14unsendMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\"\x17\n\x15unsendMessageResponse\"\'\n\x12readMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\"\x15\n\x13readMessageResponse\")\n\x14unreadMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\"\x17\n\x15unreadMessageResponse\"\x9d\x01\n\x14reportMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\x12\x41\n\x08metaData\x18\x02 \x03(\x0b\x32/.TalkService.reportMessageRequest.MetaDataEntry\x1a/\n\rMetaDataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x17\n\x15reportMessageResponse\"-\n\x18removeAllMessagesRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\"\x1b\n\x19removeAllMessagesResponse\"Y\n\x14\x61\x63tionMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\x12.\n\nactionType\x18\x02 \x01(\x0e\x32\x1a.TalkService.MessageAction\"\x17\n\x15\x61\x63tionMessageResponse\"9\n\x16\x61nnounceMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\x12\x0c\n\x04text\x18\x02 \x01(\t\"\x19\n\x17\x61nnounceMessageResponse\"\xa4\x01\n\x07Setting\x12\x15\n\rprivateUserID\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x12\n\nuserTicket\x18\x03 \x01(\t\x12\"\n\x1a\x61llowSearchByPrivateUserID\x18\x04 \x01(\x08\x12\x1a\n\x12\x61llowSearchByEmail\x18\x05 \x01(\x08\x12\x1f\n\x17\x61llowSearchByUserTicket\x18\x06 \x01(\x08\" \n\x1eupdateSettingAttributesRequest\"!\n\x1fupdateSettingAttributesResponse\"\xbb\x02\n\x07\x43ontact\x12\x0b\n\x03mid\x18\x01 \x01(\t\x12\x13\n\x0b\x64isplayName\x18\x02 \x01(\t\x12\x17\n\x0foverWrittenName\x18\x03 \x01(\t\x12\x0b\n\x03\x62io\x18\x04 \x01(\t\x12\x10\n\x08iconPath\x18\x05 \x01(\t\x12\x11\n\tcoverPath\x18\x06 \x01(\t\x12\x11\n\ttwitterID\x18\x07 \x01(\t\x12\x13\n\x0binstagramID\x18\x08 \x01(\t\x12\x10\n\x08githubID\x18\t \x01(\t\x12\x12\n\nwebSiteURL\x18\n \x01(\t\x12\x10\n\x08location\x18\x0b \x01(\t\x12\x10\n\x08\x62irthDay\x18\x0c \x01(\x03\x12\x0e\n\x06status\x18\r \x01(\t\x12\x31\n\rcontactStatus\x18\x0e \x01(\x0e\x32\x1a.TalkService.ContactStatus\x12\x0e\n\x06tagIds\x18\x0f \x03(\t\"\"\n\x12getContactsRequest\x12\x0c\n\x04mids\x18\x01 \x03(\t\"\x9e\x01\n\x13getContactsResponse\x12@\n\x08\x63ontacts\x18\x01 \x03(\x0b\x32..TalkService.getContactsResponse.ContactsEntry\x1a\x45\n\rContactsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.TalkService.Contact:\x02\x38\x01\"d\n\x14updateContactRequest\x12%\n\x04keys\x18\x01 \x03(\x0e\x32\x17.TalkService.ContactKey\x12%\n\x07\x63ontact\x18\x02 \x01(\x0b\x32\x14.TalkService.Contact\"\x17\n\x15updateContactResponse\"l\n\x03Tag\x12\r\n\x05tagID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\r\n\x05\x63olor\x18\x04 \x01(\t\x12\x0f\n\x07\x63reator\x18\x05 \x01(\t\x12\x13\n\x0b\x63reatedTime\x18\x06 \x01(\x03\"\x1e\n\rgetTagRequest\x12\r\n\x05tagId\x18\x01 \x01(\t\"/\n\x0egetTagResponse\x12\x1d\n\x03tag\x18\x01 \x01(\x0b\x32\x10.TalkService.Tag\"1\n\x10\x63reateTagRequest\x12\x1d\n\x03tag\x18\x01 \x01(\x0b\x32\x10.TalkService.Tag\"\"\n\x11\x63reateTagResponse\x12\r\n\x05tagID\x18\x01 \x01(\t\"1\n\x10updateTagRequest\x12\x1d\n\x03tag\x18\x01 \x01(\x0b\x32\x10.TalkService.Tag\"\x13\n\x11updateTagResponse\"1\n\x13registerTagsRequest\x12\r\n\x05tagID\x18\x01 \x01(\t\x12\x0b\n\x03mid\x18\x02 \x01(\t\"\x16\n\x14registerTagsResponse\"$\n\x12getAllTagsResponse\x12\x0e\n\x06tagIds\x18\x01 \x03(\t\"!\n\x10\x64\x65leteTagRequest\x12\r\n\x05tagId\x18\x01 \x01(\t\"\x13\n\x11\x64\x65leteTagResponse\"\x1f\n\x10\x61\x64\x64\x46riendRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x13\n\x11\x61\x64\x64\x46riendResponse\"#\n\x14\x64\x65leteFriendsRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x17\n\x15\x64\x65leteFriendsResponse\"\"\n\x13\x62lockFriendsRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x16\n\x14\x62lockFriendsResponse\"$\n\x15unblockFriendsRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x18\n\x16unblockFriendsResponse\"*\n\x1b\x61\x64\x64\x46riendsToFavoriteRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x1e\n\x1c\x61\x64\x64\x46riendsToFavoriteResponse\"/\n removeFriendsFromFavoriteRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"#\n!removeFriendsFromFavoriteResponse\"\x18\n\x16registerPrimaryRequest\"\x19\n\x17registerPrimaryResponse*\xb2\x01\n\nProfileKey\x12\x10\n\x0c\x44ISPLAY_NAME\x10\x00\x12\x07\n\x03\x42IO\x10\x01\x12\r\n\tICON_PATH\x10\x02\x12\x0e\n\nCOVER_PATH\x10\x03\x12\x0e\n\nTWITTER_ID\x10\x04\x12\x10\n\x0cINSTAGRAM_ID\x10\x05\x12\r\n\tGITHUB_ID\x10\x06\x12\x10\n\x0cWEB_SITE_URL\x10\x07\x12\x0c\n\x08LOCATION\x10\x08\x12\r\n\tBIRTH_DAY\x10\t\x12\n\n\x06STATUS\x10\n*1\n\x06ToType\x12\x08\n\x04USER\x10\x00\x12\x08\n\x04ROOM\x10\x01\x12\t\n\x05GROUP\x10\x02\x12\x08\n\x04\x43HAT\x10\x03*E\n\x0b\x43ontentType\x12\x08\n\x04TEXT\x10\x00\x12\t\n\x05IMAGE\x10\x01\x12\t\n\x05VIDEO\x10\x02\x12\t\n\x05\x41UDIO\x10\x03\x12\x0b\n\x07STICKER\x10\x04*\x19\n\rMessageAction\x12\x08\n\x04GOOD\x10\x00*F\n\rContactStatus\x12\x0f\n\x0bNO_RELATION\x10\x00\x12\n\n\x06\x46RIEND\x10\x01\x12\x0b\n\x07\x42LOCKED\x10\x02\x12\x0b\n\x07\x44\x45LETED\x10\x03*#\n\nContactKey\x12\x15\n\x11OVER_WRITTEN_NAME\x10\x00\x32\xdd\x13\n\x0bTalkService\x12t\n\x17updateProfileAttributes\x12+.TalkService.updateProfileAttributesRequest\x1a,.TalkService.updateProfileAttributesResponse\x12\x36\n\ngetProfile\x12\x12.TalkService.Empty\x1a\x14.TalkService.Profile\x12P\n\x0bsendMessage\x12\x1f.TalkService.sendMessageRequest\x1a .TalkService.sendMessageResponse\x12P\n\x0b\x65\x64itMessage\x12\x1f.TalkService.editMessageRequest\x1a .TalkService.editMessageResponse\x12V\n\rresendMessage\x12!.TalkService.resendMessageRequest\x1a\".TalkService.resendMessageResponse\x12V\n\runsendMessage\x12!.TalkService.unsendMessageRequest\x1a\".TalkService.unsendMessageResponse\x12P\n\x0breadMessage\x12\x1f.TalkService.readMessageRequest\x1a .TalkService.readMessageResponse\x12V\n\runreadMessage\x12!.TalkService.unreadMessageRequest\x1a\".TalkService.unreadMessageResponse\x12V\n\rreportMessage\x12!.TalkService.reportMessageRequest\x1a\".TalkService.reportMessageResponse\x12\x62\n\x11removeAllMessages\x12%.TalkService.removeAllMessagesRequest\x1a&.TalkService.removeAllMessagesResponse\x12V\n\ractionMessage\x12!.TalkService.actionMessageRequest\x1a\".TalkService.actionMessageResponse\x12\\\n\x0f\x61nnounceMessage\x12#.TalkService.announceMessageRequest\x1a$.TalkService.announceMessageResponse\x12\x36\n\ngetSetting\x12\x12.TalkService.Empty\x1a\x14.TalkService.Setting\x12t\n\x17updateSettingAttributes\x12+.TalkService.updateSettingAttributesRequest\x1a,.TalkService.updateSettingAttributesResponse\x12P\n\x0bgetContacts\x12\x1f.TalkService.getContactsRequest\x1a .TalkService.getContactsResponse\x12V\n\rupdateContact\x12!.TalkService.updateContactRequest\x1a\".TalkService.updateContactResponse\x12\x41\n\x06getTag\x12\x1a.TalkService.getTagRequest\x1a\x1b.TalkService.getTagResponse\x12J\n\tcreateTag\x12\x1d.TalkService.createTagRequest\x1a\x1e.TalkService.createTagResponse\x12J\n\tupdateTag\x12\x1d.TalkService.updateTagRequest\x1a\x1e.TalkService.updateTagResponse\x12S\n\x0cregisterTags\x12 .TalkService.registerTagsRequest\x1a!.TalkService.registerTagsResponse\x12\x41\n\ngetAllTags\x12\x12.TalkService.Empty\x1a\x1f.TalkService.getAllTagsResponse\x12J\n\tdeleteTag\x12\x1d.TalkService.deleteTagRequest\x1a\x1e.TalkService.deleteTagResponse\x12J\n\taddFriend\x12\x1d.TalkService.addFriendRequest\x1a\x1e.TalkService.addFriendResponse\x12V\n\rdeleteFriends\x12!.TalkService.deleteFriendsRequest\x1a\".TalkService.deleteFriendsResponse\x12S\n\x0c\x62lockFriends\x12 .TalkService.blockFriendsRequest\x1a!.TalkService.blockFriendsResponse\x12Y\n\x0eunblockFriends\x12\".TalkService.unblockFriendsRequest\x1a#.TalkService.unblockFriendsResponse\x12k\n\x14\x61\x64\x64\x46riendsToFavorite\x12(.TalkService.addFriendsToFavoriteRequest\x1a).TalkService.addFriendsToFavoriteResponse\x12z\n\x19removeFriendsFromFavorite\x12-.TalkService.removeFriendsFromFavoriteRequest\x1a..TalkService.removeFriendsFromFavoriteResponse\x12\\\n\x0fregisterPrimary\x12#.TalkService.registerPrimaryRequest\x1a$.TalkService.registerPrimaryResponseB\x0fZ\r.;TalkServiceb\x06proto3'
+  serialized_pb=b'\n\x10sakuraTalk.proto\x12\x0bTalkService\"\x07\n\x05\x45mpty\"\xdf\x01\n\x07Profile\x12\x0b\n\x03mid\x18\x01 \x01(\t\x12\x13\n\x0b\x64isplayName\x18\x02 \x01(\t\x12\x0b\n\x03\x62io\x18\x03 \x01(\t\x12\x10\n\x08iconPath\x18\x04 \x01(\t\x12\x11\n\tcoverPath\x18\x05 \x01(\t\x12\x11\n\ttwitterID\x18\x06 \x01(\t\x12\x13\n\x0binstagramID\x18\x07 \x01(\t\x12\x10\n\x08githubID\x18\x08 \x01(\t\x12\x12\n\nwebSiteURL\x18\t \x01(\t\x12\x10\n\x08location\x18\n \x01(\t\x12\x10\n\x08\x62irthDay\x18\x0b \x01(\x03\x12\x0e\n\x06status\x18\x0c \x01(\t\"n\n\x1eupdateProfileAttributesRequest\x12%\n\x04keys\x18\x01 \x03(\x0e\x32\x17.TalkService.ProfileKey\x12%\n\x07profile\x18\x02 \x01(\x0b\x32\x14.TalkService.Profile\"!\n\x1fupdateProfileAttributesResponse\"\xc4\x02\n\x07Message\x12\r\n\x05\x66rom_\x18\x01 \x01(\t\x12\n\n\x02to\x18\x02 \x01(\t\x12#\n\x06toType\x18\x03 \x01(\x0e\x32\x13.TalkService.ToType\x12\x11\n\tmessageID\x18\x04 \x01(\t\x12\x13\n\x0b\x63reatedTime\x18\x05 \x01(\x03\x12\x0c\n\x04text\x18\x06 \x01(\t\x12\x42\n\x0f\x63ontentMetadata\x18\x07 \x03(\x0b\x32).TalkService.Message.ContentMetadataEntry\x12-\n\x0b\x63ontentType\x18\x08 \x01(\x0e\x32\x18.TalkService.ContentType\x12\x18\n\x10relatedMessageId\x18\t \x01(\t\x1a\x36\n\x14\x43ontentMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\";\n\x12sendMessageRequest\x12%\n\x07message\x18\x01 \x01(\x0b\x32\x14.TalkService.Message\"(\n\x13sendMessageResponse\x12\x11\n\tmessageID\x18\x01 \x01(\t\"N\n\x12\x65\x64itMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\x12%\n\x07message\x18\x02 \x01(\x0b\x32\x14.TalkService.Message\"<\n\x13\x65\x64itMessageResponse\x12%\n\x07message\x18\x01 \x01(\x0b\x32\x14.TalkService.Message\"\x16\n\x14resendMessageRequest\"\x17\n\x15resendMessageResponse\")\n\x14unsendMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\"\x17\n\x15unsendMessageResponse\"\'\n\x12readMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\"\x15\n\x13readMessageResponse\")\n\x14unreadMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\"\x17\n\x15unreadMessageResponse\"\x9d\x01\n\x14reportMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\x12\x41\n\x08metaData\x18\x02 \x03(\x0b\x32/.TalkService.reportMessageRequest.MetaDataEntry\x1a/\n\rMetaDataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x17\n\x15reportMessageResponse\"-\n\x18removeAllMessagesRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\"\x1b\n\x19removeAllMessagesResponse\"Y\n\x14\x61\x63tionMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\x12.\n\nactionType\x18\x02 \x01(\x0e\x32\x1a.TalkService.MessageAction\"\x17\n\x15\x61\x63tionMessageResponse\"9\n\x16\x61nnounceMessageRequest\x12\x11\n\tmessageID\x18\x01 \x01(\t\x12\x0c\n\x04text\x18\x02 \x01(\t\"\x19\n\x17\x61nnounceMessageResponse\"\xa4\x01\n\x07Setting\x12\x15\n\rprivateUserID\x18\x01 \x01(\t\x12\r\n\x05\x65mail\x18\x02 \x01(\t\x12\x12\n\nuserTicket\x18\x03 \x01(\t\x12\"\n\x1a\x61llowSearchByPrivateUserID\x18\x04 \x01(\x08\x12\x1a\n\x12\x61llowSearchByEmail\x18\x05 \x01(\x08\x12\x1f\n\x17\x61llowSearchByUserTicket\x18\x06 \x01(\x08\" \n\x1eupdateSettingAttributesRequest\"!\n\x1fupdateSettingAttributesResponse\"\xbb\x02\n\x07\x43ontact\x12\x0b\n\x03mid\x18\x01 \x01(\t\x12\x13\n\x0b\x64isplayName\x18\x02 \x01(\t\x12\x17\n\x0foverWrittenName\x18\x03 \x01(\t\x12\x0b\n\x03\x62io\x18\x04 \x01(\t\x12\x10\n\x08iconPath\x18\x05 \x01(\t\x12\x11\n\tcoverPath\x18\x06 \x01(\t\x12\x11\n\ttwitterID\x18\x07 \x01(\t\x12\x13\n\x0binstagramID\x18\x08 \x01(\t\x12\x10\n\x08githubID\x18\t \x01(\t\x12\x12\n\nwebSiteURL\x18\n \x01(\t\x12\x10\n\x08location\x18\x0b \x01(\t\x12\x10\n\x08\x62irthDay\x18\x0c \x01(\x03\x12\x0e\n\x06status\x18\r \x01(\t\x12\x31\n\rcontactStatus\x18\x0e \x01(\x0e\x32\x1a.TalkService.ContactStatus\x12\x0e\n\x06tagIds\x18\x0f \x03(\t\"\"\n\x12getContactsRequest\x12\x0c\n\x04mids\x18\x01 \x03(\t\"\x9e\x01\n\x13getContactsResponse\x12@\n\x08\x63ontacts\x18\x01 \x03(\x0b\x32..TalkService.getContactsResponse.ContactsEntry\x1a\x45\n\rContactsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12#\n\x05value\x18\x02 \x01(\x0b\x32\x14.TalkService.Contact:\x02\x38\x01\"d\n\x14updateContactRequest\x12%\n\x04keys\x18\x01 \x03(\x0e\x32\x17.TalkService.ContactKey\x12%\n\x07\x63ontact\x18\x02 \x01(\x0b\x32\x14.TalkService.Contact\"\x17\n\x15updateContactResponse\"l\n\x03Tag\x12\r\n\x05tagID\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\r\n\x05\x63olor\x18\x04 \x01(\t\x12\x0f\n\x07\x63reator\x18\x05 \x01(\t\x12\x13\n\x0b\x63reatedTime\x18\x06 \x01(\x03\"\x1e\n\rgetTagRequest\x12\r\n\x05tagId\x18\x01 \x01(\t\"/\n\x0egetTagResponse\x12\x1d\n\x03tag\x18\x01 \x01(\x0b\x32\x10.TalkService.Tag\"1\n\x10\x63reateTagRequest\x12\x1d\n\x03tag\x18\x01 \x01(\x0b\x32\x10.TalkService.Tag\"\"\n\x11\x63reateTagResponse\x12\r\n\x05tagID\x18\x01 \x01(\t\"1\n\x10updateTagRequest\x12\x1d\n\x03tag\x18\x01 \x01(\x0b\x32\x10.TalkService.Tag\"\x13\n\x11updateTagResponse\"1\n\x13registerTagsRequest\x12\r\n\x05tagID\x18\x01 \x01(\t\x12\x0b\n\x03mid\x18\x02 \x01(\t\"\x16\n\x14registerTagsResponse\"$\n\x12getAllTagsResponse\x12\x0e\n\x06tagIds\x18\x01 \x03(\t\"!\n\x10\x64\x65leteTagRequest\x12\r\n\x05tagId\x18\x01 \x01(\t\"\x13\n\x11\x64\x65leteTagResponse\"\x1f\n\x10\x61\x64\x64\x46riendRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x13\n\x11\x61\x64\x64\x46riendResponse\"#\n\x14\x64\x65leteFriendsRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x17\n\x15\x64\x65leteFriendsResponse\"\"\n\x13\x62lockFriendsRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x16\n\x14\x62lockFriendsResponse\"$\n\x15unblockFriendsRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x18\n\x16unblockFriendsResponse\"*\n\x1b\x61\x64\x64\x46riendsToFavoriteRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"\x1e\n\x1c\x61\x64\x64\x46riendsToFavoriteResponse\"/\n removeFriendsFromFavoriteRequest\x12\x0b\n\x03mid\x18\x01 \x01(\t\"#\n!removeFriendsFromFavoriteResponse\"\x18\n\x16registerPrimaryRequest\"\x19\n\x17registerPrimaryResponse\"\xf7\x02\n\x05Group\x12\x0f\n\x07groupID\x18\x01 \x01(\t\x12\x11\n\tgroupName\x18\x02 \x01(\t\x12\x17\n\x0foverWrittenName\x18\x03 \x01(\t\x12\x0f\n\x07\x63reator\x18\x04 \x01(\t\x12\x13\n\x0b\x63reatedTime\x18\x05 \x01(\x03\x12\x10\n\x08iconPath\x18\x06 \x01(\t\x12\x11\n\tcoverPath\x18\x07 \x01(\t\x12\x12\n\nisFavorite\x18\x08 \x01(\x08\x12\x1a\n\x12\x65nableNotification\x18\t \x01(\x08\x12!\n\x19\x65nableNotificationMention\x18\n \x01(\x08\x12 \n\x18\x65nableNotificationOnJoin\x18\x0b \x01(\x08\x12 \n\x18\x65nableNotificationOnKick\x18\x0c \x01(\x08\x12\x0e\n\x06tagIDs\x18\r \x03(\t\x12\x18\n\x10invitationTicket\x18\x0e \x01(\t\x12\x11\n\tmemberIds\x18\x0f \x03(\t\x12\x12\n\ninviteeIds\x18\x10 \x03(\t\"\"\n\x0fgetGroupRequest\x12\x0f\n\x07groupID\x18\x01 \x01(\t\"5\n\x10getGroupResponse\x12!\n\x05group\x18\x01 \x01(\x0b\x32\x12.TalkService.Group*\xb2\x01\n\nProfileKey\x12\x10\n\x0c\x44ISPLAY_NAME\x10\x00\x12\x07\n\x03\x42IO\x10\x01\x12\r\n\tICON_PATH\x10\x02\x12\x0e\n\nCOVER_PATH\x10\x03\x12\x0e\n\nTWITTER_ID\x10\x04\x12\x10\n\x0cINSTAGRAM_ID\x10\x05\x12\r\n\tGITHUB_ID\x10\x06\x12\x10\n\x0cWEB_SITE_URL\x10\x07\x12\x0c\n\x08LOCATION\x10\x08\x12\r\n\tBIRTH_DAY\x10\t\x12\n\n\x06STATUS\x10\n*1\n\x06ToType\x12\x08\n\x04USER\x10\x00\x12\x08\n\x04ROOM\x10\x01\x12\t\n\x05GROUP\x10\x02\x12\x08\n\x04\x43HAT\x10\x03*E\n\x0b\x43ontentType\x12\x08\n\x04TEXT\x10\x00\x12\t\n\x05IMAGE\x10\x01\x12\t\n\x05VIDEO\x10\x02\x12\t\n\x05\x41UDIO\x10\x03\x12\x0b\n\x07STICKER\x10\x04*\x19\n\rMessageAction\x12\x08\n\x04GOOD\x10\x00*F\n\rContactStatus\x12\x0f\n\x0bNO_RELATION\x10\x00\x12\n\n\x06\x46RIEND\x10\x01\x12\x0b\n\x07\x42LOCKED\x10\x02\x12\x0b\n\x07\x44\x45LETED\x10\x03*#\n\nContactKey\x12\x15\n\x11OVER_WRITTEN_NAME\x10\x00\x32\xa6\x14\n\x0bTalkService\x12t\n\x17updateProfileAttributes\x12+.TalkService.updateProfileAttributesRequest\x1a,.TalkService.updateProfileAttributesResponse\x12\x36\n\ngetProfile\x12\x12.TalkService.Empty\x1a\x14.TalkService.Profile\x12P\n\x0bsendMessage\x12\x1f.TalkService.sendMessageRequest\x1a .TalkService.sendMessageResponse\x12P\n\x0b\x65\x64itMessage\x12\x1f.TalkService.editMessageRequest\x1a .TalkService.editMessageResponse\x12V\n\rresendMessage\x12!.TalkService.resendMessageRequest\x1a\".TalkService.resendMessageResponse\x12V\n\runsendMessage\x12!.TalkService.unsendMessageRequest\x1a\".TalkService.unsendMessageResponse\x12P\n\x0breadMessage\x12\x1f.TalkService.readMessageRequest\x1a .TalkService.readMessageResponse\x12V\n\runreadMessage\x12!.TalkService.unreadMessageRequest\x1a\".TalkService.unreadMessageResponse\x12V\n\rreportMessage\x12!.TalkService.reportMessageRequest\x1a\".TalkService.reportMessageResponse\x12\x62\n\x11removeAllMessages\x12%.TalkService.removeAllMessagesRequest\x1a&.TalkService.removeAllMessagesResponse\x12V\n\ractionMessage\x12!.TalkService.actionMessageRequest\x1a\".TalkService.actionMessageResponse\x12\\\n\x0f\x61nnounceMessage\x12#.TalkService.announceMessageRequest\x1a$.TalkService.announceMessageResponse\x12\x36\n\ngetSetting\x12\x12.TalkService.Empty\x1a\x14.TalkService.Setting\x12t\n\x17updateSettingAttributes\x12+.TalkService.updateSettingAttributesRequest\x1a,.TalkService.updateSettingAttributesResponse\x12P\n\x0bgetContacts\x12\x1f.TalkService.getContactsRequest\x1a .TalkService.getContactsResponse\x12V\n\rupdateContact\x12!.TalkService.updateContactRequest\x1a\".TalkService.updateContactResponse\x12\x41\n\x06getTag\x12\x1a.TalkService.getTagRequest\x1a\x1b.TalkService.getTagResponse\x12J\n\tcreateTag\x12\x1d.TalkService.createTagRequest\x1a\x1e.TalkService.createTagResponse\x12J\n\tupdateTag\x12\x1d.TalkService.updateTagRequest\x1a\x1e.TalkService.updateTagResponse\x12S\n\x0cregisterTags\x12 .TalkService.registerTagsRequest\x1a!.TalkService.registerTagsResponse\x12\x41\n\ngetAllTags\x12\x12.TalkService.Empty\x1a\x1f.TalkService.getAllTagsResponse\x12J\n\tdeleteTag\x12\x1d.TalkService.deleteTagRequest\x1a\x1e.TalkService.deleteTagResponse\x12J\n\taddFriend\x12\x1d.TalkService.addFriendRequest\x1a\x1e.TalkService.addFriendResponse\x12V\n\rdeleteFriends\x12!.TalkService.deleteFriendsRequest\x1a\".TalkService.deleteFriendsResponse\x12S\n\x0c\x62lockFriends\x12 .TalkService.blockFriendsRequest\x1a!.TalkService.blockFriendsResponse\x12Y\n\x0eunblockFriends\x12\".TalkService.unblockFriendsRequest\x1a#.TalkService.unblockFriendsResponse\x12k\n\x14\x61\x64\x64\x46riendsToFavorite\x12(.TalkService.addFriendsToFavoriteRequest\x1a).TalkService.addFriendsToFavoriteResponse\x12z\n\x19removeFriendsFromFavorite\x12-.TalkService.removeFriendsFromFavoriteRequest\x1a..TalkService.removeFriendsFromFavoriteResponse\x12\\\n\x0fregisterPrimary\x12#.TalkService.registerPrimaryRequest\x1a$.TalkService.registerPrimaryResponse\x12G\n\x08getGroup\x12\x1c.TalkService.getGroupRequest\x1a\x1d.TalkService.getGroupResponseB\x0fZ\r.;TalkServiceb\x06proto3'
 )
 
 _PROFILEKEY = _descriptor.EnumDescriptor(
@@ -88,8 +88,8 @@ _PROFILEKEY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3552,
-  serialized_end=3730,
+  serialized_start=4021,
+  serialized_end=4199,
 )
 _sym_db.RegisterEnumDescriptor(_PROFILEKEY)
 
@@ -124,8 +124,8 @@ _TOTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3732,
-  serialized_end=3781,
+  serialized_start=4201,
+  serialized_end=4250,
 )
 _sym_db.RegisterEnumDescriptor(_TOTYPE)
 
@@ -165,8 +165,8 @@ _CONTENTTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3783,
-  serialized_end=3852,
+  serialized_start=4252,
+  serialized_end=4321,
 )
 _sym_db.RegisterEnumDescriptor(_CONTENTTYPE)
 
@@ -186,8 +186,8 @@ _MESSAGEACTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3854,
-  serialized_end=3879,
+  serialized_start=4323,
+  serialized_end=4348,
 )
 _sym_db.RegisterEnumDescriptor(_MESSAGEACTION)
 
@@ -222,8 +222,8 @@ _CONTACTSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3881,
-  serialized_end=3951,
+  serialized_start=4350,
+  serialized_end=4420,
 )
 _sym_db.RegisterEnumDescriptor(_CONTACTSTATUS)
 
@@ -243,8 +243,8 @@ _CONTACTKEY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=3953,
-  serialized_end=3988,
+  serialized_start=4422,
+  serialized_end=4457,
 )
 _sym_db.RegisterEnumDescriptor(_CONTACTKEY)
 
@@ -2454,6 +2454,207 @@ _REGISTERPRIMARYRESPONSE = _descriptor.Descriptor(
   serialized_end=3549,
 )
 
+
+_GROUP = _descriptor.Descriptor(
+  name='Group',
+  full_name='TalkService.Group',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='groupID', full_name='TalkService.Group.groupID', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='groupName', full_name='TalkService.Group.groupName', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='overWrittenName', full_name='TalkService.Group.overWrittenName', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='creator', full_name='TalkService.Group.creator', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='createdTime', full_name='TalkService.Group.createdTime', index=4,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='iconPath', full_name='TalkService.Group.iconPath', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='coverPath', full_name='TalkService.Group.coverPath', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='isFavorite', full_name='TalkService.Group.isFavorite', index=7,
+      number=8, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enableNotification', full_name='TalkService.Group.enableNotification', index=8,
+      number=9, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enableNotificationMention', full_name='TalkService.Group.enableNotificationMention', index=9,
+      number=10, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enableNotificationOnJoin', full_name='TalkService.Group.enableNotificationOnJoin', index=10,
+      number=11, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='enableNotificationOnKick', full_name='TalkService.Group.enableNotificationOnKick', index=11,
+      number=12, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='tagIDs', full_name='TalkService.Group.tagIDs', index=12,
+      number=13, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='invitationTicket', full_name='TalkService.Group.invitationTicket', index=13,
+      number=14, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='memberIds', full_name='TalkService.Group.memberIds', index=14,
+      number=15, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='inviteeIds', full_name='TalkService.Group.inviteeIds', index=15,
+      number=16, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3552,
+  serialized_end=3927,
+)
+
+
+_GETGROUPREQUEST = _descriptor.Descriptor(
+  name='getGroupRequest',
+  full_name='TalkService.getGroupRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='groupID', full_name='TalkService.getGroupRequest.groupID', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3929,
+  serialized_end=3963,
+)
+
+
+_GETGROUPRESPONSE = _descriptor.Descriptor(
+  name='getGroupResponse',
+  full_name='TalkService.getGroupResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='group', full_name='TalkService.getGroupResponse.group', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3965,
+  serialized_end=4018,
+)
+
 _UPDATEPROFILEATTRIBUTESREQUEST.fields_by_name['keys'].enum_type = _PROFILEKEY
 _UPDATEPROFILEATTRIBUTESREQUEST.fields_by_name['profile'].message_type = _PROFILE
 _MESSAGE_CONTENTMETADATAENTRY.containing_type = _MESSAGE
@@ -2475,6 +2676,7 @@ _UPDATECONTACTREQUEST.fields_by_name['contact'].message_type = _CONTACT
 _GETTAGRESPONSE.fields_by_name['tag'].message_type = _TAG
 _CREATETAGREQUEST.fields_by_name['tag'].message_type = _TAG
 _UPDATETAGREQUEST.fields_by_name['tag'].message_type = _TAG
+_GETGROUPRESPONSE.fields_by_name['group'].message_type = _GROUP
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
 DESCRIPTOR.message_types_by_name['Profile'] = _PROFILE
 DESCRIPTOR.message_types_by_name['updateProfileAttributesRequest'] = _UPDATEPROFILEATTRIBUTESREQUEST
@@ -2534,6 +2736,9 @@ DESCRIPTOR.message_types_by_name['removeFriendsFromFavoriteRequest'] = _REMOVEFR
 DESCRIPTOR.message_types_by_name['removeFriendsFromFavoriteResponse'] = _REMOVEFRIENDSFROMFAVORITERESPONSE
 DESCRIPTOR.message_types_by_name['registerPrimaryRequest'] = _REGISTERPRIMARYREQUEST
 DESCRIPTOR.message_types_by_name['registerPrimaryResponse'] = _REGISTERPRIMARYRESPONSE
+DESCRIPTOR.message_types_by_name['Group'] = _GROUP
+DESCRIPTOR.message_types_by_name['getGroupRequest'] = _GETGROUPREQUEST
+DESCRIPTOR.message_types_by_name['getGroupResponse'] = _GETGROUPRESPONSE
 DESCRIPTOR.enum_types_by_name['ProfileKey'] = _PROFILEKEY
 DESCRIPTOR.enum_types_by_name['ToType'] = _TOTYPE
 DESCRIPTOR.enum_types_by_name['ContentType'] = _CONTENTTYPE
@@ -2979,6 +3184,27 @@ registerPrimaryResponse = _reflection.GeneratedProtocolMessageType('registerPrim
   })
 _sym_db.RegisterMessage(registerPrimaryResponse)
 
+Group = _reflection.GeneratedProtocolMessageType('Group', (_message.Message,), {
+  'DESCRIPTOR' : _GROUP,
+  '__module__' : 'sakuraTalk_pb2'
+  # @@protoc_insertion_point(class_scope:TalkService.Group)
+  })
+_sym_db.RegisterMessage(Group)
+
+getGroupRequest = _reflection.GeneratedProtocolMessageType('getGroupRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETGROUPREQUEST,
+  '__module__' : 'sakuraTalk_pb2'
+  # @@protoc_insertion_point(class_scope:TalkService.getGroupRequest)
+  })
+_sym_db.RegisterMessage(getGroupRequest)
+
+getGroupResponse = _reflection.GeneratedProtocolMessageType('getGroupResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETGROUPRESPONSE,
+  '__module__' : 'sakuraTalk_pb2'
+  # @@protoc_insertion_point(class_scope:TalkService.getGroupResponse)
+  })
+_sym_db.RegisterMessage(getGroupResponse)
+
 
 DESCRIPTOR._options = None
 _MESSAGE_CONTENTMETADATAENTRY._options = None
@@ -2992,8 +3218,8 @@ _TALKSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=3991,
-  serialized_end=6516,
+  serialized_start=4460,
+  serialized_end=7058,
   methods=[
   _descriptor.MethodDescriptor(
     name='updateProfileAttributes',
@@ -3282,6 +3508,16 @@ _TALKSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_REGISTERPRIMARYREQUEST,
     output_type=_REGISTERPRIMARYRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='getGroup',
+    full_name='TalkService.TalkService.getGroup',
+    index=29,
+    containing_service=None,
+    input_type=_GETGROUPREQUEST,
+    output_type=_GETGROUPRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

@@ -159,6 +159,11 @@ class TalkServiceStub(object):
                 request_serializer=sakuraTalk__pb2.registerPrimaryRequest.SerializeToString,
                 response_deserializer=sakuraTalk__pb2.registerPrimaryResponse.FromString,
                 )
+        self.getGroup = channel.unary_unary(
+                '/TalkService.TalkService/getGroup',
+                request_serializer=sakuraTalk__pb2.getGroupRequest.SerializeToString,
+                response_deserializer=sakuraTalk__pb2.getGroupResponse.FromString,
+                )
 
 
 class TalkServiceServicer(object):
@@ -338,6 +343,12 @@ class TalkServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def getGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TalkServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -485,6 +496,11 @@ def add_TalkServiceServicer_to_server(servicer, server):
                     servicer.registerPrimary,
                     request_deserializer=sakuraTalk__pb2.registerPrimaryRequest.FromString,
                     response_serializer=sakuraTalk__pb2.registerPrimaryResponse.SerializeToString,
+            ),
+            'getGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.getGroup,
+                    request_deserializer=sakuraTalk__pb2.getGroupRequest.FromString,
+                    response_serializer=sakuraTalk__pb2.getGroupResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -986,5 +1002,22 @@ class TalkService(object):
         return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/registerPrimary',
             sakuraTalk__pb2.registerPrimaryRequest.SerializeToString,
             sakuraTalk__pb2.registerPrimaryResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def getGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/getGroup',
+            sakuraTalk__pb2.getGroupRequest.SerializeToString,
+            sakuraTalk__pb2.getGroupResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

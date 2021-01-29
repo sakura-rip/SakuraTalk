@@ -145,20 +145,16 @@ func (cl *DBClient) DeleteUserTag(mid, tagID string) error {
 }
 
 func (cl *DBClient) InsertUserTag(mid string, tag Tag) error {
-	_, err := cl.UserCol.UpdateOne(
-		cl.Ctx, bson.M{"_id": mid},
-		bson.D{{
-			"$set", bson.D{{
-				"tags." + tag.TagID, Tag{
-					TagID:       tag.TagID,
-					Name:        tag.Name,
-					Description: tag.Description,
-					Color:       tag.Color,
-					Creator:     tag.Creator,
-					CreatedTime: tag.CreatedTime,
-				},
-			}},
-		}})
+	err := cl.UpdateUser(mid, bson.D{{
+		"tags." + tag.TagID, Tag{
+			TagID:       tag.TagID,
+			Name:        tag.Name,
+			Description: tag.Description,
+			Color:       tag.Color,
+			Creator:     tag.Creator,
+			CreatedTime: tag.CreatedTime,
+		},
+	}})
 	if err != nil {
 		return status.New(codes.Internal, "db error").Err()
 	}

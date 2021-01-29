@@ -1,6 +1,7 @@
 package talkDatabase
 
 import (
+	"github.com/sakura-rip/SakuraTalk/utils"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"google.golang.org/grpc/codes"
@@ -132,4 +133,14 @@ func (cl *DBClient) FetchUserHashedPassword(mid string) (string, error) {
 func (cl *DBClient) UpdateUser(mid string, attrToUpdate bson.D) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$set": attrToUpdate})
 	return err
+}
+
+func (cl *DBClient) DeleteUserTag(mid, tagID string) error {
+	_, err := cl.UserCol.UpdateOne(
+		cl.Ctx, bson.M{"_id": utils.GetUUID(cl.Ctx)},
+		bson.M{"$unset": "tags." + tagID})
+	if err != nil {
+		return status.New(codes.NotFound, "tag not found").Err()
+	}
+	return nil
 }

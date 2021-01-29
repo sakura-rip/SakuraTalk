@@ -35,9 +35,7 @@ func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*ser
 }
 
 func (t TalkHandler) DeleteTag(ctx context.Context, request *service.DeleteTagRequest) (*service.DeleteTagResponse, error) {
-	_, err := dbClient.UserCol.UpdateOne(
-		ctx, bson.M{"_id": utils.GetUUID(ctx)},
-		bson.M{"$unset": "tags." + request.TagId})
+	err := dbClient.DeleteUserTag(utils.GetUUID(ctx), request.TagId)
 	if err != nil {
 		return nil, status.New(codes.NotFound, "tag not found").Err()
 	}

@@ -33,7 +33,13 @@ func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*ser
 }
 
 func (t TalkHandler) DeleteTag(ctx context.Context, request *service.DeleteTagRequest) (*service.DeleteTagResponse, error) {
-	panic("implement me")
+	_, err := dbClient.UserCol.UpdateOne(
+		ctx, bson.M{"_id": utils.GetUUID(ctx)},
+		bson.M{"$unset": "tags." + request.TagId})
+	if err != nil {
+		return nil, status.New(codes.NotFound, "tag not found").Err()
+	}
+	return &service.DeleteTagResponse{}, nil
 }
 
 func (t TalkHandler) GetTag(ctx context.Context, request *service.GetTagRequest) (*service.GetTagResponse, error) {

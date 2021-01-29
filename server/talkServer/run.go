@@ -49,8 +49,8 @@ func RunServer() {
 	server := grpc.NewServer(
 		grpc.UnaryInterceptor(newUnaryServerInterceptor(newDefaultMiddleWare())),
 	)
-	talkService := TalkHandler{}
-	talkService.RegisterTalkServiceServer(server, talkService)
+	ts := TalkHandler{}
+	talkService.RegisterTalkServiceServer(server, ts)
 	if err := server.Serve(listen); err != nil {
 		panic(err)
 	}

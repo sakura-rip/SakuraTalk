@@ -30,7 +30,7 @@ func init() {
 	}
 }
 
-//getAccessToken get access Token from context
+// getHeader get access Token from context
 func getHeader(ctx context.Context, key string) (string, bool) {
 	headers, ok := metadata.FromIncomingContext(ctx)
 	if !ok {

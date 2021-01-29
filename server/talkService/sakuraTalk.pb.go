@@ -4,7 +4,7 @@
 // 	protoc        v3.14.0
 // source: sakuraTalk.proto
 
-package TalkService
+package talkService
 
 import (
 	context "context"
@@ -520,7 +520,7 @@ type UpdateProfileAttributesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Keys    []ProfileKey `protobuf:"varint,1,rep,packed,name=keys,proto3,enum=TalkService.ProfileKey" json:"keys,omitempty"`
+	Keys    []ProfileKey `protobuf:"varint,1,rep,packed,name=keys,proto3,enum=talkService.ProfileKey" json:"keys,omitempty"`
 	Profile *Profile     `protobuf:"bytes,2,opt,name=profile,proto3" json:"profile,omitempty"`
 }
 
@@ -615,12 +615,12 @@ type Message struct {
 
 	From_            string            `protobuf:"bytes,1,opt,name=from_,json=from,proto3" json:"from_,omitempty"`
 	To               string            `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
-	ToType           ToType            `protobuf:"varint,3,opt,name=toType,proto3,enum=TalkService.ToType" json:"toType,omitempty"`
+	ToType           ToType            `protobuf:"varint,3,opt,name=toType,proto3,enum=talkService.ToType" json:"toType,omitempty"`
 	MessageID        string            `protobuf:"bytes,4,opt,name=messageID,proto3" json:"messageID,omitempty"`
 	CreatedTime      int64             `protobuf:"varint,5,opt,name=createdTime,proto3" json:"createdTime,omitempty"`
 	Text             string            `protobuf:"bytes,6,opt,name=text,proto3" json:"text,omitempty"`
 	ContentMetadata  map[string]string `protobuf:"bytes,7,rep,name=contentMetadata,proto3" json:"contentMetadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	ContentType      ContentType       `protobuf:"varint,8,opt,name=contentType,proto3,enum=TalkService.ContentType" json:"contentType,omitempty"`
+	ContentType      ContentType       `protobuf:"varint,8,opt,name=contentType,proto3,enum=talkService.ContentType" json:"contentType,omitempty"`
 	RelatedMessageId string            `protobuf:"bytes,9,opt,name=relatedMessageId,proto3" json:"relatedMessageId,omitempty"`
 }
 
@@ -1430,7 +1430,7 @@ type ActionMessageRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	MessageID  string        `protobuf:"bytes,1,opt,name=messageID,proto3" json:"messageID,omitempty"`
-	ActionType MessageAction `protobuf:"varint,2,opt,name=actionType,proto3,enum=TalkService.MessageAction" json:"actionType,omitempty"`
+	ActionType MessageAction `protobuf:"varint,2,opt,name=actionType,proto3,enum=talkService.MessageAction" json:"actionType,omitempty"`
 }
 
 func (x *ActionMessageRequest) Reset() {
@@ -1791,7 +1791,7 @@ type Contact struct {
 	Location        string        `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty"`
 	BirthDay        int64         `protobuf:"varint,12,opt,name=birthDay,proto3" json:"birthDay,omitempty"`
 	Status          string        `protobuf:"bytes,13,opt,name=status,proto3" json:"status,omitempty"`
-	ContactStatus   ContactStatus `protobuf:"varint,14,opt,name=contactStatus,proto3,enum=TalkService.ContactStatus" json:"contactStatus,omitempty"`
+	ContactStatus   ContactStatus `protobuf:"varint,14,opt,name=contactStatus,proto3,enum=talkService.ContactStatus" json:"contactStatus,omitempty"`
 }
 
 func (x *Contact) Reset() {
@@ -2023,7 +2023,7 @@ type UpdateContactRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Keys    []ContactKey `protobuf:"varint,1,rep,packed,name=keys,proto3,enum=TalkService.ContactKey" json:"keys,omitempty"`
+	Keys    []ContactKey `protobuf:"varint,1,rep,packed,name=keys,proto3,enum=talkService.ContactKey" json:"keys,omitempty"`
 	Contact *Contact     `protobuf:"bytes,2,opt,name=contact,proto3" json:"contact,omitempty"`
 }
 
@@ -3678,148 +3678,148 @@ func file_sakuraTalk_proto_rawDescGZIP() []byte {
 var file_sakuraTalk_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_sakuraTalk_proto_msgTypes = make([]protoimpl.MessageInfo, 60)
 var file_sakuraTalk_proto_goTypes = []interface{}{
-	(ProfileKey)(0),                           // 0: TalkService.ProfileKey
-	(ToType)(0),                               // 1: TalkService.ToType
-	(ContentType)(0),                          // 2: TalkService.ContentType
-	(MessageAction)(0),                        // 3: TalkService.MessageAction
-	(ContactStatus)(0),                        // 4: TalkService.ContactStatus
-	(ContactKey)(0),                           // 5: TalkService.ContactKey
-	(*Empty)(nil),                             // 6: TalkService.Empty
-	(*Profile)(nil),                           // 7: TalkService.Profile
-	(*UpdateProfileAttributesRequest)(nil),    // 8: TalkService.updateProfileAttributesRequest
-	(*UpdateProfileAttributesResponse)(nil),   // 9: TalkService.updateProfileAttributesResponse
-	(*Message)(nil),                           // 10: TalkService.Message
-	(*SendMessageRequest)(nil),                // 11: TalkService.sendMessageRequest
-	(*SendMessageResponse)(nil),               // 12: TalkService.sendMessageResponse
-	(*EditMessageRequest)(nil),                // 13: TalkService.editMessageRequest
-	(*EditMessageResponse)(nil),               // 14: TalkService.editMessageResponse
-	(*ResendMessageRequest)(nil),              // 15: TalkService.resendMessageRequest
-	(*ResendMessageResponse)(nil),             // 16: TalkService.resendMessageResponse
-	(*UnsendMessageRequest)(nil),              // 17: TalkService.unsendMessageRequest
-	(*UnsendMessageResponse)(nil),             // 18: TalkService.unsendMessageResponse
-	(*ReadMessageRequest)(nil),                // 19: TalkService.readMessageRequest
-	(*ReadMessageResponse)(nil),               // 20: TalkService.readMessageResponse
-	(*UnreadMessageRequest)(nil),              // 21: TalkService.unreadMessageRequest
-	(*UnreadMessageResponse)(nil),             // 22: TalkService.unreadMessageResponse
-	(*ReportMessageRequest)(nil),              // 23: TalkService.reportMessageRequest
-	(*ReportMessageResponse)(nil),             // 24: TalkService.reportMessageResponse
-	(*RemoveAllMessagesRequest)(nil),          // 25: TalkService.removeAllMessagesRequest
-	(*RemoveAllMessagesResponse)(nil),         // 26: TalkService.removeAllMessagesResponse
-	(*ActionMessageRequest)(nil),              // 27: TalkService.actionMessageRequest
-	(*ActionMessageResponse)(nil),             // 28: TalkService.actionMessageResponse
-	(*AnnounceMessageRequest)(nil),            // 29: TalkService.announceMessageRequest
-	(*AnnounceMessageResponse)(nil),           // 30: TalkService.announceMessageResponse
-	(*Setting)(nil),                           // 31: TalkService.Setting
-	(*UpdateSettingAttributesRequest)(nil),    // 32: TalkService.updateSettingAttributesRequest
-	(*UpdateSettingAttributesResponse)(nil),   // 33: TalkService.updateSettingAttributesResponse
-	(*Contact)(nil),                           // 34: TalkService.Contact
-	(*GetContactsRequest)(nil),                // 35: TalkService.getContactsRequest
-	(*GetContactsResponse)(nil),               // 36: TalkService.getContactsResponse
-	(*UpdateContactRequest)(nil),              // 37: TalkService.updateContactRequest
-	(*UpdateContactResponse)(nil),             // 38: TalkService.updateContactResponse
-	(*Tag)(nil),                               // 39: TalkService.Tag
-	(*GetTagRequest)(nil),                     // 40: TalkService.getTagRequest
-	(*GetTagResponse)(nil),                    // 41: TalkService.getTagResponse
-	(*CreateTagRequest)(nil),                  // 42: TalkService.createTagRequest
-	(*CreateTagResponse)(nil),                 // 43: TalkService.createTagResponse
-	(*UpdateTagRequest)(nil),                  // 44: TalkService.updateTagRequest
-	(*UpdateTagResponse)(nil),                 // 45: TalkService.updateTagResponse
-	(*RegisterTagsRequest)(nil),               // 46: TalkService.registerTagsRequest
-	(*RegisterTagsResponse)(nil),              // 47: TalkService.registerTagsResponse
-	(*GetAllTagsResponse)(nil),                // 48: TalkService.getAllTagsResponse
-	(*DeleteTagRequest)(nil),                  // 49: TalkService.deleteTagRequest
-	(*DeleteTagResponse)(nil),                 // 50: TalkService.deleteTagResponse
-	(*AddFriendRequest)(nil),                  // 51: TalkService.addFriendRequest
-	(*AddFriendResponse)(nil),                 // 52: TalkService.addFriendResponse
-	(*DeleteFriendsRequest)(nil),              // 53: TalkService.deleteFriendsRequest
-	(*DeleteFriendsResponse)(nil),             // 54: TalkService.deleteFriendsResponse
-	(*BlockFriendsRequest)(nil),               // 55: TalkService.blockFriendsRequest
-	(*BlockFriendsResponse)(nil),              // 56: TalkService.blockFriendsResponse
-	(*UnblockFriendsRequest)(nil),             // 57: TalkService.unblockFriendsRequest
-	(*UnblockFriendsResponse)(nil),            // 58: TalkService.unblockFriendsResponse
-	(*AddFriendsToFavoriteRequest)(nil),       // 59: TalkService.addFriendsToFavoriteRequest
-	(*AddFriendsToFavoriteResponse)(nil),      // 60: TalkService.addFriendsToFavoriteResponse
-	(*RemoveFriendsFromFavoriteRequest)(nil),  // 61: TalkService.removeFriendsFromFavoriteRequest
-	(*RemoveFriendsFromFavoriteResponse)(nil), // 62: TalkService.removeFriendsFromFavoriteResponse
-	nil, // 63: TalkService.Message.ContentMetadataEntry
-	nil, // 64: TalkService.reportMessageRequest.MetaDataEntry
-	nil, // 65: TalkService.getContactsResponse.ContactsEntry
+	(ProfileKey)(0),                           // 0: talkService.ProfileKey
+	(ToType)(0),                               // 1: talkService.ToType
+	(ContentType)(0),                          // 2: talkService.ContentType
+	(MessageAction)(0),                        // 3: talkService.MessageAction
+	(ContactStatus)(0),                        // 4: talkService.ContactStatus
+	(ContactKey)(0),                           // 5: talkService.ContactKey
+	(*Empty)(nil),                             // 6: talkService.Empty
+	(*Profile)(nil),                           // 7: talkService.Profile
+	(*UpdateProfileAttributesRequest)(nil),    // 8: talkService.updateProfileAttributesRequest
+	(*UpdateProfileAttributesResponse)(nil),   // 9: talkService.updateProfileAttributesResponse
+	(*Message)(nil),                           // 10: talkService.Message
+	(*SendMessageRequest)(nil),                // 11: talkService.sendMessageRequest
+	(*SendMessageResponse)(nil),               // 12: talkService.sendMessageResponse
+	(*EditMessageRequest)(nil),                // 13: talkService.editMessageRequest
+	(*EditMessageResponse)(nil),               // 14: talkService.editMessageResponse
+	(*ResendMessageRequest)(nil),              // 15: talkService.resendMessageRequest
+	(*ResendMessageResponse)(nil),             // 16: talkService.resendMessageResponse
+	(*UnsendMessageRequest)(nil),              // 17: talkService.unsendMessageRequest
+	(*UnsendMessageResponse)(nil),             // 18: talkService.unsendMessageResponse
+	(*ReadMessageRequest)(nil),                // 19: talkService.readMessageRequest
+	(*ReadMessageResponse)(nil),               // 20: talkService.readMessageResponse
+	(*UnreadMessageRequest)(nil),              // 21: talkService.unreadMessageRequest
+	(*UnreadMessageResponse)(nil),             // 22: talkService.unreadMessageResponse
+	(*ReportMessageRequest)(nil),              // 23: talkService.reportMessageRequest
+	(*ReportMessageResponse)(nil),             // 24: talkService.reportMessageResponse
+	(*RemoveAllMessagesRequest)(nil),          // 25: talkService.removeAllMessagesRequest
+	(*RemoveAllMessagesResponse)(nil),         // 26: talkService.removeAllMessagesResponse
+	(*ActionMessageRequest)(nil),              // 27: talkService.actionMessageRequest
+	(*ActionMessageResponse)(nil),             // 28: talkService.actionMessageResponse
+	(*AnnounceMessageRequest)(nil),            // 29: talkService.announceMessageRequest
+	(*AnnounceMessageResponse)(nil),           // 30: talkService.announceMessageResponse
+	(*Setting)(nil),                           // 31: talkService.Setting
+	(*UpdateSettingAttributesRequest)(nil),    // 32: talkService.updateSettingAttributesRequest
+	(*UpdateSettingAttributesResponse)(nil),   // 33: talkService.updateSettingAttributesResponse
+	(*Contact)(nil),                           // 34: talkService.Contact
+	(*GetContactsRequest)(nil),                // 35: talkService.getContactsRequest
+	(*GetContactsResponse)(nil),               // 36: talkService.getContactsResponse
+	(*UpdateContactRequest)(nil),              // 37: talkService.updateContactRequest
+	(*UpdateContactResponse)(nil),             // 38: talkService.updateContactResponse
+	(*Tag)(nil),                               // 39: talkService.Tag
+	(*GetTagRequest)(nil),                     // 40: talkService.getTagRequest
+	(*GetTagResponse)(nil),                    // 41: talkService.getTagResponse
+	(*CreateTagRequest)(nil),                  // 42: talkService.createTagRequest
+	(*CreateTagResponse)(nil),                 // 43: talkService.createTagResponse
+	(*UpdateTagRequest)(nil),                  // 44: talkService.updateTagRequest
+	(*UpdateTagResponse)(nil),                 // 45: talkService.updateTagResponse
+	(*RegisterTagsRequest)(nil),               // 46: talkService.registerTagsRequest
+	(*RegisterTagsResponse)(nil),              // 47: talkService.registerTagsResponse
+	(*GetAllTagsResponse)(nil),                // 48: talkService.getAllTagsResponse
+	(*DeleteTagRequest)(nil),                  // 49: talkService.deleteTagRequest
+	(*DeleteTagResponse)(nil),                 // 50: talkService.deleteTagResponse
+	(*AddFriendRequest)(nil),                  // 51: talkService.addFriendRequest
+	(*AddFriendResponse)(nil),                 // 52: talkService.addFriendResponse
+	(*DeleteFriendsRequest)(nil),              // 53: talkService.deleteFriendsRequest
+	(*DeleteFriendsResponse)(nil),             // 54: talkService.deleteFriendsResponse
+	(*BlockFriendsRequest)(nil),               // 55: talkService.blockFriendsRequest
+	(*BlockFriendsResponse)(nil),              // 56: talkService.blockFriendsResponse
+	(*UnblockFriendsRequest)(nil),             // 57: talkService.unblockFriendsRequest
+	(*UnblockFriendsResponse)(nil),            // 58: talkService.unblockFriendsResponse
+	(*AddFriendsToFavoriteRequest)(nil),       // 59: talkService.addFriendsToFavoriteRequest
+	(*AddFriendsToFavoriteResponse)(nil),      // 60: talkService.addFriendsToFavoriteResponse
+	(*RemoveFriendsFromFavoriteRequest)(nil),  // 61: talkService.removeFriendsFromFavoriteRequest
+	(*RemoveFriendsFromFavoriteResponse)(nil), // 62: talkService.removeFriendsFromFavoriteResponse
+	nil, // 63: talkService.Message.ContentMetadataEntry
+	nil, // 64: talkService.reportMessageRequest.MetaDataEntry
+	nil, // 65: talkService.getContactsResponse.ContactsEntry
 }
 var file_sakuraTalk_proto_depIdxs = []int32{
-	0,  // 0: TalkService.updateProfileAttributesRequest.keys:type_name -> TalkService.ProfileKey
-	7,  // 1: TalkService.updateProfileAttributesRequest.profile:type_name -> TalkService.Profile
-	1,  // 2: TalkService.Message.toType:type_name -> TalkService.ToType
-	63, // 3: TalkService.Message.contentMetadata:type_name -> TalkService.Message.ContentMetadataEntry
-	2,  // 4: TalkService.Message.contentType:type_name -> TalkService.ContentType
-	10, // 5: TalkService.sendMessageRequest.message:type_name -> TalkService.Message
-	10, // 6: TalkService.editMessageRequest.message:type_name -> TalkService.Message
-	10, // 7: TalkService.editMessageResponse.message:type_name -> TalkService.Message
-	64, // 8: TalkService.reportMessageRequest.metaData:type_name -> TalkService.reportMessageRequest.MetaDataEntry
-	3,  // 9: TalkService.actionMessageRequest.actionType:type_name -> TalkService.MessageAction
-	4,  // 10: TalkService.Contact.contactStatus:type_name -> TalkService.ContactStatus
-	65, // 11: TalkService.getContactsResponse.contacts:type_name -> TalkService.getContactsResponse.ContactsEntry
-	5,  // 12: TalkService.updateContactRequest.keys:type_name -> TalkService.ContactKey
-	34, // 13: TalkService.updateContactRequest.contact:type_name -> TalkService.Contact
-	39, // 14: TalkService.getTagResponse.tag:type_name -> TalkService.Tag
-	39, // 15: TalkService.createTagRequest.tag:type_name -> TalkService.Tag
-	39, // 16: TalkService.updateTagRequest.tag:type_name -> TalkService.Tag
-	34, // 17: TalkService.getContactsResponse.ContactsEntry.value:type_name -> TalkService.Contact
-	8,  // 18: TalkService.TalkService.updateProfileAttributes:input_type -> TalkService.updateProfileAttributesRequest
-	6,  // 19: TalkService.TalkService.getProfile:input_type -> TalkService.Empty
-	11, // 20: TalkService.TalkService.sendMessage:input_type -> TalkService.sendMessageRequest
-	13, // 21: TalkService.TalkService.editMessage:input_type -> TalkService.editMessageRequest
-	15, // 22: TalkService.TalkService.resendMessage:input_type -> TalkService.resendMessageRequest
-	17, // 23: TalkService.TalkService.unsendMessage:input_type -> TalkService.unsendMessageRequest
-	19, // 24: TalkService.TalkService.readMessage:input_type -> TalkService.readMessageRequest
-	21, // 25: TalkService.TalkService.unreadMessage:input_type -> TalkService.unreadMessageRequest
-	23, // 26: TalkService.TalkService.reportMessage:input_type -> TalkService.reportMessageRequest
-	25, // 27: TalkService.TalkService.removeAllMessages:input_type -> TalkService.removeAllMessagesRequest
-	27, // 28: TalkService.TalkService.actionMessage:input_type -> TalkService.actionMessageRequest
-	29, // 29: TalkService.TalkService.announceMessage:input_type -> TalkService.announceMessageRequest
-	6,  // 30: TalkService.TalkService.getSetting:input_type -> TalkService.Empty
-	32, // 31: TalkService.TalkService.updateSettingAttributes:input_type -> TalkService.updateSettingAttributesRequest
-	35, // 32: TalkService.TalkService.getContacts:input_type -> TalkService.getContactsRequest
-	37, // 33: TalkService.TalkService.updateContact:input_type -> TalkService.updateContactRequest
-	40, // 34: TalkService.TalkService.getTag:input_type -> TalkService.getTagRequest
-	42, // 35: TalkService.TalkService.createTag:input_type -> TalkService.createTagRequest
-	44, // 36: TalkService.TalkService.updateTag:input_type -> TalkService.updateTagRequest
-	46, // 37: TalkService.TalkService.registerTags:input_type -> TalkService.registerTagsRequest
-	6,  // 38: TalkService.TalkService.getAllTags:input_type -> TalkService.Empty
-	49, // 39: TalkService.TalkService.deleteTag:input_type -> TalkService.deleteTagRequest
-	51, // 40: TalkService.TalkService.addFriend:input_type -> TalkService.addFriendRequest
-	53, // 41: TalkService.TalkService.deleteFriends:input_type -> TalkService.deleteFriendsRequest
-	55, // 42: TalkService.TalkService.blockFriends:input_type -> TalkService.blockFriendsRequest
-	57, // 43: TalkService.TalkService.unblockFriends:input_type -> TalkService.unblockFriendsRequest
-	59, // 44: TalkService.TalkService.addFriendsToFavorite:input_type -> TalkService.addFriendsToFavoriteRequest
-	61, // 45: TalkService.TalkService.removeFriendsFromFavorite:input_type -> TalkService.removeFriendsFromFavoriteRequest
-	9,  // 46: TalkService.TalkService.updateProfileAttributes:output_type -> TalkService.updateProfileAttributesResponse
-	7,  // 47: TalkService.TalkService.getProfile:output_type -> TalkService.Profile
-	12, // 48: TalkService.TalkService.sendMessage:output_type -> TalkService.sendMessageResponse
-	14, // 49: TalkService.TalkService.editMessage:output_type -> TalkService.editMessageResponse
-	16, // 50: TalkService.TalkService.resendMessage:output_type -> TalkService.resendMessageResponse
-	18, // 51: TalkService.TalkService.unsendMessage:output_type -> TalkService.unsendMessageResponse
-	20, // 52: TalkService.TalkService.readMessage:output_type -> TalkService.readMessageResponse
-	22, // 53: TalkService.TalkService.unreadMessage:output_type -> TalkService.unreadMessageResponse
-	24, // 54: TalkService.TalkService.reportMessage:output_type -> TalkService.reportMessageResponse
-	26, // 55: TalkService.TalkService.removeAllMessages:output_type -> TalkService.removeAllMessagesResponse
-	28, // 56: TalkService.TalkService.actionMessage:output_type -> TalkService.actionMessageResponse
-	30, // 57: TalkService.TalkService.announceMessage:output_type -> TalkService.announceMessageResponse
-	31, // 58: TalkService.TalkService.getSetting:output_type -> TalkService.Setting
-	33, // 59: TalkService.TalkService.updateSettingAttributes:output_type -> TalkService.updateSettingAttributesResponse
-	36, // 60: TalkService.TalkService.getContacts:output_type -> TalkService.getContactsResponse
-	38, // 61: TalkService.TalkService.updateContact:output_type -> TalkService.updateContactResponse
-	41, // 62: TalkService.TalkService.getTag:output_type -> TalkService.getTagResponse
-	43, // 63: TalkService.TalkService.createTag:output_type -> TalkService.createTagResponse
-	45, // 64: TalkService.TalkService.updateTag:output_type -> TalkService.updateTagResponse
-	47, // 65: TalkService.TalkService.registerTags:output_type -> TalkService.registerTagsResponse
-	48, // 66: TalkService.TalkService.getAllTags:output_type -> TalkService.getAllTagsResponse
-	50, // 67: TalkService.TalkService.deleteTag:output_type -> TalkService.deleteTagResponse
-	52, // 68: TalkService.TalkService.addFriend:output_type -> TalkService.addFriendResponse
-	54, // 69: TalkService.TalkService.deleteFriends:output_type -> TalkService.deleteFriendsResponse
-	56, // 70: TalkService.TalkService.blockFriends:output_type -> TalkService.blockFriendsResponse
-	58, // 71: TalkService.TalkService.unblockFriends:output_type -> TalkService.unblockFriendsResponse
-	60, // 72: TalkService.TalkService.addFriendsToFavorite:output_type -> TalkService.addFriendsToFavoriteResponse
-	62, // 73: TalkService.TalkService.removeFriendsFromFavorite:output_type -> TalkService.removeFriendsFromFavoriteResponse
+	0,  // 0: talkService.updateProfileAttributesRequest.keys:type_name -> talkService.ProfileKey
+	7,  // 1: talkService.updateProfileAttributesRequest.profile:type_name -> talkService.Profile
+	1,  // 2: talkService.Message.toType:type_name -> talkService.ToType
+	63, // 3: talkService.Message.contentMetadata:type_name -> talkService.Message.ContentMetadataEntry
+	2,  // 4: talkService.Message.contentType:type_name -> talkService.ContentType
+	10, // 5: talkService.sendMessageRequest.message:type_name -> talkService.Message
+	10, // 6: talkService.editMessageRequest.message:type_name -> talkService.Message
+	10, // 7: talkService.editMessageResponse.message:type_name -> talkService.Message
+	64, // 8: talkService.reportMessageRequest.metaData:type_name -> talkService.reportMessageRequest.MetaDataEntry
+	3,  // 9: talkService.actionMessageRequest.actionType:type_name -> talkService.MessageAction
+	4,  // 10: talkService.Contact.contactStatus:type_name -> talkService.ContactStatus
+	65, // 11: talkService.getContactsResponse.contacts:type_name -> talkService.getContactsResponse.ContactsEntry
+	5,  // 12: talkService.updateContactRequest.keys:type_name -> talkService.ContactKey
+	34, // 13: talkService.updateContactRequest.contact:type_name -> talkService.Contact
+	39, // 14: talkService.getTagResponse.tag:type_name -> talkService.Tag
+	39, // 15: talkService.createTagRequest.tag:type_name -> talkService.Tag
+	39, // 16: talkService.updateTagRequest.tag:type_name -> talkService.Tag
+	34, // 17: talkService.getContactsResponse.ContactsEntry.value:type_name -> talkService.Contact
+	8,  // 18: talkService.talkService.updateProfileAttributes:input_type -> talkService.updateProfileAttributesRequest
+	6,  // 19: talkService.talkService.getProfile:input_type -> talkService.Empty
+	11, // 20: talkService.talkService.sendMessage:input_type -> talkService.sendMessageRequest
+	13, // 21: talkService.talkService.editMessage:input_type -> talkService.editMessageRequest
+	15, // 22: talkService.talkService.resendMessage:input_type -> talkService.resendMessageRequest
+	17, // 23: talkService.talkService.unsendMessage:input_type -> talkService.unsendMessageRequest
+	19, // 24: talkService.talkService.readMessage:input_type -> talkService.readMessageRequest
+	21, // 25: talkService.talkService.unreadMessage:input_type -> talkService.unreadMessageRequest
+	23, // 26: talkService.talkService.reportMessage:input_type -> talkService.reportMessageRequest
+	25, // 27: talkService.talkService.removeAllMessages:input_type -> talkService.removeAllMessagesRequest
+	27, // 28: talkService.talkService.actionMessage:input_type -> talkService.actionMessageRequest
+	29, // 29: talkService.talkService.announceMessage:input_type -> talkService.announceMessageRequest
+	6,  // 30: talkService.talkService.getSetting:input_type -> talkService.Empty
+	32, // 31: talkService.talkService.updateSettingAttributes:input_type -> talkService.updateSettingAttributesRequest
+	35, // 32: talkService.talkService.getContacts:input_type -> talkService.getContactsRequest
+	37, // 33: talkService.talkService.updateContact:input_type -> talkService.updateContactRequest
+	40, // 34: talkService.talkService.getTag:input_type -> talkService.getTagRequest
+	42, // 35: talkService.talkService.createTag:input_type -> talkService.createTagRequest
+	44, // 36: talkService.talkService.updateTag:input_type -> talkService.updateTagRequest
+	46, // 37: talkService.talkService.registerTags:input_type -> talkService.registerTagsRequest
+	6,  // 38: talkService.talkService.getAllTags:input_type -> talkService.Empty
+	49, // 39: talkService.talkService.deleteTag:input_type -> talkService.deleteTagRequest
+	51, // 40: talkService.talkService.addFriend:input_type -> talkService.addFriendRequest
+	53, // 41: talkService.talkService.deleteFriends:input_type -> talkService.deleteFriendsRequest
+	55, // 42: talkService.talkService.blockFriends:input_type -> talkService.blockFriendsRequest
+	57, // 43: talkService.talkService.unblockFriends:input_type -> talkService.unblockFriendsRequest
+	59, // 44: talkService.talkService.addFriendsToFavorite:input_type -> talkService.addFriendsToFavoriteRequest
+	61, // 45: talkService.talkService.removeFriendsFromFavorite:input_type -> talkService.removeFriendsFromFavoriteRequest
+	9,  // 46: talkService.talkService.updateProfileAttributes:output_type -> talkService.updateProfileAttributesResponse
+	7,  // 47: talkService.talkService.getProfile:output_type -> talkService.Profile
+	12, // 48: talkService.talkService.sendMessage:output_type -> talkService.sendMessageResponse
+	14, // 49: talkService.talkService.editMessage:output_type -> talkService.editMessageResponse
+	16, // 50: talkService.talkService.resendMessage:output_type -> talkService.resendMessageResponse
+	18, // 51: talkService.talkService.unsendMessage:output_type -> talkService.unsendMessageResponse
+	20, // 52: talkService.talkService.readMessage:output_type -> talkService.readMessageResponse
+	22, // 53: talkService.talkService.unreadMessage:output_type -> talkService.unreadMessageResponse
+	24, // 54: talkService.talkService.reportMessage:output_type -> talkService.reportMessageResponse
+	26, // 55: talkService.talkService.removeAllMessages:output_type -> talkService.removeAllMessagesResponse
+	28, // 56: talkService.talkService.actionMessage:output_type -> talkService.actionMessageResponse
+	30, // 57: talkService.talkService.announceMessage:output_type -> talkService.announceMessageResponse
+	31, // 58: talkService.talkService.getSetting:output_type -> talkService.Setting
+	33, // 59: talkService.talkService.updateSettingAttributes:output_type -> talkService.updateSettingAttributesResponse
+	36, // 60: talkService.talkService.getContacts:output_type -> talkService.getContactsResponse
+	38, // 61: talkService.talkService.updateContact:output_type -> talkService.updateContactResponse
+	41, // 62: talkService.talkService.getTag:output_type -> talkService.getTagResponse
+	43, // 63: talkService.talkService.createTag:output_type -> talkService.createTagResponse
+	45, // 64: talkService.talkService.updateTag:output_type -> talkService.updateTagResponse
+	47, // 65: talkService.talkService.registerTags:output_type -> talkService.registerTagsResponse
+	48, // 66: talkService.talkService.getAllTags:output_type -> talkService.getAllTagsResponse
+	50, // 67: talkService.talkService.deleteTag:output_type -> talkService.deleteTagResponse
+	52, // 68: talkService.talkService.addFriend:output_type -> talkService.addFriendResponse
+	54, // 69: talkService.talkService.deleteFriends:output_type -> talkService.deleteFriendsResponse
+	56, // 70: talkService.talkService.blockFriends:output_type -> talkService.blockFriendsResponse
+	58, // 71: talkService.talkService.unblockFriends:output_type -> talkService.unblockFriendsResponse
+	60, // 72: talkService.talkService.addFriendsToFavorite:output_type -> talkService.addFriendsToFavoriteResponse
+	62, // 73: talkService.talkService.removeFriendsFromFavorite:output_type -> talkService.removeFriendsFromFavoriteResponse
 	46, // [46:74] is the sub-list for method output_type
 	18, // [18:46] is the sub-list for method input_type
 	18, // [18:18] is the sub-list for extension type_name
@@ -4547,7 +4547,7 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// TalkServiceClient is the client API for TalkService service.
+// TalkServiceClient is the client API for talkService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type TalkServiceClient interface {
@@ -4591,7 +4591,7 @@ func NewTalkServiceClient(cc grpc.ClientConnInterface) TalkServiceClient {
 
 func (c *talkServiceClient) UpdateProfileAttributes(ctx context.Context, in *UpdateProfileAttributesRequest, opts ...grpc.CallOption) (*UpdateProfileAttributesResponse, error) {
 	out := new(UpdateProfileAttributesResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/updateProfileAttributes", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/updateProfileAttributes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4600,7 +4600,7 @@ func (c *talkServiceClient) UpdateProfileAttributes(ctx context.Context, in *Upd
 
 func (c *talkServiceClient) GetProfile(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Profile, error) {
 	out := new(Profile)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/getProfile", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/getProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4609,7 +4609,7 @@ func (c *talkServiceClient) GetProfile(ctx context.Context, in *Empty, opts ...g
 
 func (c *talkServiceClient) SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error) {
 	out := new(SendMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/sendMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/sendMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4618,7 +4618,7 @@ func (c *talkServiceClient) SendMessage(ctx context.Context, in *SendMessageRequ
 
 func (c *talkServiceClient) EditMessage(ctx context.Context, in *EditMessageRequest, opts ...grpc.CallOption) (*EditMessageResponse, error) {
 	out := new(EditMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/editMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/editMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4627,7 +4627,7 @@ func (c *talkServiceClient) EditMessage(ctx context.Context, in *EditMessageRequ
 
 func (c *talkServiceClient) ResendMessage(ctx context.Context, in *ResendMessageRequest, opts ...grpc.CallOption) (*ResendMessageResponse, error) {
 	out := new(ResendMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/resendMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/resendMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4636,7 +4636,7 @@ func (c *talkServiceClient) ResendMessage(ctx context.Context, in *ResendMessage
 
 func (c *talkServiceClient) UnsendMessage(ctx context.Context, in *UnsendMessageRequest, opts ...grpc.CallOption) (*UnsendMessageResponse, error) {
 	out := new(UnsendMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/unsendMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/unsendMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4645,7 +4645,7 @@ func (c *talkServiceClient) UnsendMessage(ctx context.Context, in *UnsendMessage
 
 func (c *talkServiceClient) ReadMessage(ctx context.Context, in *ReadMessageRequest, opts ...grpc.CallOption) (*ReadMessageResponse, error) {
 	out := new(ReadMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/readMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/readMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4654,7 +4654,7 @@ func (c *talkServiceClient) ReadMessage(ctx context.Context, in *ReadMessageRequ
 
 func (c *talkServiceClient) UnreadMessage(ctx context.Context, in *UnreadMessageRequest, opts ...grpc.CallOption) (*UnreadMessageResponse, error) {
 	out := new(UnreadMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/unreadMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/unreadMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4663,7 +4663,7 @@ func (c *talkServiceClient) UnreadMessage(ctx context.Context, in *UnreadMessage
 
 func (c *talkServiceClient) ReportMessage(ctx context.Context, in *ReportMessageRequest, opts ...grpc.CallOption) (*ReportMessageResponse, error) {
 	out := new(ReportMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/reportMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/reportMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4672,7 +4672,7 @@ func (c *talkServiceClient) ReportMessage(ctx context.Context, in *ReportMessage
 
 func (c *talkServiceClient) RemoveAllMessages(ctx context.Context, in *RemoveAllMessagesRequest, opts ...grpc.CallOption) (*RemoveAllMessagesResponse, error) {
 	out := new(RemoveAllMessagesResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/removeAllMessages", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/removeAllMessages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4681,7 +4681,7 @@ func (c *talkServiceClient) RemoveAllMessages(ctx context.Context, in *RemoveAll
 
 func (c *talkServiceClient) ActionMessage(ctx context.Context, in *ActionMessageRequest, opts ...grpc.CallOption) (*ActionMessageResponse, error) {
 	out := new(ActionMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/actionMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/actionMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4690,7 +4690,7 @@ func (c *talkServiceClient) ActionMessage(ctx context.Context, in *ActionMessage
 
 func (c *talkServiceClient) AnnounceMessage(ctx context.Context, in *AnnounceMessageRequest, opts ...grpc.CallOption) (*AnnounceMessageResponse, error) {
 	out := new(AnnounceMessageResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/announceMessage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/announceMessage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4699,7 +4699,7 @@ func (c *talkServiceClient) AnnounceMessage(ctx context.Context, in *AnnounceMes
 
 func (c *talkServiceClient) GetSetting(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Setting, error) {
 	out := new(Setting)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/getSetting", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/getSetting", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4708,7 +4708,7 @@ func (c *talkServiceClient) GetSetting(ctx context.Context, in *Empty, opts ...g
 
 func (c *talkServiceClient) UpdateSettingAttributes(ctx context.Context, in *UpdateSettingAttributesRequest, opts ...grpc.CallOption) (*UpdateSettingAttributesResponse, error) {
 	out := new(UpdateSettingAttributesResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/updateSettingAttributes", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/updateSettingAttributes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4717,7 +4717,7 @@ func (c *talkServiceClient) UpdateSettingAttributes(ctx context.Context, in *Upd
 
 func (c *talkServiceClient) GetContacts(ctx context.Context, in *GetContactsRequest, opts ...grpc.CallOption) (*GetContactsResponse, error) {
 	out := new(GetContactsResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/getContacts", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/getContacts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4726,7 +4726,7 @@ func (c *talkServiceClient) GetContacts(ctx context.Context, in *GetContactsRequ
 
 func (c *talkServiceClient) UpdateContact(ctx context.Context, in *UpdateContactRequest, opts ...grpc.CallOption) (*UpdateContactResponse, error) {
 	out := new(UpdateContactResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/updateContact", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/updateContact", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4735,7 +4735,7 @@ func (c *talkServiceClient) UpdateContact(ctx context.Context, in *UpdateContact
 
 func (c *talkServiceClient) GetTag(ctx context.Context, in *GetTagRequest, opts ...grpc.CallOption) (*GetTagResponse, error) {
 	out := new(GetTagResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/getTag", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/getTag", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4744,7 +4744,7 @@ func (c *talkServiceClient) GetTag(ctx context.Context, in *GetTagRequest, opts 
 
 func (c *talkServiceClient) CreateTag(ctx context.Context, in *CreateTagRequest, opts ...grpc.CallOption) (*CreateTagResponse, error) {
 	out := new(CreateTagResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/createTag", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/createTag", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4753,7 +4753,7 @@ func (c *talkServiceClient) CreateTag(ctx context.Context, in *CreateTagRequest,
 
 func (c *talkServiceClient) UpdateTag(ctx context.Context, in *UpdateTagRequest, opts ...grpc.CallOption) (*UpdateTagResponse, error) {
 	out := new(UpdateTagResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/updateTag", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/updateTag", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4762,7 +4762,7 @@ func (c *talkServiceClient) UpdateTag(ctx context.Context, in *UpdateTagRequest,
 
 func (c *talkServiceClient) RegisterTags(ctx context.Context, in *RegisterTagsRequest, opts ...grpc.CallOption) (*RegisterTagsResponse, error) {
 	out := new(RegisterTagsResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/registerTags", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/registerTags", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4771,7 +4771,7 @@ func (c *talkServiceClient) RegisterTags(ctx context.Context, in *RegisterTagsRe
 
 func (c *talkServiceClient) GetAllTags(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetAllTagsResponse, error) {
 	out := new(GetAllTagsResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/getAllTags", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/getAllTags", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4780,7 +4780,7 @@ func (c *talkServiceClient) GetAllTags(ctx context.Context, in *Empty, opts ...g
 
 func (c *talkServiceClient) DeleteTag(ctx context.Context, in *DeleteTagRequest, opts ...grpc.CallOption) (*DeleteTagResponse, error) {
 	out := new(DeleteTagResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/deleteTag", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/deleteTag", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4789,7 +4789,7 @@ func (c *talkServiceClient) DeleteTag(ctx context.Context, in *DeleteTagRequest,
 
 func (c *talkServiceClient) AddFriend(ctx context.Context, in *AddFriendRequest, opts ...grpc.CallOption) (*AddFriendResponse, error) {
 	out := new(AddFriendResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/addFriend", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/addFriend", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4798,7 +4798,7 @@ func (c *talkServiceClient) AddFriend(ctx context.Context, in *AddFriendRequest,
 
 func (c *talkServiceClient) DeleteFriends(ctx context.Context, in *DeleteFriendsRequest, opts ...grpc.CallOption) (*DeleteFriendsResponse, error) {
 	out := new(DeleteFriendsResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/deleteFriends", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/deleteFriends", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4807,7 +4807,7 @@ func (c *talkServiceClient) DeleteFriends(ctx context.Context, in *DeleteFriends
 
 func (c *talkServiceClient) BlockFriends(ctx context.Context, in *BlockFriendsRequest, opts ...grpc.CallOption) (*BlockFriendsResponse, error) {
 	out := new(BlockFriendsResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/blockFriends", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/blockFriends", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4816,7 +4816,7 @@ func (c *talkServiceClient) BlockFriends(ctx context.Context, in *BlockFriendsRe
 
 func (c *talkServiceClient) UnblockFriends(ctx context.Context, in *UnblockFriendsRequest, opts ...grpc.CallOption) (*UnblockFriendsResponse, error) {
 	out := new(UnblockFriendsResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/unblockFriends", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/unblockFriends", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4825,7 +4825,7 @@ func (c *talkServiceClient) UnblockFriends(ctx context.Context, in *UnblockFrien
 
 func (c *talkServiceClient) AddFriendsToFavorite(ctx context.Context, in *AddFriendsToFavoriteRequest, opts ...grpc.CallOption) (*AddFriendsToFavoriteResponse, error) {
 	out := new(AddFriendsToFavoriteResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/addFriendsToFavorite", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/addFriendsToFavorite", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -4834,14 +4834,14 @@ func (c *talkServiceClient) AddFriendsToFavorite(ctx context.Context, in *AddFri
 
 func (c *talkServiceClient) RemoveFriendsFromFavorite(ctx context.Context, in *RemoveFriendsFromFavoriteRequest, opts ...grpc.CallOption) (*RemoveFriendsFromFavoriteResponse, error) {
 	out := new(RemoveFriendsFromFavoriteResponse)
-	err := c.cc.Invoke(ctx, "/TalkService.TalkService/removeFriendsFromFavorite", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/talkService.talkService/removeFriendsFromFavorite", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TalkServiceServer is the server API for TalkService service.
+// TalkServiceServer is the server API for talkService service.
 type TalkServiceServer interface {
 	UpdateProfileAttributes(context.Context, *UpdateProfileAttributesRequest) (*UpdateProfileAttributesResponse, error)
 	GetProfile(context.Context, *Empty) (*Profile, error)
@@ -4976,7 +4976,7 @@ func _TalkService_UpdateProfileAttributes_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/UpdateProfileAttributes",
+		FullMethod: "/talkService.talkService/UpdateProfileAttributes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).UpdateProfileAttributes(ctx, req.(*UpdateProfileAttributesRequest))
@@ -4994,7 +4994,7 @@ func _TalkService_GetProfile_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/GetProfile",
+		FullMethod: "/talkService.talkService/GetProfile",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).GetProfile(ctx, req.(*Empty))
@@ -5012,7 +5012,7 @@ func _TalkService_SendMessage_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/SendMessage",
+		FullMethod: "/talkService.talkService/SendMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).SendMessage(ctx, req.(*SendMessageRequest))
@@ -5030,7 +5030,7 @@ func _TalkService_EditMessage_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/EditMessage",
+		FullMethod: "/talkService.talkService/EditMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).EditMessage(ctx, req.(*EditMessageRequest))
@@ -5048,7 +5048,7 @@ func _TalkService_ResendMessage_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/ResendMessage",
+		FullMethod: "/talkService.talkService/ResendMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).ResendMessage(ctx, req.(*ResendMessageRequest))
@@ -5066,7 +5066,7 @@ func _TalkService_UnsendMessage_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/UnsendMessage",
+		FullMethod: "/talkService.talkService/UnsendMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).UnsendMessage(ctx, req.(*UnsendMessageRequest))
@@ -5084,7 +5084,7 @@ func _TalkService_ReadMessage_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/ReadMessage",
+		FullMethod: "/talkService.talkService/ReadMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).ReadMessage(ctx, req.(*ReadMessageRequest))
@@ -5102,7 +5102,7 @@ func _TalkService_UnreadMessage_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/UnreadMessage",
+		FullMethod: "/talkService.talkService/UnreadMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).UnreadMessage(ctx, req.(*UnreadMessageRequest))
@@ -5120,7 +5120,7 @@ func _TalkService_ReportMessage_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/ReportMessage",
+		FullMethod: "/talkService.talkService/ReportMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).ReportMessage(ctx, req.(*ReportMessageRequest))
@@ -5138,7 +5138,7 @@ func _TalkService_RemoveAllMessages_Handler(srv interface{}, ctx context.Context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/RemoveAllMessages",
+		FullMethod: "/talkService.talkService/RemoveAllMessages",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).RemoveAllMessages(ctx, req.(*RemoveAllMessagesRequest))
@@ -5156,7 +5156,7 @@ func _TalkService_ActionMessage_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/ActionMessage",
+		FullMethod: "/talkService.talkService/ActionMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).ActionMessage(ctx, req.(*ActionMessageRequest))
@@ -5174,7 +5174,7 @@ func _TalkService_AnnounceMessage_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/AnnounceMessage",
+		FullMethod: "/talkService.talkService/AnnounceMessage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).AnnounceMessage(ctx, req.(*AnnounceMessageRequest))
@@ -5192,7 +5192,7 @@ func _TalkService_GetSetting_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/GetSetting",
+		FullMethod: "/talkService.talkService/GetSetting",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).GetSetting(ctx, req.(*Empty))
@@ -5210,7 +5210,7 @@ func _TalkService_UpdateSettingAttributes_Handler(srv interface{}, ctx context.C
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/UpdateSettingAttributes",
+		FullMethod: "/talkService.talkService/UpdateSettingAttributes",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).UpdateSettingAttributes(ctx, req.(*UpdateSettingAttributesRequest))
@@ -5228,7 +5228,7 @@ func _TalkService_GetContacts_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/GetContacts",
+		FullMethod: "/talkService.talkService/GetContacts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).GetContacts(ctx, req.(*GetContactsRequest))
@@ -5246,7 +5246,7 @@ func _TalkService_UpdateContact_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/UpdateContact",
+		FullMethod: "/talkService.talkService/UpdateContact",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).UpdateContact(ctx, req.(*UpdateContactRequest))
@@ -5264,7 +5264,7 @@ func _TalkService_GetTag_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/GetTag",
+		FullMethod: "/talkService.talkService/GetTag",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).GetTag(ctx, req.(*GetTagRequest))
@@ -5282,7 +5282,7 @@ func _TalkService_CreateTag_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/CreateTag",
+		FullMethod: "/talkService.talkService/CreateTag",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).CreateTag(ctx, req.(*CreateTagRequest))
@@ -5300,7 +5300,7 @@ func _TalkService_UpdateTag_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/UpdateTag",
+		FullMethod: "/talkService.talkService/UpdateTag",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).UpdateTag(ctx, req.(*UpdateTagRequest))
@@ -5318,7 +5318,7 @@ func _TalkService_RegisterTags_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/RegisterTags",
+		FullMethod: "/talkService.talkService/RegisterTags",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).RegisterTags(ctx, req.(*RegisterTagsRequest))
@@ -5336,7 +5336,7 @@ func _TalkService_GetAllTags_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/GetAllTags",
+		FullMethod: "/talkService.talkService/GetAllTags",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).GetAllTags(ctx, req.(*Empty))
@@ -5354,7 +5354,7 @@ func _TalkService_DeleteTag_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/DeleteTag",
+		FullMethod: "/talkService.talkService/DeleteTag",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).DeleteTag(ctx, req.(*DeleteTagRequest))
@@ -5372,7 +5372,7 @@ func _TalkService_AddFriend_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/AddFriend",
+		FullMethod: "/talkService.talkService/AddFriend",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).AddFriend(ctx, req.(*AddFriendRequest))
@@ -5390,7 +5390,7 @@ func _TalkService_DeleteFriends_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/DeleteFriends",
+		FullMethod: "/talkService.talkService/DeleteFriends",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).DeleteFriends(ctx, req.(*DeleteFriendsRequest))
@@ -5408,7 +5408,7 @@ func _TalkService_BlockFriends_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/BlockFriends",
+		FullMethod: "/talkService.talkService/BlockFriends",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).BlockFriends(ctx, req.(*BlockFriendsRequest))
@@ -5426,7 +5426,7 @@ func _TalkService_UnblockFriends_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/UnblockFriends",
+		FullMethod: "/talkService.talkService/UnblockFriends",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).UnblockFriends(ctx, req.(*UnblockFriendsRequest))
@@ -5444,7 +5444,7 @@ func _TalkService_AddFriendsToFavorite_Handler(srv interface{}, ctx context.Cont
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/AddFriendsToFavorite",
+		FullMethod: "/talkService.talkService/AddFriendsToFavorite",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).AddFriendsToFavorite(ctx, req.(*AddFriendsToFavoriteRequest))
@@ -5462,7 +5462,7 @@ func _TalkService_RemoveFriendsFromFavorite_Handler(srv interface{}, ctx context
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/TalkService.TalkService/RemoveFriendsFromFavorite",
+		FullMethod: "/talkService.talkService/RemoveFriendsFromFavorite",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TalkServiceServer).RemoveFriendsFromFavorite(ctx, req.(*RemoveFriendsFromFavoriteRequest))
@@ -5471,7 +5471,7 @@ func _TalkService_RemoveFriendsFromFavorite_Handler(srv interface{}, ctx context
 }
 
 var _TalkService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "TalkService.TalkService",
+	ServiceName: "talkService.talkService",
 	HandlerType: (*TalkServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

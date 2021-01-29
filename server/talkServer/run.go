@@ -2,7 +2,7 @@ package talkServer
 
 import (
 	"context"
-	"github.com/sakura-rip/SakuraTalk/TalkService"
+	"github.com/sakura-rip/SakuraTalk/talkService"
 	"github.com/sakura-rip/SakuraTalk/utils"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -50,7 +50,7 @@ func RunServer() {
 		grpc.UnaryInterceptor(newUnaryServerInterceptor(newDefaultMiddleWare())),
 	)
 	talkService := TalkHandler{}
-	TalkService.RegisterTalkServiceServer(server, talkService)
+	talkService.RegisterTalkServiceServer(server, talkService)
 	if err := server.Serve(listen); err != nil {
 		panic(err)
 	}

@@ -2,29 +2,29 @@ package talkServer
 
 import (
 	"context"
-	"github.com/sakura-rip/SakuraTalk/TalkService"
+	"github.com/sakura-rip/SakuraTalk/talkService"
 )
 
-func (t TalkHandler) CreateTag(ctx context.Context, request *TalkService.CreateTagRequest) (*TalkService.CreateTagResponse, error) {
+func (t TalkHandler) CreateTag(ctx context.Context, request *talkService.CreateTagRequest) (*talkService.CreateTagResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) UpdateTag(ctx context.Context, request *TalkService.UpdateTagRequest) (*TalkService.UpdateTagResponse, error) {
+func (t TalkHandler) UpdateTag(ctx context.Context, request *talkService.UpdateTagRequest) (*talkService.UpdateTagResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) RegisterTags(ctx context.Context, request *TalkService.RegisterTagsRequest) (*TalkService.RegisterTagsResponse, error) {
+func (t TalkHandler) RegisterTags(ctx context.Context, request *talkService.RegisterTagsRequest) (*talkService.RegisterTagsResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) GetAllTags(ctx2 context.Context, empty *TalkService.Empty) (*TalkService.GetAllTagsResponse, error) {
+func (t TalkHandler) GetAllTags(ctx2 context.Context, empty *talkService.Empty) (*talkService.GetAllTagsResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) DeleteTag(ctx context.Context, request *TalkService.DeleteTagRequest) (*TalkService.DeleteTagResponse, error) {
+func (t TalkHandler) DeleteTag(ctx context.Context, request *talkService.DeleteTagRequest) (*talkService.DeleteTagResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) GetTag(ctx context.Context, request *TalkService.GetTagRequest) (*TalkService.GetTagResponse, error) {
+func (t TalkHandler) GetTag(ctx context.Context, request *talkService.GetTagRequest) (*talkService.GetTagResponse, error) {
 	panic("implement me")
 }

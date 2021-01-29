@@ -2,45 +2,45 @@ package talkServer
 
 import (
 	"context"
-	"github.com/sakura-rip/SakuraTalk/TalkService"
+	"github.com/sakura-rip/SakuraTalk/talkService"
 )
 
-func (t TalkHandler) SendMessage(ctx context.Context, request *TalkService.SendMessageRequest) (*TalkService.SendMessageResponse, error) {
+func (t TalkHandler) SendMessage(ctx context.Context, request *talkService.SendMessageRequest) (*talkService.SendMessageResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) EditMessage(ctx context.Context, request *TalkService.EditMessageRequest) (*TalkService.EditMessageResponse, error) {
+func (t TalkHandler) EditMessage(ctx context.Context, request *talkService.EditMessageRequest) (*talkService.EditMessageResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) ResendMessage(ctx context.Context, request *TalkService.ResendMessageRequest) (*TalkService.ResendMessageResponse, error) {
+func (t TalkHandler) ResendMessage(ctx context.Context, request *talkService.ResendMessageRequest) (*talkService.ResendMessageResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) UnsendMessage(ctx context.Context, request *TalkService.UnsendMessageRequest) (*TalkService.UnsendMessageResponse, error) {
+func (t TalkHandler) UnsendMessage(ctx context.Context, request *talkService.UnsendMessageRequest) (*talkService.UnsendMessageResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) ReadMessage(ctx context.Context, request *TalkService.ReadMessageRequest) (*TalkService.ReadMessageResponse, error) {
+func (t TalkHandler) ReadMessage(ctx context.Context, request *talkService.ReadMessageRequest) (*talkService.ReadMessageResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) UnreadMessage(ctx context.Context, request *TalkService.UnreadMessageRequest) (*TalkService.UnreadMessageResponse, error) {
+func (t TalkHandler) UnreadMessage(ctx context.Context, request *talkService.UnreadMessageRequest) (*talkService.UnreadMessageResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) ReportMessage(ctx context.Context, request *TalkService.ReportMessageRequest) (*TalkService.ReportMessageResponse, error) {
+func (t TalkHandler) ReportMessage(ctx context.Context, request *talkService.ReportMessageRequest) (*talkService.ReportMessageResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) RemoveAllMessages(ctx context.Context, request *TalkService.RemoveAllMessagesRequest) (*TalkService.RemoveAllMessagesResponse, error) {
+func (t TalkHandler) RemoveAllMessages(ctx context.Context, request *talkService.RemoveAllMessagesRequest) (*talkService.RemoveAllMessagesResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) ActionMessage(ctx context.Context, request *TalkService.ActionMessageRequest) (*TalkService.ActionMessageResponse, error) {
+func (t TalkHandler) ActionMessage(ctx context.Context, request *talkService.ActionMessageRequest) (*talkService.ActionMessageResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) AnnounceMessage(ctx context.Context, request *TalkService.AnnounceMessageRequest) (*TalkService.AnnounceMessageResponse, error) {
+func (t TalkHandler) AnnounceMessage(ctx context.Context, request *talkService.AnnounceMessageRequest) (*talkService.AnnounceMessageResponse, error) {
 	panic("implement me")
 }

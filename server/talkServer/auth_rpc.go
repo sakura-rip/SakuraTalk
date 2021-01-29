@@ -5,6 +5,6 @@ import (
 	service "github.com/sakura-rip/SakuraTalk/talkService"
 )
 
-func (t TalkHandler) RegisterPrimary(ctx2 context.Context, request *service.RegisterPrimaryRequest) (*service.RegisterPrimaryResponse, error) {
+func (t TalkHandler) RegisterPrimary(ctx context.Context, request *service.RegisterPrimaryRequest) (*service.RegisterPrimaryResponse, error) {
 	panic("implement me")
 }

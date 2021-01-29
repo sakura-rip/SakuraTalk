@@ -2,13 +2,27 @@ package talkServer
 
 import (
 	"context"
+	"github.com/sakura-rip/SakuraTalk/talkDatabase"
 	service "github.com/sakura-rip/SakuraTalk/talkService"
 	"github.com/sakura-rip/SakuraTalk/utils"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRequest) (*service.CreateTagResponse, error) {
-	panic("implement me")
+	tagID := utils.GenerateUUID()
+	dbTag := talkDatabase.Tag{
+		TagID:       tagID,
+		Name:        request.Tag.Name,
+		Description: request.Tag.Description,
+		Color:       request.Tag.Color,
+		Creator:     request.Tag.Creator,
+		CreatedTime: request.Tag.CreatedTime,
+	}
+	err := dbClient.InsertUserTag(utils.GetUUID(ctx), dbTag)
+	if err != nil {
+		return nil, err
+	}
+	return &service.CreateTagResponse{TagID: tagID}, nil
 }
 
 func (t TalkHandler) UpdateTag(ctx context.Context, request *service.UpdateTagRequest) (*service.UpdateTagResponse, error) {

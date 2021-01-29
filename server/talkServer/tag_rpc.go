@@ -5,8 +5,6 @@ import (
 	service "github.com/sakura-rip/SakuraTalk/talkService"
 	"github.com/sakura-rip/SakuraTalk/utils"
 	"go.mongodb.org/mongo-driver/bson"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 )
 
 func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRequest) (*service.CreateTagResponse, error) {
@@ -36,10 +34,7 @@ func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*ser
 
 func (t TalkHandler) DeleteTag(ctx context.Context, request *service.DeleteTagRequest) (*service.DeleteTagResponse, error) {
 	err := dbClient.DeleteUserTag(utils.GetUUID(ctx), request.TagId)
-	if err != nil {
-		return nil, status.New(codes.NotFound, "tag not found").Err()
-	}
-	return &service.DeleteTagResponse{}, nil
+	return &service.DeleteTagResponse{}, err
 }
 
 func (t TalkHandler) GetTag(ctx context.Context, request *service.GetTagRequest) (*service.GetTagResponse, error) {

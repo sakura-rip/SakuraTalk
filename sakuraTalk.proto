@@ -41,6 +41,8 @@ service TalkService {
   rpc removeFriendsFromFavorite (removeFriendsFromFavoriteRequest) returns (removeFriendsFromFavoriteResponse);
 
   rpc registerPrimary(registerPrimaryRequest) returns (registerPrimaryResponse);
+
+  rpc getGroup(getGroupRequest) returns(getGroupResponse);
 }
 
 
@@ -201,6 +203,7 @@ message Contact {
   int64 birthDay = 12;
   string status = 13;
   ContactStatus contactStatus = 14;
+  repeated string tagIds = 15;
 }
 
 message getContactsRequest {
@@ -295,3 +298,30 @@ message removeFriendsFromFavoriteResponse {}
 
 message registerPrimaryRequest {}
 message registerPrimaryResponse {}
+
+message Group {
+  string groupID = 1;
+  string groupName = 2;
+  string overWrittenName = 3;
+  string creator = 4;
+  int64 createdTime = 5;
+  string iconPath = 6;
+  string coverPath = 7;
+  bool isFavorite = 8;
+
+  bool enableNotification = 9;
+  bool enableNotificationMention = 10;
+  bool enableNotificationOnJoin = 11;
+  bool enableNotificationOnKick = 12;
+  repeated string tagIDs = 13;
+  string invitationTicket  = 14;
+  repeated string memberIds = 15;
+  repeated string inviteeIds = 16;
+}
+
+message getGroupRequest {
+  string groupID = 1;
+}
+message getGroupResponse {
+ Group group = 1;
+}

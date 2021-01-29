@@ -57,13 +57,6 @@ func (t TalkHandler) GetTag(ctx context.Context, request *service.GetTagRequest)
 		return nil, err
 	}
 	response := &service.GetTagResponse{}
-	response.Tag = &service.Tag{
-		TagID:       request.TagId,
-		Name:        tag.Name,
-		Description: tag.Description,
-		Color:       tag.Color,
-		Creator:     tag.Creator,
-		CreatedTime: tag.CreatedTime,
-	}
+	response.Tag = tag.ConvertToRPCStruct()
 	return response, err
 }

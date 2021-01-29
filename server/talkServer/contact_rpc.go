@@ -2,13 +2,13 @@ package talkServer
 
 import (
 	"context"
-	"github.com/sakura-rip/SakuraTalk/talkService"
+	service "github.com/sakura-rip/SakuraTalk/talkService"
 )
 
-func (t TalkHandler) GetContacts(ctx context.Context, request *talkService.GetContactsRequest) (*talkService.GetContactsResponse, error) {
+func (t TalkHandler) GetContacts(ctx context.Context, request *service.GetContactsRequest) (*service.GetContactsResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) UpdateContact(ctx context.Context, request *talkService.UpdateContactRequest) (*talkService.UpdateContactResponse, error) {
+func (t TalkHandler) UpdateContact(ctx context.Context, request *service.UpdateContactRequest) (*service.UpdateContactResponse, error) {
 	panic("implement me")
 }

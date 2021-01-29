@@ -2,29 +2,29 @@ package talkServer
 
 import (
 	"context"
-	"github.com/sakura-rip/SakuraTalk/talkService"
+	service "github.com/sakura-rip/SakuraTalk/talkService"
 )
 
-func (t TalkHandler) AddFriend(ctx context.Context, request *talkService.AddFriendRequest) (*talkService.AddFriendResponse, error) {
+func (t TalkHandler) AddFriend(ctx context.Context, request *service.AddFriendRequest) (*service.AddFriendResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) DeleteFriends(ctx context.Context, request *talkService.DeleteFriendsRequest) (*talkService.DeleteFriendsResponse, error) {
+func (t TalkHandler) DeleteFriends(ctx context.Context, request *service.DeleteFriendsRequest) (*service.DeleteFriendsResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) BlockFriends(ctx context.Context, request *talkService.BlockFriendsRequest) (*talkService.BlockFriendsResponse, error) {
+func (t TalkHandler) BlockFriends(ctx context.Context, request *service.BlockFriendsRequest) (*service.BlockFriendsResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) UnblockFriends(ctx context.Context, request *talkService.UnblockFriendsRequest) (*talkService.UnblockFriendsResponse, error) {
+func (t TalkHandler) UnblockFriends(ctx context.Context, request *service.UnblockFriendsRequest) (*service.UnblockFriendsResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *talkService.AddFriendsToFavoriteRequest) (*talkService.AddFriendsToFavoriteResponse, error) {
+func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *service.AddFriendsToFavoriteRequest) (*service.AddFriendsToFavoriteResponse, error) {
 	panic("implement me")
 }
 
-func (t TalkHandler) RemoveFriendsFromFavorite(ctx context.Context, request *talkService.RemoveFriendsFromFavoriteRequest) (*talkService.RemoveFriendsFromFavoriteResponse, error) {
+func (t TalkHandler) RemoveFriendsFromFavorite(ctx context.Context, request *service.RemoveFriendsFromFavoriteRequest) (*service.RemoveFriendsFromFavoriteResponse, error) {
 	panic("implement me")
 }

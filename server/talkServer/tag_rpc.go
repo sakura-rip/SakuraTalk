@@ -6,6 +6,8 @@ import (
 	service "github.com/sakura-rip/SakuraTalk/talkService"
 	"github.com/sakura-rip/SakuraTalk/utils"
 	"go.mongodb.org/mongo-driver/bson"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRequest) (*service.CreateTagResponse, error) {
@@ -42,7 +44,29 @@ func (t TalkHandler) UpdateTag(ctx context.Context, request *service.UpdateTagRe
 }
 
 func (t TalkHandler) RegisterTags(ctx context.Context, request *service.RegisterTagsRequest) (*service.RegisterTagsResponse, error) {
-	panic("implement me")
+	user, err := dbClient.FetchUserAttribute(request.Mid, bson.D{{"contacts", 1}, {"profile", 1}, {"tags", 1}})
+	//付与先のユーザー存在確認
+	if err != nil {
+		return nil, err
+	}
+	//タグの存在確認
+	_, ok := user.Tags[request.TagID]
+	if !ok {
+		return nil, status.New(codes.NotFound, "no such tag").Err()
+	}
+	contact, ok := user.Contacts[request.Mid]
+	if !ok {
+		contact = talkDatabase.Contact{
+			MID:             request.Mid,
+			OverWrittenName: user.Profile.Name,
+		}
+	}
+	contact.TagIds = append(contact.TagIds, request.TagID)
+	err = dbClient.UpdateUser(utils.GetUUID(ctx), bson.D{{"contacts." + request.Mid, contact}})
+	if err != nil {
+		return nil, err
+	}
+	return &service.RegisterTagsResponse{}, nil
 }
 
 func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*service.GetAllTagsResponse, error) {

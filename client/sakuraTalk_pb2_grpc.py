@@ -154,6 +154,11 @@ class TalkServiceStub(object):
                 request_serializer=sakuraTalk__pb2.removeFriendsFromFavoriteRequest.SerializeToString,
                 response_deserializer=sakuraTalk__pb2.removeFriendsFromFavoriteResponse.FromString,
                 )
+        self.registerPrimary = channel.unary_unary(
+                '/TalkService.TalkService/registerPrimary',
+                request_serializer=sakuraTalk__pb2.registerPrimaryRequest.SerializeToString,
+                response_deserializer=sakuraTalk__pb2.registerPrimaryResponse.FromString,
+                )
 
 
 class TalkServiceServicer(object):
@@ -327,6 +332,12 @@ class TalkServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def registerPrimary(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TalkServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -469,6 +480,11 @@ def add_TalkServiceServicer_to_server(servicer, server):
                     servicer.removeFriendsFromFavorite,
                     request_deserializer=sakuraTalk__pb2.removeFriendsFromFavoriteRequest.FromString,
                     response_serializer=sakuraTalk__pb2.removeFriendsFromFavoriteResponse.SerializeToString,
+            ),
+            'registerPrimary': grpc.unary_unary_rpc_method_handler(
+                    servicer.registerPrimary,
+                    request_deserializer=sakuraTalk__pb2.registerPrimaryRequest.FromString,
+                    response_serializer=sakuraTalk__pb2.registerPrimaryResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -953,5 +969,22 @@ class TalkService(object):
         return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/removeFriendsFromFavorite',
             sakuraTalk__pb2.removeFriendsFromFavoriteRequest.SerializeToString,
             sakuraTalk__pb2.removeFriendsFromFavoriteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def registerPrimary(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/registerPrimary',
+            sakuraTalk__pb2.registerPrimaryRequest.SerializeToString,
+            sakuraTalk__pb2.registerPrimaryResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

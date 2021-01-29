@@ -31,12 +31,16 @@ func init() {
 }
 
 //getAccessToken get access Token from context
-func getHeader(ctx context.Context, key string) (token string, ok bool) {
+func getHeader(ctx context.Context, key string) (string, bool) {
 	headers, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return "", false
 	}
-	return headers.Get(key)[0], ok
+	token := headers.Get(key)
+	if len(token) == 0 {
+		return "", false
+	}
+	return token[0], true
 }
 
 //VerifyTokenAndGetUUID check token and get token's user id

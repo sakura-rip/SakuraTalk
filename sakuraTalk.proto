@@ -226,7 +226,7 @@ message Tag {
   string description = 3;
   string color = 4;
   string creator = 5;
-  string createdTime = 6;
+  int64 createdTime = 6;
 }
 
 message getTagRequest {

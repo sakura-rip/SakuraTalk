@@ -60,7 +60,7 @@ func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
 	}
 	value, ok := rs.Contacts[contactMid]
 	if !ok {
-		return nil, err
+		return nil, status.New(codes.NotFound, "contact not found").Err()
 	}
 	return &value, nil
 }
@@ -72,7 +72,7 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 	}
 	value, ok := rs.Tags[tagId]
 	if !ok {
-		return nil, err
+		return nil, status.New(codes.NotFound, "tag not found").Err()
 	}
 	return &value, nil
 }

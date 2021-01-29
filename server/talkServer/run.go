@@ -2,13 +2,37 @@ package talkServer
 
 import (
 	"context"
+	firebase "firebase.google.com/go"
+	firebaseAuth "firebase.google.com/go/auth"
+	"fmt"
+	"github.com/sakura-rip/SakuraTalk/talkDatabase"
 	service "github.com/sakura-rip/SakuraTalk/talkService"
 	"github.com/sakura-rip/SakuraTalk/utils"
+	"google.golang.org/api/option"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"net"
+	"os"
 )
+
+var authClient *firebaseAuth.Client
+var dbClient *talkDatabase.DBClient
+
+// init firebase authentication
+func init() {
+	ctx := context.Background()
+	opt := option.WithCredentialsFile(os.Getenv("GOOGLE_APPLICATION_CREDENTIALS"))
+	app, err := firebase.NewApp(ctx, nil, opt)
+	if err != nil {
+		panic(fmt.Errorf("error on init firebase authClient: %v", err))
+	}
+	authClient, err = app.Auth(ctx)
+	if err != nil {
+		panic(fmt.Errorf("error on get authClient %v", err))
+	}
+	dbClient = talkDatabase.NewDBClient()
+}
 
 type TalkHandler struct{}
 

@@ -2,33 +2,10 @@ package talkServer
 
 import (
 	"context"
-	"fmt"
 	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-	"os"
-
-	firebase "firebase.google.com/go"
-	firebaseAuth "firebase.google.com/go/auth"
-	"google.golang.org/api/option"
 	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
 )
-
-var auth *firebaseAuth.Client
-var ctx context.Context
-
-// init firebase authentication
-func init() {
-	ctx = context.Background()
-	opt := option.WithCredentialsFile(os.Getenv("GOOGLE_APPLICATION_CREDENTIALS"))
-	app, err := firebase.NewApp(ctx, nil, opt)
-	if err != nil {
-		panic(fmt.Errorf("error on init firebase auth: %v", err))
-	}
-	auth, err = app.Auth(ctx)
-	if err != nil {
-		panic(fmt.Errorf("error on get auth %v", err))
-	}
-}
 
 // getHeader get access Token from context
 func getHeader(ctx context.Context, key string) (string, bool) {
@@ -49,7 +26,7 @@ func VerifyTokenAndGetUUID(ctx context.Context) (string, map[string]interface{},
 	if !ok {
 		return "", nil, status.New(codes.Unauthenticated, "authentication failed").Err()
 	}
-	jwt, err := auth.VerifyIDToken(context.Background(), token)
+	jwt, err := authClient.VerifyIDToken(context.Background(), token)
 	if err != nil {
 		return "", nil, status.New(codes.Unauthenticated, "authentication failed").Err()
 	}

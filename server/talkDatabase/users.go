@@ -53,16 +53,13 @@ func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
 	return &rs.Profile, err
 }
 
-func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
+func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, bool) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"contacts", 1}})
 	if err != nil {
-		return nil, err
+		return nil, false
 	}
 	value, ok := rs.Contacts[contactMid]
-	if !ok {
-		return nil, status.New(codes.NotFound, "contact not found").Err()
-	}
-	return &value, nil
+	return &value, ok
 }
 
 func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {

@@ -296,7 +296,9 @@ message removeFriendsFromFavoriteRequest {
 }
 message removeFriendsFromFavoriteResponse {}
 
-message registerPrimaryRequest {}
+message registerPrimaryRequest {
+  string token = 1;
+}
 message registerPrimaryResponse {}
 
 message Group {

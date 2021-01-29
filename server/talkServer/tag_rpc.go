@@ -26,7 +26,19 @@ func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRe
 }
 
 func (t TalkHandler) UpdateTag(ctx context.Context, request *service.UpdateTagRequest) (*service.UpdateTagResponse, error) {
-	panic("implement me")
+	dbTag := talkDatabase.Tag{
+		TagID:       request.Tag.TagID,
+		Name:        request.Tag.Name,
+		Description: request.Tag.Description,
+		Color:       request.Tag.Color,
+		Creator:     request.Tag.Creator,
+		CreatedTime: request.Tag.CreatedTime,
+	}
+	err := dbClient.InsertUserTag(utils.GetUUID(ctx), dbTag)
+	if err != nil {
+		return nil, err
+	}
+	return &service.UpdateTagResponse{}, nil
 }
 
 func (t TalkHandler) RegisterTags(ctx context.Context, request *service.RegisterTagsRequest) (*service.RegisterTagsResponse, error) {

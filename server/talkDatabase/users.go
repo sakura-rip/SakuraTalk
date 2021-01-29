@@ -59,6 +59,9 @@ func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, bool) {
 		return nil, false
 	}
 	value, ok := rs.Contacts[contactMid]
+	if !ok {
+		value = Contact{MID: contactMid}
+	}
 	return &value, ok
 }
 
@@ -128,7 +131,10 @@ func (cl *DBClient) FetchUserHashedPassword(mid string) (string, error) {
 
 func (cl *DBClient) UpdateUser(mid string, attrToUpdate bson.D) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$set": attrToUpdate})
-	return err
+	if err != nil {
+		return status.New(codes.Internal, "db error").Err()
+	}
+	return nil
 }
 
 func (cl *DBClient) DeleteUserTag(mid, tagID string) error {
@@ -151,7 +157,7 @@ func (cl *DBClient) InsertOrUpdateUserTag(mid string, tag Tag) error {
 	return nil
 }
 
-func (cl *DBClient) InsertOrUpdateUserContact(mid string, contact Contact) error {
+func (cl *DBClient) InsertOrUpdateUserContact(mid string, contact *Contact) error {
 	err := cl.UpdateUser(mid, bson.D{{
 		"contacts." + contact.MID, contact,
 	}})

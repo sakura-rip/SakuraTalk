@@ -3,7 +3,9 @@ package talkServer
 import (
 	"context"
 	"fmt"
+	"github.com/sakura-rip/SakuraTalk/talkDatabase"
 	service "github.com/sakura-rip/SakuraTalk/talkService"
+	"go.mongodb.org/mongo-driver/bson"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -11,8 +13,7 @@ import (
 )
 
 func (t TalkHandler) RegisterPrimary(ctx context.Context, request *service.RegisterPrimaryRequest) (*service.RegisterPrimaryResponse, error) {
-	_, err := authClient.VerifyIDToken(ctx, request.Token)
-	fmt.Println(err)
+	jwt, err := authClient.VerifyIDToken(ctx, request.Token)
 	if err != nil {
 		return nil, status.New(codes.Unauthenticated, "authentication failed").Err()
 	}

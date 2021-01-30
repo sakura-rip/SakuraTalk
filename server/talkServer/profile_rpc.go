@@ -43,5 +43,9 @@ func (t TalkHandler) UpdateProfileAttributes(ctx context.Context, request *servi
 }
 
 func (t TalkHandler) GetProfile(ctx context.Context, empty *service.Empty) (*service.Profile, error) {
-	panic("implement me")
+	profile, err := dbClient.FetchUserProfile(utils.GetUUID(ctx))
+	if err != nil {
+		return nil, err
+	}
+	return profile.ConvertToRPCStruct(), nil
 }

@@ -13,7 +13,11 @@ func GetValue(ctx context.Context, key string) interface{} {
 }
 
 func GetUUID(ctx context.Context) string {
-	return GetValue(ctx, "uuid").(string)
+	val, ok := GetValue(ctx, "uuid").(string)
+	if !ok {
+		return ""
+	}
+	return val
 }
 
 func GetClaims(ctx context.Context) map[string]interface{} {

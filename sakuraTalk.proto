@@ -180,7 +180,19 @@ message Setting {
   bool allowSearchByUserTicket = 6;
 }
 
-message updateSettingAttributesRequest {}
+enum SettingKey {
+  PRIVATE_USER_ID = 0;
+  EMAIL = 1;
+
+  ALLOW_SEARCH_BY_PRIVATE_USER_ID = 3;
+  ALLOW_SEARCH_BY_EMAIL = 4;
+  ALLOW_SEARCH_BY_USER_TICKET = 5;
+}
+
+message updateSettingAttributesRequest {
+  repeated SettingKey key = 1;
+  Setting setting = 2;
+}
 message updateSettingAttributesResponse {}
 
 message issueUserTicketRequest {}

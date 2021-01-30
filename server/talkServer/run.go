@@ -38,8 +38,20 @@ type TalkHandler struct{}
 
 type DefaultMiddleWare func(ctx context.Context) (context.Context, error)
 
+func isPublicApi(methodName string) bool {
+	switch methodName {
+	case "/TalkService.TalkService/RegisterPrimary":
+		return true
+	default:
+		return false
+	}
+
+}
 func newUnaryServerInterceptor(authFunc DefaultMiddleWare) grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
+		if isPublicApi(info.FullMethod) {
+			return handler(ctx, req)
+		}
 		newCtx, err := authFunc(ctx)
 		if err != nil {
 			return nil, status.New(codes.Unauthenticated, "authentication failed").Err()

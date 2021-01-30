@@ -16,10 +16,20 @@ func (t TalkHandler) RegisterPrimary(ctx context.Context, request *service.Regis
 	if err != nil {
 		return nil, status.New(codes.Unauthenticated, "authentication failed").Err()
 	}
-	err = grpc.SetHeader(ctx, metadata.Pairs("x-sakura-access", request.Token))
-	fmt.Println(err)
+	md := metadata.New(map[string]string{"x-sakura-access": request.Token})
+	err = grpc.SendHeader(ctx, md)
+	grpc.SetTrailer(ctx, md)
 	if err != nil {
 		return nil, status.New(codes.Internal, "internal error").Err()
+	}
+	fmt.Println("register primary called")
+	if _, err := dbClient.FetchUserAttribute(jwt.UID, bson.D{{"mid", 1}}); err != nil {
+		err := dbClient.InsertNewUser(&talkDatabase.User{
+			MID: jwt.UID,
+		})
+		if err != nil {
+			return nil, status.New(codes.Internal, "internal error").Err()
+		}
 	}
 	return &service.RegisterPrimaryResponse{}, nil
 }

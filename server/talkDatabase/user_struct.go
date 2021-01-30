@@ -48,7 +48,7 @@ type Setting struct {
 	UserTicket    string `bson:"UTicket"`
 
 	AllowSearchByPrivateUserID bool `bson:"asByPUserID"`
-	AllowSearchByEmail         bool `bson:"asByUserID"`
+	AllowSearchByEmail         bool `bson:"asByEmail"`
 	AllowSearchByUserTicket    bool `bson:"asByUserTicket"`
 }
 

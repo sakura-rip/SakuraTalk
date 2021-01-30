@@ -84,6 +84,11 @@ class TalkServiceStub(object):
                 request_serializer=sakuraTalk__pb2.updateSettingAttributesRequest.SerializeToString,
                 response_deserializer=sakuraTalk__pb2.updateSettingAttributesResponse.FromString,
                 )
+        self.issueUserTicket = channel.unary_unary(
+                '/TalkService.TalkService/issueUserTicket',
+                request_serializer=sakuraTalk__pb2.issueUserTicketRequest.SerializeToString,
+                response_deserializer=sakuraTalk__pb2.issueUserTicketResponse.FromString,
+                )
         self.getContacts = channel.unary_unary(
                 '/TalkService.TalkService/getContacts',
                 request_serializer=sakuraTalk__pb2.getContactsRequest.SerializeToString,
@@ -248,6 +253,12 @@ class TalkServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def updateSettingAttributes(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def issueUserTicket(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -421,6 +432,11 @@ def add_TalkServiceServicer_to_server(servicer, server):
                     servicer.updateSettingAttributes,
                     request_deserializer=sakuraTalk__pb2.updateSettingAttributesRequest.FromString,
                     response_serializer=sakuraTalk__pb2.updateSettingAttributesResponse.SerializeToString,
+            ),
+            'issueUserTicket': grpc.unary_unary_rpc_method_handler(
+                    servicer.issueUserTicket,
+                    request_deserializer=sakuraTalk__pb2.issueUserTicketRequest.FromString,
+                    response_serializer=sakuraTalk__pb2.issueUserTicketResponse.SerializeToString,
             ),
             'getContacts': grpc.unary_unary_rpc_method_handler(
                     servicer.getContacts,
@@ -747,6 +763,23 @@ class TalkService(object):
         return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/updateSettingAttributes',
             sakuraTalk__pb2.updateSettingAttributesRequest.SerializeToString,
             sakuraTalk__pb2.updateSettingAttributesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def issueUserTicket(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/issueUserTicket',
+            sakuraTalk__pb2.issueUserTicketRequest.SerializeToString,
+            sakuraTalk__pb2.issueUserTicketResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

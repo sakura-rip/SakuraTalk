@@ -198,7 +198,7 @@ func (cl *DBClient) RemoveFromSetUserAttribute(mid, fieldName, target string) er
 	return nil
 }
 
-func (cl *DBClient) RemoveFromSetUserAttributes(mid string, target bson.M) error {
+func (cl *DBClient) RemoveFromSetUserAttributes(mid string, targets bson.M) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$pull": targets})
 	if err != nil {
 		return status.Error(codes.Internal, "db error")

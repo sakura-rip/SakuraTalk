@@ -1,6 +1,7 @@
 package talkDatabase
 
 import (
+	service "github.com/sakura-rip/SakuraTalk/talkService"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"google.golang.org/grpc/codes"
@@ -132,7 +133,7 @@ func (cl *DBClient) FetchUserHashedPassword(mid string) (string, error) {
 func (cl *DBClient) UpdateUser(mid string, attrToUpdate bson.D) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$set": attrToUpdate})
 	if err != nil {
-		return status.New(codes.Internal, "db error").Err()
+		return status.Error(codes.Internal, "db error")
 	}
 	return nil
 }
@@ -152,7 +153,7 @@ func (cl *DBClient) InsertOrUpdateUserTag(mid string, tag Tag) error {
 		"tags." + tag.TagID, tag,
 	}})
 	if err != nil {
-		return status.New(codes.Internal, "db error").Err()
+		return status.Error(codes.Internal, "db error")
 	}
 	return nil
 }
@@ -162,12 +163,12 @@ func (cl *DBClient) InsertOrUpdateUserContact(mid string, contact *Contact) erro
 		"contacts." + contact.MID, contact,
 	}})
 	if err != nil {
-		return status.New(codes.Internal, "db error").Err()
+		return status.Error(codes.Internal, "db error")
 	}
 	return nil
 }
 
-func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status int64) error {
+func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status service.ContactStatus) error {
 	_, ok := cl.FetchUserContact(mid, targetMid)
 	if ok {
 		err := cl.UpdateUser(mid, bson.D{{"contacts." + targetMid + ".cStatus", status}})
@@ -176,7 +177,7 @@ func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status int64)
 	err := cl.InsertOrUpdateUserContact(mid, &Contact{
 		MID:           targetMid,
 		TagIds:        []string{},
-		ContactStatus: status,
+		ContactStatus: RPCContactStatusToDBContactStatus(status),
 	})
 	return err
 }
@@ -184,7 +185,23 @@ func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status int64)
 func (cl *DBClient) AddToSetUserAttribute(mid, fieldName string, object interface{}) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$addToSet": bson.M{fieldName: bson.M{"$each": object}}})
 	if err != nil {
-		return status.New(codes.Internal, "db error").Err()
+		return status.Error(codes.Internal, "db error")
+	}
+	return nil
+}
+
+func (cl *DBClient) RemoveFromSetUserAttribute(mid, fieldName, target string) error {
+	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$pull": bson.M{fieldName: target}})
+	if err != nil {
+		return status.Error(codes.Internal, "db error")
+	}
+	return nil
+}
+
+func (cl *DBClient) RemoveFromSetUserAttributes(mid string, target bson.M) error {
+	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$pull": targets})
+	if err != nil {
+		return status.Error(codes.Internal, "db error")
 	}
 	return nil
 }

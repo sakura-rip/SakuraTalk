@@ -29,7 +29,27 @@ func (t TalkHandler) AddFriend(ctx context.Context, request *service.AddFriendRe
 }
 
 func (t TalkHandler) DeleteFriends(ctx context.Context, request *service.DeleteFriendsRequest) (*service.DeleteFriendsResponse, error) {
-	panic("implement me")
+	mid := utils.GetMid(ctx)
+	friendMids, err := dbClient.FetchUserFriendIds(mid)
+	if err != nil {
+		return nil, err
+	}
+	if !utils.IsStrInSlice(friendMids, request.Mid) {
+		return nil, status.New(codes.InvalidArgument, "request mid is not friend").Err()
+	}
+	err = dbClient.AddToSetUserAttribute(mid, "deletedIds", request.Mid)
+	if err != nil {
+		return nil, err
+	}
+	err = dbClient.AddToSetUserAttribute(request.Mid, "recvDeletedIds", mid)
+	if err != nil {
+		return nil, err
+	}
+	err = dbClient.UpdateUserContactStatus(mid, request.Mid, 3)
+	if err != nil {
+		return nil, err
+	}
+	return &service.DeleteFriendsResponse{}, nil
 }
 
 func (t TalkHandler) BlockFriends(ctx context.Context, request *service.BlockFriendsRequest) (*service.BlockFriendsResponse, error) {

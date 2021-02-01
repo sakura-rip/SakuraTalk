@@ -12,8 +12,8 @@ func GetValue(ctx context.Context, key string) interface{} {
 	return ctx.Value(key)
 }
 
-func GetUUID(ctx context.Context) string {
-	val, ok := GetValue(ctx, "uuid").(string)
+func GetMid(ctx context.Context) string {
+	val, ok := GetValue(ctx, "mid").(string)
 	if !ok {
 		return ""
 	}

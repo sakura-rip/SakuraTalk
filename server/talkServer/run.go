@@ -70,7 +70,7 @@ func newDefaultMiddleWare() DefaultMiddleWare {
 		if err != nil {
 			return ctx, status.New(codes.Unauthenticated, "authentication failed").Err()
 		}
-		ctx = utils.SetKeyAndValue(ctx, "uuid", jwt.UID)
+		ctx = utils.SetKeyAndValue(ctx, "mid", jwt.UID)
 		ctx = utils.SetKeyAndValue(ctx, "claims", jwt.Claims)
 		return ctx, nil
 	}

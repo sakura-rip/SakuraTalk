@@ -20,7 +20,7 @@ func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRe
 		Creator:     request.Tag.Creator,
 		CreatedTime: request.Tag.CreatedTime,
 	}
-	err := dbClient.InsertOrUpdateUserTag(utils.GetUUID(ctx), dbTag)
+	err := dbClient.InsertOrUpdateUserTag(utils.GetMid(ctx), dbTag)
 	if err != nil {
 		return nil, err
 	}
@@ -36,7 +36,7 @@ func (t TalkHandler) UpdateTag(ctx context.Context, request *service.UpdateTagRe
 		Creator:     request.Tag.Creator,
 		CreatedTime: request.Tag.CreatedTime,
 	}
-	err := dbClient.InsertOrUpdateUserTag(utils.GetUUID(ctx), dbTag)
+	err := dbClient.InsertOrUpdateUserTag(utils.GetMid(ctx), dbTag)
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +62,7 @@ func (t TalkHandler) RegisterTags(ctx context.Context, request *service.Register
 		}
 	}
 	contact.TagIds = append(contact.TagIds, request.TagID)
-	err = dbClient.UpdateUser(utils.GetUUID(ctx), bson.D{{"contacts." + request.Mid, contact}})
+	err = dbClient.UpdateUser(utils.GetMid(ctx), bson.D{{"contacts." + request.Mid, contact}})
 	if err != nil {
 		return nil, err
 	}
@@ -71,7 +71,7 @@ func (t TalkHandler) RegisterTags(ctx context.Context, request *service.Register
 
 func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*service.GetAllTagsResponse, error) {
 	var tagIds []string
-	user, err := dbClient.FetchUserAttribute(utils.GetUUID(ctx), bson.D{{"tags", 1}})
+	user, err := dbClient.FetchUserAttribute(utils.GetMid(ctx), bson.D{{"tags", 1}})
 	if err != nil {
 		return nil, err
 	}
@@ -83,12 +83,12 @@ func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*ser
 }
 
 func (t TalkHandler) DeleteTag(ctx context.Context, request *service.DeleteTagRequest) (*service.DeleteTagResponse, error) {
-	err := dbClient.DeleteUserTag(utils.GetUUID(ctx), request.TagId)
+	err := dbClient.DeleteUserTag(utils.GetMid(ctx), request.TagId)
 	return &service.DeleteTagResponse{}, err
 }
 
 func (t TalkHandler) GetTag(ctx context.Context, request *service.GetTagRequest) (*service.GetTagResponse, error) {
-	tag, err := dbClient.FetchUserTag(utils.GetUUID(ctx), request.TagId)
+	tag, err := dbClient.FetchUserTag(utils.GetMid(ctx), request.TagId)
 	if err != nil {
 		return nil, err
 	}

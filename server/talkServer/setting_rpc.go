@@ -8,7 +8,7 @@ import (
 )
 
 func (t TalkHandler) GetSetting(ctx context.Context, empty *service.Empty) (*service.Setting, error) {
-	dbSetting, err := dbClient.FetchUserSetting(utils.GetUUID(ctx))
+	dbSetting, err := dbClient.FetchUserSetting(utils.GetMid(ctx))
 	if err != nil {
 		return nil, err
 	}
@@ -31,7 +31,7 @@ func (t TalkHandler) UpdateSettingAttributes(ctx context.Context, request *servi
 			updateObject = append(updateObject, bson.E{Key: "setting.asByUserTicket", Value: request.Setting.AllowSearchByUserTicket})
 		}
 	}
-	err := dbClient.UpdateUser(utils.GetUUID(ctx), updateObject)
+	err := dbClient.UpdateUser(utils.GetMid(ctx), updateObject)
 	if err != nil {
 		return nil, err
 	}
@@ -40,7 +40,7 @@ func (t TalkHandler) UpdateSettingAttributes(ctx context.Context, request *servi
 
 func (t TalkHandler) IssueUserTicket(ctx context.Context, request *service.IssueUserTicketRequest) (*service.IssueUserTicketResponse, error) {
 	ticket := utils.GenerateUUID()
-	err := dbClient.UpdateUser(utils.GetUUID(ctx), bson.D{{"setting.UTicket", ticket}})
+	err := dbClient.UpdateUser(utils.GetMid(ctx), bson.D{{"setting.UTicket", ticket}})
 	if err != nil {
 		return nil, err
 	}

@@ -35,7 +35,7 @@ func (t TalkHandler) UpdateProfileAttributes(ctx context.Context, request *servi
 			updateObject = append(updateObject, bson.E{Key: "profile.status", Value: request.Profile.Status})
 		}
 	}
-	err := dbClient.UpdateUser(utils.GetUUID(ctx), updateObject)
+	err := dbClient.UpdateUser(utils.GetMid(ctx), updateObject)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +43,7 @@ func (t TalkHandler) UpdateProfileAttributes(ctx context.Context, request *servi
 }
 
 func (t TalkHandler) GetProfile(ctx context.Context, empty *service.Empty) (*service.Profile, error) {
-	profile, err := dbClient.FetchUserProfile(utils.GetUUID(ctx))
+	profile, err := dbClient.FetchUserProfile(utils.GetMid(ctx))
 	if err != nil {
 		return nil, err
 	}

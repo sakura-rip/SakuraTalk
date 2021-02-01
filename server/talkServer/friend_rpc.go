@@ -21,6 +21,10 @@ func (t TalkHandler) AddFriend(ctx context.Context, request *service.AddFriendRe
 	if err != nil {
 		return nil, err
 	}
+	err = dbClient.AddToSetUserAttribute(request.Mid, "recvFriendIds", mid)
+	if err != nil {
+		return nil, err
+	}
 	err = dbClient.UpdateUserContactStatus(mid, request.Mid, 1)
 	if err != nil {
 		return nil, err

@@ -166,3 +166,25 @@ func (cl *DBClient) InsertOrUpdateUserContact(mid string, contact *Contact) erro
 	}
 	return nil
 }
+
+func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status int64) error {
+	_, ok := cl.FetchUserContact(mid, targetMid)
+	if ok {
+		err := cl.UpdateUser(mid, bson.D{{"contacts." + targetMid + ".cStatus", status}})
+		return err
+	}
+	err := cl.InsertOrUpdateUserContact(mid, &Contact{
+		MID:           targetMid,
+		TagIds:        []string{},
+		ContactStatus: status,
+	})
+	return err
+}
+
+func (cl *DBClient) AddToSetUserAttribute(mid, fieldName string, object interface{}) error {
+	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$addToSet": bson.M{fieldName: bson.M{"$each": object}}})
+	if err != nil {
+		return status.New(codes.Internal, "db error").Err()
+	}
+	return nil
+}

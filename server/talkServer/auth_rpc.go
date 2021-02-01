@@ -2,7 +2,6 @@ package talkServer
 
 import (
 	"context"
-	"fmt"
 	"github.com/sakura-rip/SakuraTalk/talkDatabase"
 	service "github.com/sakura-rip/SakuraTalk/talkService"
 	"go.mongodb.org/mongo-driver/bson"
@@ -23,7 +22,6 @@ func (t TalkHandler) RegisterPrimary(ctx context.Context, request *service.Regis
 	if err != nil {
 		return nil, status.New(codes.Internal, "internal error").Err()
 	}
-	fmt.Println("register primary called")
 	if _, err := dbClient.FetchUserAttribute(jwt.UID, bson.D{{"mid", 1}}); err != nil {
 		err := dbClient.InsertNewUser(&talkDatabase.User{
 			MID:             jwt.UID,

@@ -9,8 +9,14 @@ type User struct {
 
 	JoinedGroupIds  []string `bson:"jGroupIds"`
 	InvitedGroupIds []string `bson:"iGroupIds"`
-	FriendIds       []string `bson:"friendIds"`
-	BlockedIds      []string `bson:"blockedIds"`
+
+	FriendIds  []string `bson:"friendIds"`
+	BlockedIds []string `bson:"blockedIds"`
+	DeletedIds []string `bson:"deletedIds"`
+
+	ReceivedFriendIds  []string `bson:"recvFriendIds"`
+	ReceivedBlockedIds []string `bson:"recvBlockedIds"`
+	ReceivedDeletedIds []string `bson:"recvDeletedIds"`
 
 	GroupSettings map[string]GroupSetting `bson:"groupSettings"`
 	Tags          map[string]Tag          `bson:"tags"`

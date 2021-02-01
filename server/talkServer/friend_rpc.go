@@ -3,10 +3,29 @@ package talkServer
 import (
 	"context"
 	service "github.com/sakura-rip/SakuraTalk/talkService"
+	"github.com/sakura-rip/SakuraTalk/utils"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func (t TalkHandler) AddFriend(ctx context.Context, request *service.AddFriendRequest) (*service.AddFriendResponse, error) {
-	panic("implement me")
+	mid := utils.GetMid(ctx)
+	blockedMids, err := dbClient.FetchUserBlockedIds(mid)
+	if err != nil {
+		return nil, err
+	}
+	if utils.IsStrInSlice(blockedMids, request.Mid) {
+		return nil, status.New(codes.InvalidArgument, "request mid is blocked").Err()
+	}
+	err = dbClient.AddToSetUserAttribute(mid, "friendIds", request.Mid)
+	if err != nil {
+		return nil, err
+	}
+	err = dbClient.UpdateUserContactStatus(mid, request.Mid, 1)
+	if err != nil {
+		return nil, err
+	}
+	return &service.AddFriendResponse{}, err
 }
 
 func (t TalkHandler) DeleteFriends(ctx context.Context, request *service.DeleteFriendsRequest) (*service.DeleteFriendsResponse, error) {

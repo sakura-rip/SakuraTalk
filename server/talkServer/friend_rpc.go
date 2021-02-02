@@ -25,7 +25,7 @@ func (t TalkHandler) AddFriend(ctx context.Context, request *service.AddFriendRe
 	if err != nil {
 		return nil, err
 	}
-	err = dbClient.UpdateUserContactStatus(mid, request.Mid, 1)
+	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_FRIEND)
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func (t TalkHandler) DeleteFriends(ctx context.Context, request *service.DeleteF
 	if err != nil {
 		return nil, err
 	}
-	err = dbClient.UpdateUserContactStatus(mid, request.Mid, 3)
+	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_DELETED)
 	if err != nil {
 		return nil, err
 	}

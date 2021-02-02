@@ -64,13 +64,13 @@ func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
 func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"contacts", 1}})
 	if err != nil {
-		return nil, false
+		return nil, err
 	}
 	value, ok := rs.Contacts[contactMid]
 	if !ok {
 		value = Contact{MID: contactMid}
 	}
-	return &value, ok
+	return &value, nil
 }
 
 //FetchUserTag　データベースのなかからMIDごとのTAGを取得する

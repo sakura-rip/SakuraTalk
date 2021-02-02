@@ -8,11 +8,13 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+//InsertNewUser 新しいUserをデータベースに保存します
 func (cl *DBClient) InsertNewUser(user *User) error {
 	_, err := cl.UserCol.InsertOne(cl.Ctx, user)
 	return err
 }
 
+//FetchUser MIDから、Userのデータをデータベースから取り出します
 func (cl *DBClient) FetchUser(mid string) (*User, error) {
 	rs := cl.UserCol.FindOne(
 		cl.Ctx,
@@ -25,6 +27,7 @@ func (cl *DBClient) FetchUser(mid string) (*User, error) {
 	return user, nil
 }
 
+//FetchUserAttribute Userの中の特定の情報：attributesを取り出します
 func (cl *DBClient) FetchUserAttribute(mid string, attributes bson.D) (*User, error) {
 	rs := cl.UserCol.FindOne(
 		cl.Ctx,
@@ -38,6 +41,7 @@ func (cl *DBClient) FetchUserAttribute(mid string, attributes bson.D) (*User, er
 	return user, nil
 }
 
+//FetchUserSetting　データベースの中からMIDのユーザーのSettingを取り出します
 func (cl *DBClient) FetchUserSetting(mid string) (*Setting, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"setting", 1}})
 	if rs == nil {
@@ -46,6 +50,7 @@ func (cl *DBClient) FetchUserSetting(mid string) (*Setting, error) {
 	return &rs.Setting, err
 }
 
+//FetchUserProfile データーベースの中からMIDのユーザーのプロフォールを取得する
 func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"setting", 1}})
 	if rs == nil {
@@ -54,7 +59,9 @@ func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
 	return &rs.Profile, err
 }
 
-func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, bool) {
+//FetchUserContact　データーベースのなかからMIDごとのContactを取得する
+//存在しない場合、特にデフォルト値をいじらなければいけない部分はないので、そのままMIDをつけたContactを返す
+func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"contacts", 1}})
 	if err != nil {
 		return nil, false
@@ -66,6 +73,8 @@ func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, bool) {
 	return &value, ok
 }
 
+//FetchUserTag　データベースのなかからMIDごとのTAGを取得する
+//存在しない場合はerrorを返す
 func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"tags", 1}})
 	if err != nil {
@@ -78,6 +87,8 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 	return &value, nil
 }
 
+//FetchUserGroupSettings　ユーザーごとのGroupの設定を取得する。
+//存在しない場合は、デフォルトの設定を返す
 func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"groupSettings", 1}})
 	if err != nil {
@@ -90,6 +101,7 @@ func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, erro
 	return &value, nil
 }
 
+//FetchUserJoinedGroupIds　データベースから、MIDの参加しているGroupのMID一覧を取得する
 func (cl *DBClient) FetchUserJoinedGroupIds(mid string) ([]string, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"jGroupIds", 1}})
 	if err != nil {
@@ -98,6 +110,7 @@ func (cl *DBClient) FetchUserJoinedGroupIds(mid string) ([]string, error) {
 	return rs.JoinedGroupIds, err
 }
 
+//FetchUserInvitedGroupIds　デーたーべすから、MIDの招待されているGroupのMID一覧を取得する
 func (cl *DBClient) FetchUserInvitedGroupIds(mid string) ([]string, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"iGroupIds", 1}})
 	if err != nil {
@@ -106,6 +119,7 @@ func (cl *DBClient) FetchUserInvitedGroupIds(mid string) ([]string, error) {
 	return rs.InvitedGroupIds, err
 }
 
+//FetchUserFriendIds データベースから、MIDの友達のID一覧を取得する
 func (cl *DBClient) FetchUserFriendIds(mid string) ([]string, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"friendIds", 1}})
 	if err != nil {
@@ -114,6 +128,7 @@ func (cl *DBClient) FetchUserFriendIds(mid string) ([]string, error) {
 	return rs.FriendIds, err
 }
 
+//FetchUserBlockedIds　データベースから、MIDがブロックしている人の一覧を取得する
 func (cl *DBClient) FetchUserBlockedIds(mid string) ([]string, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"blockedIds", 1}})
 	if err != nil {
@@ -122,6 +137,7 @@ func (cl *DBClient) FetchUserBlockedIds(mid string) ([]string, error) {
 	return rs.BlockedIds, err
 }
 
+//FetchUserHashedPassword　データベースから、ハッシュ化されているパスワードを取り出す。
 func (cl *DBClient) FetchUserHashedPassword(mid string) (string, error) {
 	rs, err := cl.FetchUserAttribute(mid, bson.D{{"hashedPasswd", 1}})
 	if err != nil {
@@ -130,6 +146,7 @@ func (cl *DBClient) FetchUserHashedPassword(mid string) (string, error) {
 	return rs.HashedPassword, err
 }
 
+//UpdateUser　MIDのattrToUpdateを更新する
 func (cl *DBClient) UpdateUser(mid string, attrToUpdate bson.D) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$set": attrToUpdate})
 	if err != nil {
@@ -138,17 +155,20 @@ func (cl *DBClient) UpdateUser(mid string, attrToUpdate bson.D) error {
 	return nil
 }
 
+//DeleteUserTag　ユーザーのTAGをtagIDから削除する
 func (cl *DBClient) DeleteUserTag(mid, tagID string) error {
 	_, err := cl.UserCol.UpdateOne(
 		cl.Ctx, bson.M{"_id": mid},
 		bson.M{"$unset": "tags." + tagID})
 	if err != nil {
-		return status.New(codes.NotFound, "tag not found").Err()
+		return status.Error(codes.NotFound, "tag not found")
 	}
 	return nil
 }
 
-func (cl *DBClient) InsertOrUpdateUserTag(mid string, tag Tag) error {
+//InsertUserTag TAGをデータベースに保存します。
+//すでにある場合は上書きします
+func (cl *DBClient) InsertUserTag(mid string, tag Tag) error {
 	err := cl.UpdateUser(mid, bson.D{{
 		"tags." + tag.TagID, tag,
 	}})
@@ -158,7 +178,9 @@ func (cl *DBClient) InsertOrUpdateUserTag(mid string, tag Tag) error {
 	return nil
 }
 
-func (cl *DBClient) InsertOrUpdateUserContact(mid string, contact *Contact) error {
+//InsertUserContact　MIDごとのContactを、データベースに保存します。
+//すでにある場合は上書きします
+func (cl *DBClient) InsertUserContact(mid string, contact *Contact) error {
 	err := cl.UpdateUser(mid, bson.D{{
 		"contacts." + contact.MID, contact,
 	}})
@@ -168,13 +190,15 @@ func (cl *DBClient) InsertOrUpdateUserContact(mid string, contact *Contact) erro
 	return nil
 }
 
+//UpdateUserContactStatus　MIDごとのContactのContactStatusを更新します。
+//データベースにContactが存在しない場合、デフォルト値で新たに作ります
 func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status service.ContactStatus) error {
-	_, ok := cl.FetchUserContact(mid, targetMid)
-	if ok {
+	_, err := cl.FetchUserContact(mid, targetMid)
+	if err != nil {
 		err := cl.UpdateUser(mid, bson.D{{"contacts." + targetMid + ".cStatus", status}})
 		return err
 	}
-	err := cl.InsertOrUpdateUserContact(mid, &Contact{
+	err = cl.InsertUserContact(mid, &Contact{
 		MID:           targetMid,
 		TagIds:        []string{},
 		ContactStatus: RPCContactStatusToDBContactStatus(status),
@@ -182,6 +206,8 @@ func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status servic
 	return err
 }
 
+//AddToSetUserAttribute UserのArray要素に、データを追加します。
+//すでに存在している場合は、追加しません
 func (cl *DBClient) AddToSetUserAttribute(mid, fieldName string, object interface{}) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$addToSet": bson.M{fieldName: object}})
 	if err != nil {
@@ -190,6 +216,8 @@ func (cl *DBClient) AddToSetUserAttribute(mid, fieldName string, object interfac
 	return nil
 }
 
+//AddToSetUserAttributes　Userの複数のArray要素にデータを追加します
+//すでに存在している場合は追加しません
 func (cl *DBClient) AddToSetUserAttributes(mid, object bson.M) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$addToSet": object})
 	if err != nil {
@@ -198,6 +226,7 @@ func (cl *DBClient) AddToSetUserAttributes(mid, object bson.M) error {
 	return nil
 }
 
+//RemoveFromSetUserAttribute UserのArray要素から、データを削除します。
 func (cl *DBClient) RemoveFromSetUserAttribute(mid, fieldName, target string) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$pull": bson.M{fieldName: target}})
 	if err != nil {
@@ -206,6 +235,7 @@ func (cl *DBClient) RemoveFromSetUserAttribute(mid, fieldName, target string) er
 	return nil
 }
 
+//RemoveFromSetUserAttribute Userの複数のArray要素から、データを削除します。
 func (cl *DBClient) RemoveFromSetUserAttributes(mid string, targets bson.M) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$pull": targets})
 	if err != nil {

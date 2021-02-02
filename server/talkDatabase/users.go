@@ -183,7 +183,15 @@ func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status servic
 }
 
 func (cl *DBClient) AddToSetUserAttribute(mid, fieldName string, object interface{}) error {
-	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$addToSet": bson.M{fieldName: bson.M{"$each": object}}})
+	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$addToSet": bson.M{fieldName: object}})
+	if err != nil {
+		return status.Error(codes.Internal, "db error")
+	}
+	return nil
+}
+
+func (cl *DBClient) AddToSetUserAttributes(mid, object bson.M) error {
+	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": mid}, bson.M{"$addToSet": object})
 	if err != nil {
 		return status.Error(codes.Internal, "db error")
 	}

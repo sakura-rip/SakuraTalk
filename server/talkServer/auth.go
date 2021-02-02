@@ -24,11 +24,11 @@ func getHeader(ctx context.Context, key string) (string, bool) {
 func VerifyTokenAndGetUUID(ctx context.Context) (string, map[string]interface{}, error) {
 	token, ok := getHeader(ctx, "X-Sakura-Access")
 	if !ok {
-		return "", nil, status.New(codes.Unauthenticated, "authentication failed").Err()
+		return "", nil, status.Error(codes.Unauthenticated, "authentication failed")
 	}
 	jwt, err := authClient.VerifyIDToken(context.Background(), token)
 	if err != nil {
-		return "", nil, status.New(codes.Unauthenticated, "authentication failed").Err()
+		return "", nil, status.Error(codes.Unauthenticated, "authentication failed")
 	}
 	return jwt.UID, jwt.Claims, nil
 }

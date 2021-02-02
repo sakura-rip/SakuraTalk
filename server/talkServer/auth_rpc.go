@@ -14,13 +14,13 @@ import (
 func (t TalkHandler) RegisterPrimary(ctx context.Context, request *service.RegisterPrimaryRequest) (*service.RegisterPrimaryResponse, error) {
 	jwt, err := authClient.VerifyIDToken(ctx, request.Token)
 	if err != nil {
-		return nil, status.New(codes.Unauthenticated, "authentication failed").Err()
+		return nil, status.Error(codes.Unauthenticated, "authentication failed")
 	}
 	md := metadata.New(map[string]string{"x-sakura-access": request.Token})
 	err = grpc.SendHeader(ctx, md)
 	grpc.SetTrailer(ctx, md)
 	if err != nil {
-		return nil, status.New(codes.Internal, "internal error").Err()
+		return nil, status.Error(codes.Internal, "internal error")
 	}
 	if _, err := dbClient.FetchUserAttribute(jwt.UID, bson.D{{"mid", 1}}); err != nil {
 		err := dbClient.InsertNewUser(&talkDatabase.User{
@@ -34,7 +34,7 @@ func (t TalkHandler) RegisterPrimary(ctx context.Context, request *service.Regis
 			Contacts:        map[string]talkDatabase.Contact{},
 		})
 		if err != nil {
-			return nil, status.New(codes.Internal, "internal error").Err()
+			return nil, status.Error(codes.Internal, "internal error")
 		}
 	}
 	return &service.RegisterPrimaryResponse{}, nil

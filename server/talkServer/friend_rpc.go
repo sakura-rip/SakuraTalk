@@ -39,7 +39,7 @@ func (t TalkHandler) DeleteFriends(ctx context.Context, request *service.DeleteF
 		return nil, err
 	}
 	if !utils.IsStrInSlice(friendMids, request.Mid) {
-		return nil, status.New(codes.InvalidArgument, "request mid is not friend").Err()
+		return nil, status.Error(codes.InvalidArgument, "request mid is not friend")
 	}
 	err = dbClient.AddToSetUserAttribute(mid, "deletedIds", request.Mid)
 	if err != nil {

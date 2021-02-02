@@ -52,7 +52,7 @@ func (t TalkHandler) RegisterTags(ctx context.Context, request *service.Register
 	//タグの存在確認
 	_, ok := user.Tags[request.TagID]
 	if !ok {
-		return nil, status.New(codes.NotFound, "no such tag").Err()
+		return nil, status.Error(codes.NotFound, "no such tag")
 	}
 	contact, ok := user.Contacts[request.Mid]
 	if !ok {

@@ -20,7 +20,7 @@ func (cl *DBClient) FetchUser(mid string) (*User, error) {
 	)
 	var user *User
 	if rs.Decode(&user) != nil {
-		return user, status.New(codes.NotFound, "user not found").Err()
+		return user, status.Error(codes.NotFound, "user not found")
 	}
 	return user, nil
 }
@@ -33,7 +33,7 @@ func (cl *DBClient) FetchUserAttribute(mid string, attributes bson.D) (*User, er
 	)
 	var user *User
 	if rs.Decode(&user) != nil {
-		return user, status.New(codes.NotFound, "user not found").Err()
+		return user, status.Error(codes.NotFound, "user not found")
 	}
 	return user, nil
 }
@@ -73,7 +73,7 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 	}
 	value, ok := rs.Tags[tagId]
 	if !ok {
-		return nil, status.New(codes.NotFound, "tag not found").Err()
+		return nil, status.Error(codes.NotFound, "tag not found")
 	}
 	return &value, nil
 }

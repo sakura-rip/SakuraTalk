@@ -54,7 +54,7 @@ func newUnaryServerInterceptor(authFunc DefaultMiddleWare) grpc.UnaryServerInter
 		}
 		newCtx, err := authFunc(ctx)
 		if err != nil {
-			return nil, status.New(codes.Unauthenticated, "authentication failed").Err()
+			return nil, status.Error(codes.Unauthenticated, "authentication failed")
 		}
 		return handler(newCtx, req)
 	}
@@ -64,11 +64,11 @@ func newDefaultMiddleWare() DefaultMiddleWare {
 	return func(ctx context.Context) (context.Context, error) {
 		token, ok := getHeader(ctx, "X-Sakura-Access")
 		if !ok {
-			return ctx, status.New(codes.Unauthenticated, "authentication failed").Err()
+			return ctx, status.Error(codes.Unauthenticated, "authentication failed")
 		}
 		jwt, err := authClient.VerifyIDToken(ctx, token)
 		if err != nil {
-			return ctx, status.New(codes.Unauthenticated, "authentication failed").Err()
+			return ctx, status.Error(codes.Unauthenticated, "authentication failed")
 		}
 		ctx = utils.SetKeyAndValue(ctx, "mid", jwt.UID)
 		ctx = utils.SetKeyAndValue(ctx, "claims", jwt.Claims)

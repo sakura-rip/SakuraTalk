@@ -19,7 +19,7 @@ func (cl *DBClient) FetchGroup(gid string) (*Group, error) {
 	)
 	var grp *Group
 	if rs.Decode(&grp) != nil {
-		return grp, status.New(codes.NotFound, "use not found").Err()
+		return grp, status.Error(codes.NotFound, "use not found")
 	}
 	return grp, nil
 }
@@ -32,7 +32,7 @@ func (cl *DBClient) FetchGroupAttributes(gid string, attributes bson.D) (*Group,
 	)
 	var grp *Group
 	if rs.Decode(&grp) != nil {
-		return grp, status.New(codes.NotFound, "use not found").Err()
+		return grp, status.Error(codes.NotFound, "use not found")
 	}
 	return grp, nil
 }

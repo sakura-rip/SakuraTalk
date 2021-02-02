@@ -15,7 +15,7 @@ func (t TalkHandler) AddFriend(ctx context.Context, request *service.AddFriendRe
 		return nil, err
 	}
 	if utils.IsStrInSlice(blockedMids, request.Mid) {
-		return nil, status.New(codes.InvalidArgument, "request mid is blocked").Err()
+		return nil, status.Error(codes.InvalidArgument, "request mid is blocked")
 	}
 	err = dbClient.AddToSetUserAttribute(mid, "friendIds", request.Mid)
 	if err != nil {

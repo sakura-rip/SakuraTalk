@@ -24,14 +24,18 @@ func (t TalkHandler) RegisterPrimary(ctx context.Context, request *service.Regis
 	}
 	if _, err := dbClient.FetchUserAttribute(jwt.UID, bson.D{{"mid", 1}}); err != nil {
 		err := dbClient.InsertNewUser(&talkDatabase.User{
-			MID:             jwt.UID,
-			JoinedGroupIds:  []string{},
-			InvitedGroupIds: []string{},
-			FriendIds:       []string{},
-			BlockedIds:      []string{},
-			GroupSettings:   map[string]talkDatabase.GroupSetting{},
-			Tags:            map[string]talkDatabase.Tag{},
-			Contacts:        map[string]talkDatabase.Contact{},
+			MID:                jwt.UID,
+			JoinedGroupIds:     []string{},
+			InvitedGroupIds:    []string{},
+			FriendIds:          []string{},
+			BlockedIds:         []string{},
+			DeletedIds:         []string{},
+			ReceivedFriendIds:  []string{},
+			ReceivedBlockedIds: []string{},
+			ReceivedDeletedIds: []string{},
+			GroupSettings:      map[string]talkDatabase.GroupSetting{},
+			Tags:               map[string]talkDatabase.Tag{},
+			Contacts:           map[string]talkDatabase.Contact{},
 		})
 		if err != nil {
 			return nil, status.Error(codes.Internal, "internal error")

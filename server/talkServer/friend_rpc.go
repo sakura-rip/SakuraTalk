@@ -58,7 +58,31 @@ func (t TalkHandler) DeleteFriends(ctx context.Context, request *service.DeleteF
 }
 
 func (t TalkHandler) BlockFriends(ctx context.Context, request *service.BlockFriendsRequest) (*service.BlockFriendsResponse, error) {
-	panic("implement me")
+	mid := utils.GetMid(ctx)
+	user, err := dbClient.FetchUserAttribute(mid, bson.D{{"friendIds", 1}, {"blockedIds", 1}})
+	if err != nil {
+		return nil, err
+	}
+	if utils.IsStrInSlice(user.FriendIds, request.Mid) {
+		err = dbClient.RemoveFromSetUserAttribute(mid, "friendIds", request.Mid)
+		if err != nil {
+			return nil, err
+		}
+	}
+	//BLOCK済み
+	if utils.IsStrInSlice(user.BlockedIds, request.Mid) {
+		return nil, status.Error(codes.InvalidArgument, "already blocked")
+	}
+	err = dbClient.AddToSetUserAttribute(mid, "blockIds", request.Mid)
+	if err != nil {
+		return nil, err
+	}
+	err = dbClient.AddToSetUserAttribute(request.Mid, "recvBlockIds", mid)
+	if err != nil {
+		return nil, err
+	}
+	return &service.BlockFriendsResponse{}, err
+
 }
 
 func (t TalkHandler) UnblockFriends(ctx context.Context, request *service.UnblockFriendsRequest) (*service.UnblockFriendsResponse, error) {

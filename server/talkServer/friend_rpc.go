@@ -81,8 +81,11 @@ func (t TalkHandler) BlockFriends(ctx context.Context, request *service.BlockFri
 	if err != nil {
 		return nil, err
 	}
+	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_BLOCKED)
+	if err != nil {
+		return nil, err
+	}
 	return &service.BlockFriendsResponse{}, err
-
 }
 
 func (t TalkHandler) UnblockFriends(ctx context.Context, request *service.UnblockFriendsRequest) (*service.UnblockFriendsResponse, error) {

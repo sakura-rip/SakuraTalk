@@ -55,7 +55,7 @@ func (cl *Contact) ConvertToRPCStruct() *service.Contact {
 	rpcContact := &service.Contact{
 		Mid:             cl.MID,
 		OverWrittenName: cl.OverWrittenName,
-		ContactStatus:   DBContactStatusToRPCContactStatus(cl.ContactStatus),
+		ContactStatus:   DbContactStatusFromRPC(cl.ContactStatus),
 		TagIds:          cl.TagIds,
 	}
 	return rpcContact

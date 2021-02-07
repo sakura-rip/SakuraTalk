@@ -73,11 +73,11 @@ func (t TalkHandler) BlockFriends(ctx context.Context, request *service.BlockFri
 	if utils.IsStrInSlice(user.BlockedIds, request.Mid) {
 		return nil, status.Error(codes.InvalidArgument, "already blocked")
 	}
-	err = dbClient.AddToSetUserAttribute(mid, "blockIds", request.Mid)
+	err = dbClient.AddToSetUserAttribute(mid, "blockedIds", request.Mid)
 	if err != nil {
 		return nil, err
 	}
-	err = dbClient.AddToSetUserAttribute(request.Mid, "recvBlockIds", mid)
+	err = dbClient.AddToSetUserAttribute(request.Mid, "recvBlockedIds", mid)
 	if err != nil {
 		return nil, err
 	}

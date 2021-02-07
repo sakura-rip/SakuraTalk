@@ -201,7 +201,7 @@ func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status servic
 	err = cl.InsertUserContact(mid, &Contact{
 		MID:           targetMid,
 		TagIds:        []string{},
-		ContactStatus: RPCContactStatusToDBContactStatus(status),
+		ContactStatus: DBContactStatusFromRPC(status),
 	})
 	return err
 }

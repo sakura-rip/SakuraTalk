@@ -43,11 +43,11 @@ func (cl *Tag) ConvertToRPCStruct() *service.Tag {
 	return rpcTag
 }
 
-func RpcContactStatusFromDB(rpcCs service.ContactStatus) int64 {
+func DBContactStatusFromRPC(rpcCs service.ContactStatus) int64 {
 	return int64(rpcCs)
 }
 
-func DbContactStatusFromRPC(dbCs int64) service.ContactStatus {
+func RPCContactStatusFromDB(dbCs int64) service.ContactStatus {
 	return service.ContactStatus(dbCs)
 }
 
@@ -55,7 +55,7 @@ func (cl *Contact) ConvertToRPCStruct() *service.Contact {
 	rpcContact := &service.Contact{
 		Mid:             cl.MID,
 		OverWrittenName: cl.OverWrittenName,
-		ContactStatus:   DbContactStatusFromRPC(cl.ContactStatus),
+		ContactStatus:   RPCContactStatusFromDB(cl.ContactStatus),
 		TagIds:          cl.TagIds,
 	}
 	return rpcContact

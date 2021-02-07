@@ -42,33 +42,13 @@ func (cl *Tag) ConvertToRPCStruct() *service.Tag {
 	}
 	return rpcTag
 }
-func RPCContactStatusToDBContactStatus(rpcCs service.ContactStatus) int64 {
-	switch rpcCs {
-	case service.ContactStatus_NO_RELATION:
-		return 0
-	case service.ContactStatus_FRIEND:
-		return 1
-	case service.ContactStatus_BLOCKED:
-		return 2
-	case service.ContactStatus_DELETED:
-		return 3
-	default:
-		return 0
-	}
+
+func RpcContactStatusFromDB(rpcCs service.ContactStatus) int64 {
+	return int64(rpcCs)
 }
-func DBContactStatusToRPCContactStatus(dbCs int64) service.ContactStatus {
-	switch dbCs {
-	case 0:
-		return service.ContactStatus_NO_RELATION
-	case 1:
-		return service.ContactStatus_FRIEND
-	case 2:
-		return service.ContactStatus_BLOCKED
-	case 3:
-		return service.ContactStatus_DELETED
-	default:
-		return service.ContactStatus_NO_RELATION
-	}
+
+func DbContactStatusFromRPC(dbCs int64) service.ContactStatus {
+	return service.ContactStatus(dbCs)
 }
 
 func (cl *Contact) ConvertToRPCStruct() *service.Contact {

@@ -12,22 +12,22 @@ func (t TalkHandler) AddFriend(ctx context.Context, request *service.AddFriendRe
 	mid := utils.GetMid(ctx)
 	blockedMids, err := dbClient.FetchUserBlockedIds(mid)
 	if err != nil {
-		return nil, err
+		return &service.AddFriendResponse{}, err
 	}
 	if utils.IsStrInSlice(blockedMids, request.Mid) {
-		return nil, status.Error(codes.InvalidArgument, "request mid is blocked")
+		return &service.AddFriendResponse{}, status.Error(codes.InvalidArgument, "request mid is blocked")
 	}
 	err = dbClient.AddToSetUserAttribute(mid, "friendIds", request.Mid)
 	if err != nil {
-		return nil, err
+		return &service.AddFriendResponse{}, err
 	}
 	err = dbClient.AddToSetUserAttribute(request.Mid, "recvFriendIds", mid)
 	if err != nil {
-		return nil, err
+		return &service.AddFriendResponse{}, err
 	}
 	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_FRIEND)
 	if err != nil {
-		return nil, err
+		return &service.AddFriendResponse{}, err
 	}
 	return &service.AddFriendResponse{}, err
 }
@@ -36,22 +36,22 @@ func (t TalkHandler) DeleteFriends(ctx context.Context, request *service.DeleteF
 	mid := utils.GetMid(ctx)
 	friendMids, err := dbClient.FetchUserFriendIds(mid)
 	if err != nil {
-		return nil, err
+		return &service.DeleteFriendsResponse{}, err
 	}
 	if !utils.IsStrInSlice(friendMids, request.Mid) {
-		return nil, status.Error(codes.InvalidArgument, "request mid is not friend")
+		return &service.DeleteFriendsResponse{}, status.Error(codes.InvalidArgument, "request mid is not friend")
 	}
 	err = dbClient.AddToSetUserAttribute(mid, "deletedIds", request.Mid)
 	if err != nil {
-		return nil, err
+		return &service.DeleteFriendsResponse{}, err
 	}
 	err = dbClient.AddToSetUserAttribute(request.Mid, "recvDeletedIds", mid)
 	if err != nil {
-		return nil, err
+		return &service.DeleteFriendsResponse{}, err
 	}
 	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_DELETED)
 	if err != nil {
-		return nil, err
+		return &service.DeleteFriendsResponse{}, err
 	}
 	return &service.DeleteFriendsResponse{}, nil
 }
@@ -60,25 +60,25 @@ func (t TalkHandler) BlockFriends(ctx context.Context, request *service.BlockFri
 	mid := utils.GetMid(ctx)
 	user, err := dbClient.FetchUserAttributes(mid, "friendIds", "blockedIds")
 	if err != nil {
-		return nil, err
+		return &service.BlockFriendsResponse{}, err
 	}
 	if utils.IsStrInSlice(user.FriendIds, request.Mid) {
 		err = dbClient.RemoveFromSetUserAttribute(mid, "friendIds", request.Mid)
 		if err != nil {
-			return nil, err
+			return &service.BlockFriendsResponse{}, err
 		}
 	}
 	//BLOCK済み
 	if utils.IsStrInSlice(user.BlockedIds, request.Mid) {
-		return nil, status.Error(codes.InvalidArgument, "already blocked")
+		return &service.BlockFriendsResponse{}, status.Error(codes.InvalidArgument, "already blocked")
 	}
 	err = dbClient.AddToSetUserAttribute(mid, "blockedIds", request.Mid)
 	if err != nil {
-		return nil, err
+		return &service.BlockFriendsResponse{}, err
 	}
 	err = dbClient.AddToSetUserAttribute(request.Mid, "recvBlockedIds", mid)
 	if err != nil {
-		return nil, err
+		return &service.BlockFriendsResponse{}, err
 	}
 	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_BLOCKED)
 	if err != nil {
@@ -91,22 +91,22 @@ func (t TalkHandler) UnblockFriends(ctx context.Context, request *service.Unbloc
 	mid := utils.GetMid(ctx)
 	user, err := dbClient.FetchUserAttributes(mid, "blockedIds")
 	if err != nil {
-		return nil, err
+		return &service.UnblockFriendsResponse{}, err
 	}
 	if !utils.IsStrInSlice(user.BlockedIds, request.Mid) {
-		return nil, status.Error(codes.InvalidArgument, "request mid is not blocked")
+		return &service.UnblockFriendsResponse{}, status.Error(codes.InvalidArgument, "request mid is not blocked")
 	}
 	err = dbClient.RemoveFromSetUserAttribute(mid, "blockedIds", request.Mid)
 	if err != nil {
-		return nil, err
+		return &service.UnblockFriendsResponse{}, err
 	}
 	err = dbClient.RemoveFromSetUserAttribute(request.Mid, "recvBlockedIds", mid)
 	if err != nil {
-		return nil, err
+		return &service.UnblockFriendsResponse{}, err
 	}
 	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_NO_RELATION)
 	if err != nil {
-		return nil, err
+		return &service.UnblockFriendsResponse{}, err
 	}
 	return &service.UnblockFriendsResponse{}, nil
 }
@@ -118,10 +118,10 @@ func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *service.
 		return nil, err
 	}
 	if !utils.IsStrInSlice(user.FriendIds, request.Mid) {
-		return nil, status.Error(codes.InvalidArgument, "request mid is not friend")
+		return &service.AddFriendsToFavoriteResponse{}, status.Error(codes.InvalidArgument, "request mid is not friend")
 	}
 	if utils.IsStrInSlice(user.BlockedIds, request.Mid) {
-		return nil, status.Error(codes.InvalidArgument, "request mid is blocked")
+		return &service.AddFriendsToFavoriteResponse{}, status.Error(codes.InvalidArgument, "request mid is blocked")
 	}
 	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_FAVORITE)
 	if err != nil {

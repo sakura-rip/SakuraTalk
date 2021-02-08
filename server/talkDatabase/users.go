@@ -60,7 +60,7 @@ func (cl *DBClient) FetchUserSetting(mid string) (*Setting, error) {
 
 //FetchUserProfile データーベースの中からMIDのユーザーのプロフォールを取得する
 func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
-	rs, err := cl.FetchUserAttributes(mid, "setting")
+	rs, err := cl.FetchUserAttributes(mid, "profile")
 	if rs == nil {
 		return nil, err
 	}

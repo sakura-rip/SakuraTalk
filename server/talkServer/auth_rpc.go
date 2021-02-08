@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/sakura-rip/SakuraTalk/talkDatabase"
 	service "github.com/sakura-rip/SakuraTalk/talkService"
-	"go.mongodb.org/mongo-driver/bson"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -22,7 +21,7 @@ func (t TalkHandler) RegisterPrimary(ctx context.Context, request *service.Regis
 	if err != nil {
 		return nil, status.Error(codes.Internal, "internal error")
 	}
-	if _, err := dbClient.FetchUserAttribute(jwt.UID, bson.D{{"mid", 1}}); err != nil {
+	if _, err := dbClient.FetchUserAttributes(jwt.UID, "mid"); err != nil {
 		err := dbClient.InsertNewUser(&talkDatabase.User{
 			MID:                jwt.UID,
 			JoinedGroupIds:     []string{},

@@ -41,9 +41,17 @@ func (cl *DBClient) FetchUserAttribute(mid string, attributes bson.D) (*User, er
 	return user, nil
 }
 
+func (cl *DBClient) FetchUserAttributes(mid string, attributes ...string) (*User, error) {
+	var projections = bson.D{}
+	for _, attribute := range attributes {
+		projections = append(projections, bson.E{Key: attribute, Value: 1})
+	}
+	return cl.FetchUserAttribute(mid, projections)
+}
+
 //FetchUserSetting　データベースの中からMIDのユーザーのSettingを取り出します
 func (cl *DBClient) FetchUserSetting(mid string) (*Setting, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"setting", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "setting")
 	if rs == nil {
 		return nil, err
 	}
@@ -52,7 +60,7 @@ func (cl *DBClient) FetchUserSetting(mid string) (*Setting, error) {
 
 //FetchUserProfile データーベースの中からMIDのユーザーのプロフォールを取得する
 func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"setting", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "setting")
 	if rs == nil {
 		return nil, err
 	}
@@ -62,7 +70,7 @@ func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
 //FetchUserContact　データーベースのなかからMIDごとのContactを取得する
 //存在しない場合、特にデフォルト値をいじらなければいけない部分はないので、そのままMIDをつけたContactを返す
 func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"contacts", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "contacts")
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +84,7 @@ func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
 //FetchUserTag　データベースのなかからMIDごとのTAGを取得する
 //存在しない場合はerrorを返す
 func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"tags", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "tags")
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +98,7 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 //FetchUserGroupSettings　ユーザーごとのGroupの設定を取得する。
 //存在しない場合は、デフォルトの設定を返す
 func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"groupSettings", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "groupSettings")
 	if err != nil {
 		return nil, err
 	}
@@ -103,7 +111,7 @@ func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, erro
 
 //FetchUserJoinedGroupIds　データベースから、MIDの参加しているGroupのMID一覧を取得する
 func (cl *DBClient) FetchUserJoinedGroupIds(mid string) ([]string, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"jGroupIds", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "jGroupIds")
 	if err != nil {
 		return []string{}, err
 	}
@@ -112,7 +120,7 @@ func (cl *DBClient) FetchUserJoinedGroupIds(mid string) ([]string, error) {
 
 //FetchUserInvitedGroupIds　デーたーべすから、MIDの招待されているGroupのMID一覧を取得する
 func (cl *DBClient) FetchUserInvitedGroupIds(mid string) ([]string, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"iGroupIds", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "iGroupIds")
 	if err != nil {
 		return []string{}, err
 	}
@@ -121,7 +129,7 @@ func (cl *DBClient) FetchUserInvitedGroupIds(mid string) ([]string, error) {
 
 //FetchUserFriendIds データベースから、MIDの友達のID一覧を取得する
 func (cl *DBClient) FetchUserFriendIds(mid string) ([]string, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"friendIds", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "friendIds")
 	if err != nil {
 		return []string{}, err
 	}
@@ -130,7 +138,7 @@ func (cl *DBClient) FetchUserFriendIds(mid string) ([]string, error) {
 
 //FetchUserBlockedIds　データベースから、MIDがブロックしている人の一覧を取得する
 func (cl *DBClient) FetchUserBlockedIds(mid string) ([]string, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"blockedIds", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "blockedIds")
 	if err != nil {
 		return []string{}, err
 	}
@@ -139,7 +147,7 @@ func (cl *DBClient) FetchUserBlockedIds(mid string) ([]string, error) {
 
 //FetchUserHashedPassword　データベースから、ハッシュ化されているパスワードを取り出す。
 func (cl *DBClient) FetchUserHashedPassword(mid string) (string, error) {
-	rs, err := cl.FetchUserAttribute(mid, bson.D{{"hashedPasswd", 1}})
+	rs, err := cl.FetchUserAttributes(mid, "hashedPasswd")
 	if err != nil {
 		return "", err
 	}

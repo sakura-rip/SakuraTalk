@@ -4,7 +4,6 @@ import (
 	"context"
 	service "github.com/sakura-rip/SakuraTalk/talkService"
 	"github.com/sakura-rip/SakuraTalk/utils"
-	"go.mongodb.org/mongo-driver/bson"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -59,7 +58,7 @@ func (t TalkHandler) DeleteFriends(ctx context.Context, request *service.DeleteF
 
 func (t TalkHandler) BlockFriends(ctx context.Context, request *service.BlockFriendsRequest) (*service.BlockFriendsResponse, error) {
 	mid := utils.GetMid(ctx)
-	user, err := dbClient.FetchUserAttribute(mid, bson.D{{"friendIds", 1}, {"blockedIds", 1}})
+	user, err := dbClient.FetchUserAttributes(mid, "friendIds", "blockedIds")
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +89,7 @@ func (t TalkHandler) BlockFriends(ctx context.Context, request *service.BlockFri
 
 func (t TalkHandler) UnblockFriends(ctx context.Context, request *service.UnblockFriendsRequest) (*service.UnblockFriendsResponse, error) {
 	mid := utils.GetMid(ctx)
-	user, err := dbClient.FetchUserAttribute(mid, bson.D{{"blockedIds", 1}})
+	user, err := dbClient.FetchUserAttributes(mid, "blockedIds")
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +113,7 @@ func (t TalkHandler) UnblockFriends(ctx context.Context, request *service.Unbloc
 
 func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *service.AddFriendsToFavoriteRequest) (*service.AddFriendsToFavoriteResponse, error) {
 	mid := utils.GetMid(ctx)
-	user, err := dbClient.FetchUserAttribute(mid, bson.D{{"friendIds", 1}, {"blockedIds", 1}})
+	user, err := dbClient.FetchUserAttributes(mid, "friendIds", "blockedIds")
 	if err != nil {
 		return nil, err
 	}

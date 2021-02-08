@@ -44,7 +44,7 @@ func (t TalkHandler) UpdateTag(ctx context.Context, request *service.UpdateTagRe
 }
 
 func (t TalkHandler) RegisterTags(ctx context.Context, request *service.RegisterTagsRequest) (*service.RegisterTagsResponse, error) {
-	user, err := dbClient.FetchUserAttribute(request.Mid, bson.D{{"contacts", 1}, {"profile", 1}, {"tags", 1}})
+	user, err := dbClient.FetchUserAttributes(request.Mid, "contacts", "profile", "tags")
 	//付与先のユーザー存在確認
 	if err != nil {
 		return nil, err
@@ -71,7 +71,7 @@ func (t TalkHandler) RegisterTags(ctx context.Context, request *service.Register
 
 func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*service.GetAllTagsResponse, error) {
 	var tagIds []string
-	user, err := dbClient.FetchUserAttribute(utils.GetMid(ctx), bson.D{{"tags", 1}})
+	user, err := dbClient.FetchUserAttributes(utils.GetMid(ctx), "tags")
 	if err != nil {
 		return nil, err
 	}

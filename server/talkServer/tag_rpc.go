@@ -22,7 +22,7 @@ func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRe
 	}
 	err := dbClient.InsertUserTag(utils.GetMid(ctx), dbTag)
 	if err != nil {
-		return nil, err
+		return &service.CreateTagResponse{}, err
 	}
 	return &service.CreateTagResponse{TagID: tagID}, nil
 }
@@ -38,7 +38,7 @@ func (t TalkHandler) UpdateTag(ctx context.Context, request *service.UpdateTagRe
 	}
 	err := dbClient.InsertUserTag(utils.GetMid(ctx), dbTag)
 	if err != nil {
-		return nil, err
+		return &service.UpdateTagResponse{}, err
 	}
 	return &service.UpdateTagResponse{}, nil
 }
@@ -47,12 +47,12 @@ func (t TalkHandler) RegisterTags(ctx context.Context, request *service.Register
 	user, err := dbClient.FetchUserAttributes(request.Mid, "contacts", "profile", "tags")
 	//付与先のユーザー存在確認
 	if err != nil {
-		return nil, err
+		return &service.RegisterTagsResponse{}, err
 	}
 	//タグの存在確認
 	_, ok := user.Tags[request.TagID]
 	if !ok {
-		return nil, status.Error(codes.NotFound, "no such tag")
+		return &service.RegisterTagsResponse{}, status.Error(codes.NotFound, "no such tag")
 	}
 	contact, ok := user.Contacts[request.Mid]
 	if !ok {
@@ -64,7 +64,7 @@ func (t TalkHandler) RegisterTags(ctx context.Context, request *service.Register
 	contact.TagIds = append(contact.TagIds, request.TagID)
 	err = dbClient.UpdateUser(utils.GetMid(ctx), bson.D{{"contacts." + request.Mid, contact}})
 	if err != nil {
-		return nil, err
+		return &service.RegisterTagsResponse{}, err
 	}
 	return &service.RegisterTagsResponse{}, nil
 }
@@ -73,7 +73,7 @@ func (t TalkHandler) GetAllTags(ctx context.Context, empty *service.Empty) (*ser
 	var tagIds []string
 	user, err := dbClient.FetchUserAttributes(utils.GetMid(ctx), "tags")
 	if err != nil {
-		return nil, err
+		return &service.GetAllTagsResponse{}, err
 	}
 	for tagID := range user.Tags {
 		tagIds = append(tagIds, tagID)
@@ -90,7 +90,7 @@ func (t TalkHandler) DeleteTag(ctx context.Context, request *service.DeleteTagRe
 func (t TalkHandler) GetTag(ctx context.Context, request *service.GetTagRequest) (*service.GetTagResponse, error) {
 	tag, err := dbClient.FetchUserTag(utils.GetMid(ctx), request.TagId)
 	if err != nil {
-		return nil, err
+		return &service.GetTagResponse{}, err
 	}
 	response := &service.GetTagResponse{}
 	response.Tag = tag.ConvertToRPCStruct()

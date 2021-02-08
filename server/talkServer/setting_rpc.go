@@ -10,7 +10,7 @@ import (
 func (t TalkHandler) GetSetting(ctx context.Context, empty *service.Empty) (*service.Setting, error) {
 	dbSetting, err := dbClient.FetchUserSetting(utils.GetMid(ctx))
 	if err != nil {
-		return nil, err
+		return &service.Setting{}, err
 	}
 	return dbSetting.ConvertToRPCStruct(), err
 }
@@ -33,7 +33,7 @@ func (t TalkHandler) UpdateSettingAttributes(ctx context.Context, request *servi
 	}
 	err := dbClient.UpdateUser(utils.GetMid(ctx), updateObject)
 	if err != nil {
-		return nil, err
+		return &service.UpdateSettingAttributesResponse{}, err
 	}
 	return &service.UpdateSettingAttributesResponse{}, nil
 }

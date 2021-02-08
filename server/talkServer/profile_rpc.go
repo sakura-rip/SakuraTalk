@@ -37,7 +37,7 @@ func (t TalkHandler) UpdateProfileAttributes(ctx context.Context, request *servi
 	}
 	err := dbClient.UpdateUser(utils.GetMid(ctx), updateObject)
 	if err != nil {
-		return nil, err
+		return &service.UpdateProfileAttributesResponse{}, err
 	}
 	return &service.UpdateProfileAttributesResponse{}, nil
 }
@@ -45,7 +45,7 @@ func (t TalkHandler) UpdateProfileAttributes(ctx context.Context, request *servi
 func (t TalkHandler) GetProfile(ctx context.Context, empty *service.Empty) (*service.Profile, error) {
 	profile, err := dbClient.FetchUserProfile(utils.GetMid(ctx))
 	if err != nil {
-		return nil, err
+		return &service.Profile{}, err
 	}
 	return profile.ConvertToRPCStruct(), nil
 }

@@ -95,7 +95,7 @@ func (t TalkHandler) UnblockFriends(ctx context.Context, request *service.Unbloc
 		return nil, err
 	}
 	if !utils.IsStrInSlice(user.BlockedIds, request.Mid) {
-		return nil, status.Error(codes.InvalidArgument, "mid is not blocked")
+		return nil, status.Error(codes.InvalidArgument, "request mid is not blocked")
 	}
 	err = dbClient.RemoveFromSetUserAttribute(mid, "blockedIds", request.Mid)
 	if err != nil {

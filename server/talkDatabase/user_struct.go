@@ -1,5 +1,10 @@
 package talkDatabase
 
+import (
+	"fmt"
+	"reflect"
+)
+
 type User struct {
 	MID            string `bson:"_id"`
 	HashedPassword string `bson:"hashedPasswd"`
@@ -21,6 +26,14 @@ type User struct {
 	GroupSettings map[string]GroupSetting `bson:"groupSettings"`
 	Tags          map[string]Tag          `bson:"tags"`
 	Contacts      map[string]Contact      `bson:"contacts"`
+}
+
+func (cl User) GetBsonName(fieldName string) (string, error) {
+	field, ok := reflect.TypeOf(cl).Elem().FieldByName(fieldName)
+	if !ok {
+		return "", fmt.Errorf("no such field name")
+	}
+	return field.Tag.Get("bson"), nil
 }
 
 func NewUser() *User {

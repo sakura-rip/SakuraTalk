@@ -103,6 +103,7 @@ func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, erro
 		return nil, err
 	}
 	value, ok := rs.GroupSettings[gid]
+	//TODO: デフォルトのGroupSettingsをだす
 	if !ok {
 		return nil, err
 	}

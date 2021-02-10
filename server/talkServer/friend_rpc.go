@@ -125,7 +125,7 @@ func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *service.
 	}
 	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_FAVORITE)
 	if err != nil {
-		return nil, err
+		return &service.AddFriendsToFavoriteResponse{}, err
 	}
 	return &service.AddFriendsToFavoriteResponse{}, err
 }

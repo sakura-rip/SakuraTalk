@@ -11,6 +11,7 @@ import (
 )
 
 func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRequest) (*service.CreateTagResponse, error) {
+	//TODO: すでに同じ名前のTAGがないか
 	tagID := utils.GenerateUUID()
 	dbTag := talkDatabase.Tag{
 		TagID:       tagID,
@@ -28,6 +29,7 @@ func (t TalkHandler) CreateTag(ctx context.Context, request *service.CreateTagRe
 }
 
 func (t TalkHandler) UpdateTag(ctx context.Context, request *service.UpdateTagRequest) (*service.UpdateTagResponse, error) {
+	//TODO: すでに同じ名前のTAGがないか
 	dbTag := talkDatabase.Tag{
 		TagID:       request.Tag.TagID,
 		Name:        request.Tag.Name,

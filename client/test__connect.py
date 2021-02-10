@@ -25,8 +25,8 @@ firebase_token = signUpWithEmailAndPasswd(email="fadsfads@gamil.com", password="
 channel = grpc.insecure_channel('localhost:8806')
 channel = grpc.intercept_channel(channel, newMetadataClientInterceptor(("x-sakura-access", firebase_token)))
 
-stub = sakuraTalk_pb2_grpc.TalkServiceStub(channel)
-primary = stub.registerPrimary(
+client = sakuraTalk_pb2_grpc.TalkServiceStub(channel)
+primary = client.registerPrimary(
     sakuraTalk_pb2.registerPrimaryRequest(token=firebase_token)
 )
 tag = sakuraTalk_pb2.Tag(
@@ -37,7 +37,7 @@ tag = sakuraTalk_pb2.Tag(
     creator="creator",
     createdTime=0
 )
-response = stub.createTag(
+response = client.createTag(
     sakuraTalk_pb2.createTagRequest(tag=tag)
 )
 print(response.tagID)

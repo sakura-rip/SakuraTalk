@@ -127,7 +127,7 @@ func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *service.
 	if err != nil {
 		return &service.AddFriendsToFavoriteResponse{}, err
 	}
-	return &service.AddFriendsToFavoriteResponse{}, err
+	return &service.AddFriendsToFavoriteResponse{}, nil
 }
 
 func (t TalkHandler) RemoveFriendsFromFavorite(ctx context.Context, request *service.RemoveFriendsFromFavoriteRequest) (*service.RemoveFriendsFromFavoriteResponse, error) {

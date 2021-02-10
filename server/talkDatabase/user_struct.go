@@ -93,6 +93,7 @@ type Contact struct {
 	OverWrittenName string   `bson:"owName"`
 	TagIds          []string `bson:"tagIds"`
 
+	IsFavorite    bool  `bson:"isFavorite"`
 	ContactStatus int64 `bson:"cStatus"`
 }
 

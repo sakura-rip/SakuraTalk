@@ -123,7 +123,7 @@ func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *service.
 	if utils.IsStrInSlice(user.BlockedIds, request.Mid) {
 		return &service.AddFriendsToFavoriteResponse{}, status.Error(codes.InvalidArgument, "request mid is blocked")
 	}
-	err = dbClient.UpdateUserContactStatus(mid, request.Mid, service.ContactStatus_FAVORITE)
+	err = dbClient.UpdateUserContactIsFavorite(mid, request.Mid, true)
 	if err != nil {
 		return &service.AddFriendsToFavoriteResponse{}, err
 	}

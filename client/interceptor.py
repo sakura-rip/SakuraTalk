@@ -33,5 +33,5 @@ class MetadataClientInterceptor(ClientInterceptor):
 
 def newMetadataClientInterceptor(*metadata: Tuple[str, str]) -> MetadataClientInterceptor:
     interceptor = MetadataClientInterceptor()
-    interceptor.metadata = [*metadata]
+    interceptor.metadata = list(metadata)
     return interceptor

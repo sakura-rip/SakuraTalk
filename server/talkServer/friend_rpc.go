@@ -131,5 +131,21 @@ func (t TalkHandler) AddFriendsToFavorite(ctx context.Context, request *service.
 }
 
 func (t TalkHandler) RemoveFriendsFromFavorite(ctx context.Context, request *service.RemoveFriendsFromFavoriteRequest) (*service.RemoveFriendsFromFavoriteResponse, error) {
-	panic("implement me")
+	mid := utils.GetMid(ctx)
+	user, err := dbClient.FetchUserAttributes(mid, "friendIds", "blockedIds")
+	if err != nil {
+		return nil, err
+	}
+	if !utils.IsStrInSlice(user.FriendIds, request.Mid) {
+		return &service.RemoveFriendsFromFavoriteResponse{}, status.Error(codes.InvalidArgument, "request mid is not friend")
+	}
+	if utils.IsStrInSlice(user.BlockedIds, request.Mid) {
+		return &service.RemoveFriendsFromFavoriteResponse{}, status.Error(codes.InvalidArgument, "request mid is blocked")
+	}
+	err = dbClient.UpdateUserContactIsFavorite(mid, request.Mid, false)
+	if err != nil {
+		return &service.RemoveFriendsFromFavoriteResponse{}, err
+	}
+	return &service.RemoveFriendsFromFavoriteResponse{}, nil
+
 }

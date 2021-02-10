@@ -5,7 +5,8 @@ import requests
 
 from config import Config
 from interceptor import newMetadataClientInterceptor
-from protoc import sakuraTalk_pb2_grpc, sakuraTalk_pb2
+from protoc import sakuraTalk_pb2 as service
+from protoc import sakuraTalk_pb2_grpc
 
 
 def signUpWithEmailAndPasswd(email: str, password: str):
@@ -27,9 +28,9 @@ channel = grpc.intercept_channel(channel, newMetadataClientInterceptor(("x-sakur
 
 client = sakuraTalk_pb2_grpc.TalkServiceStub(channel)
 primary = client.registerPrimary(
-    sakuraTalk_pb2.registerPrimaryRequest(token=firebase_token)
+    service.registerPrimaryRequest(token=firebase_token)
 )
-tag = sakuraTalk_pb2.Tag(
+tag = service.Tag(
     tagID="",
     name="name",
     description="description",
@@ -38,6 +39,6 @@ tag = sakuraTalk_pb2.Tag(
     createdTime=0
 )
 response = client.createTag(
-    sakuraTalk_pb2.createTagRequest(tag=tag)
+    service.createTagRequest(tag=tag)
 )
 print(response.tagID)

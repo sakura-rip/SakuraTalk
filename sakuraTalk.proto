@@ -205,7 +205,6 @@ enum ContactStatus {
   FRIEND = 1;
   BLOCKED = 2;
   DELETED = 3;
-  FAVORITE = 4;
 }
 
 message Contact {

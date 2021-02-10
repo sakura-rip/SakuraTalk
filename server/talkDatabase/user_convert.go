@@ -56,6 +56,7 @@ func (cl *Contact) ConvertToRPCStruct() *service.Contact {
 		Mid:             cl.MID,
 		OverWrittenName: cl.OverWrittenName,
 		ContactStatus:   RPCContactStatusFromDB(cl.ContactStatus),
+		IsFavorite:      cl.IsFavorite,
 		TagIds:          cl.TagIds,
 	}
 	return rpcContact

@@ -31,7 +31,7 @@ class MetadataClientInterceptor(ClientInterceptor):
         return method(request_or_iterator, new_details)
 
 
-def newMetadataClientInterceptor(*metadata) -> MetadataClientInterceptor:
+def newMetadataClientInterceptor(*metadata: Tuple[str, str]) -> MetadataClientInterceptor:
     interceptor = MetadataClientInterceptor()
     interceptor.metadata = [*metadata]
     return interceptor

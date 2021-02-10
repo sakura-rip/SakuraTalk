@@ -215,6 +215,16 @@ func (cl *DBClient) UpdateUserContactStatus(mid, targetMid string, status servic
 	return err
 }
 
+//UpdateUserContactIsFavorite MIDのユーザーのContactの中の、targetMIDのisFavoriteを変更する。
+//すでに追加/ブロック/削除されていることが前提なのでそのままＵｐｄａｔｅする
+func (cl *DBClient) UpdateUserContactIsFavorite(mid, targetMid string, tOrF bool) error {
+	err := cl.UpdateUser(mid, bson.D{{"contacts." + targetMid + ".isFavorite", tOrF}})
+	if err != nil {
+		return status.Error(codes.Internal, "db error")
+	}
+	return nil
+}
+
 //AddToSetUserAttribute UserのArray要素に、データを追加します。
 //すでに存在している場合は、追加しません
 func (cl *DBClient) AddToSetUserAttribute(mid, fieldName string, object interface{}) error {

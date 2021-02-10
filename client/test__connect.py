@@ -3,10 +3,9 @@ import json
 import grpc
 import requests
 
-import sakuraTalk_pb2
-import sakuraTalk_pb2_grpc
 from config import Config
 from interceptor import newMetadataClientInterceptor
+from protoc import sakuraTalk_pb2_grpc, sakuraTalk_pb2
 
 
 def signUpWithEmailAndPasswd(email: str, password: str):

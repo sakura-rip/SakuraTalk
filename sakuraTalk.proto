@@ -222,7 +222,8 @@ message Contact {
   int64 birthDay = 12;
   string status = 13;
   ContactStatus contactStatus = 14;
-  repeated string tagIds = 15;
+  bool isFavorite = 15;
+  repeated string tagIds = 16;
 }
 
 message getContactsRequest {

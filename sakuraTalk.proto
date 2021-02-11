@@ -341,7 +341,7 @@ message Group {
 }
 
 message getGroupsRequest {
-  repeated string groupID = 1;
+  repeated string groupIds = 1;
 }
 message getGroupsResponse {
  map<string, Group> groups = 1;

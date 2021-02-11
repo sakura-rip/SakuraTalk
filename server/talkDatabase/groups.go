@@ -24,7 +24,7 @@ func (cl *DBClient) FetchGroup(gid string) (*Group, error) {
 	return grp, nil
 }
 
-func (cl *DBClient) FetchGroupAttributes(gid string, attributes bson.D) (*Group, error) {
+func (cl *DBClient) FetchGroupAttribute(gid string, attributes bson.D) (*Group, error) {
 	rs := cl.GroupCol.FindOne(
 		cl.Ctx,
 		bson.D{{"_id", gid}},

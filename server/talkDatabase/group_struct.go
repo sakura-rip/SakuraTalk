@@ -36,5 +36,13 @@ type GroupSetting struct {
 }
 
 func NewGroupSetting() *GroupSetting {
-	return &GroupSetting{}
+	return &GroupSetting{
+		EnableNotification:        false,
+		EnableNotificationMention: true,
+		EnableNotificationOnJoin:  true,
+		EnableNotificationOnKick:  true,
+		OverWrittenName:           "",
+		TagIds:                    []string{},
+		IsFavorite:                false,
+	}
 }

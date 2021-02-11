@@ -32,6 +32,7 @@ type GroupSetting struct {
 
 	OverWrittenName string   `bson:"owName"`
 	TagIds          []string `bson:"tagIds"`
+	IsFavorite      bool     `bson:"isFavorite"`
 }
 
 func NewGroupSetting() *GroupSetting {

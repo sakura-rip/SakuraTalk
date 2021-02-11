@@ -337,7 +337,7 @@ message Group {
   repeated string tagIDs = 13;
   string invitationTicket  = 14;
   repeated string memberIds = 15;
-  repeated string inviteeIds = 16;
+  repeated string invitedIds = 16;
 }
 
 message getGroupsRequest {

@@ -97,17 +97,24 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 
 //FetchUserGroupSettings　ユーザーごとのGroupの設定を取得する。
 //存在しない場合は、デフォルトの設定を返す
-func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, error) {
+func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, bool) {
 	rs, err := cl.FetchUserAttributes(mid, "groupSettings")
 	if err != nil {
-		return nil, err
+		return nil, false
 	}
 	value, ok := rs.GroupSettings[gid]
-	//TODO: デフォルトのGroupSettingsをだす
-	if !ok {
-		return nil, err
+	if ok {
+		return &GroupSetting{
+			EnableNotification:        false,
+			EnableNotificationMention: true,
+			EnableNotificationOnJoin:  true,
+			EnableNotificationOnKick:  true,
+			OverWrittenName:           "",
+			TagIds:                    []string{},
+			IsFavorite:                false,
+		}, false
 	}
-	return &value, nil
+	return &value, true
 }
 
 //FetchUserJoinedGroupIds　データベースから、MIDの参加しているGroupのMID一覧を取得する

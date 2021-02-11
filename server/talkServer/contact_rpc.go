@@ -42,5 +42,20 @@ func (t TalkHandler) GetContacts(ctx context.Context, request *service.GetContac
 }
 
 func (t TalkHandler) UpdateContact(ctx context.Context, request *service.UpdateContactRequest) (*service.UpdateContactResponse, error) {
-	panic("implement me")
+	mid := utils.GetMid(ctx)
+	_, err := dbClient.FetchUser(request.Contact.Mid)
+	if err != nil {
+		return &service.UpdateContactResponse{}, err
+	}
+	err = dbClient.InsertUserContact(mid, &talkDatabase.Contact{
+		MID:             request.Contact.Mid,
+		OverWrittenName: request.Contact.OverWrittenName,
+		TagIds:          request.Contact.TagIds,
+		ContactStatus:   talkDatabase.DBContactStatusFromRPC(request.Contact.ContactStatus),
+	})
+	if err != nil {
+		return &service.UpdateContactResponse{}, err
+	}
+
+	return &service.UpdateContactResponse{}, nil
 }

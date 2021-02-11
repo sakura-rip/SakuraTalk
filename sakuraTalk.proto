@@ -349,6 +349,9 @@ message getGroupResponse {
 
 message createGroupRequest {
   string name = 1;
+  repeated string inviteMids = 2;
+  string description = 3;
+  string iconPath = 4;
 }
 message createGroupResponse {
   string gid = 1;

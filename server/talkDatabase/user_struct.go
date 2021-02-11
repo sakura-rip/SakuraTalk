@@ -96,6 +96,6 @@ type Contact struct {
 	ContactStatus int64 `bson:"cStatus"`
 }
 
-func NewContact() *Contact {
-	return &Contact{}
+func NewContact(mid string) *Contact {
+	return &Contact{MID: mid}
 }

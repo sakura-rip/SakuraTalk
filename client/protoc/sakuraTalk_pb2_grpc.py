@@ -169,6 +169,26 @@ class TalkServiceStub(object):
                 request_serializer=sakuraTalk__pb2.getGroupRequest.SerializeToString,
                 response_deserializer=sakuraTalk__pb2.getGroupResponse.FromString,
                 )
+        self.createGroup = channel.unary_unary(
+                '/TalkService.TalkService/createGroup',
+                request_serializer=sakuraTalk__pb2.createGroupRequest.SerializeToString,
+                response_deserializer=sakuraTalk__pb2.createGroupResponse.FromString,
+                )
+        self.updateGroup = channel.unary_unary(
+                '/TalkService.TalkService/updateGroup',
+                request_serializer=sakuraTalk__pb2.updateGroupRequest.SerializeToString,
+                response_deserializer=sakuraTalk__pb2.updateGroupResponse.FromString,
+                )
+        self.inviteIntoGroup = channel.unary_unary(
+                '/TalkService.TalkService/inviteIntoGroup',
+                request_serializer=sakuraTalk__pb2.inviteIntoGroupRequest.SerializeToString,
+                response_deserializer=sakuraTalk__pb2.inviteIntoGroupResponse.FromString,
+                )
+        self.kickoutFromGroup = channel.unary_unary(
+                '/TalkService.TalkService/kickoutFromGroup',
+                request_serializer=sakuraTalk__pb2.kickoutFromGroupRequest.SerializeToString,
+                response_deserializer=sakuraTalk__pb2.kickoutFromGroupResponse.FromString,
+                )
 
 
 class TalkServiceServicer(object):
@@ -360,6 +380,30 @@ class TalkServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def createGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def updateGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def inviteIntoGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def kickoutFromGroup(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_TalkServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -517,6 +561,26 @@ def add_TalkServiceServicer_to_server(servicer, server):
                     servicer.getGroup,
                     request_deserializer=sakuraTalk__pb2.getGroupRequest.FromString,
                     response_serializer=sakuraTalk__pb2.getGroupResponse.SerializeToString,
+            ),
+            'createGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.createGroup,
+                    request_deserializer=sakuraTalk__pb2.createGroupRequest.FromString,
+                    response_serializer=sakuraTalk__pb2.createGroupResponse.SerializeToString,
+            ),
+            'updateGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.updateGroup,
+                    request_deserializer=sakuraTalk__pb2.updateGroupRequest.FromString,
+                    response_serializer=sakuraTalk__pb2.updateGroupResponse.SerializeToString,
+            ),
+            'inviteIntoGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.inviteIntoGroup,
+                    request_deserializer=sakuraTalk__pb2.inviteIntoGroupRequest.FromString,
+                    response_serializer=sakuraTalk__pb2.inviteIntoGroupResponse.SerializeToString,
+            ),
+            'kickoutFromGroup': grpc.unary_unary_rpc_method_handler(
+                    servicer.kickoutFromGroup,
+                    request_deserializer=sakuraTalk__pb2.kickoutFromGroupRequest.FromString,
+                    response_serializer=sakuraTalk__pb2.kickoutFromGroupResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1052,5 +1116,73 @@ class TalkService(object):
         return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/getGroup',
             sakuraTalk__pb2.getGroupRequest.SerializeToString,
             sakuraTalk__pb2.getGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def createGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/createGroup',
+            sakuraTalk__pb2.createGroupRequest.SerializeToString,
+            sakuraTalk__pb2.createGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def updateGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/updateGroup',
+            sakuraTalk__pb2.updateGroupRequest.SerializeToString,
+            sakuraTalk__pb2.updateGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def inviteIntoGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/inviteIntoGroup',
+            sakuraTalk__pb2.inviteIntoGroupRequest.SerializeToString,
+            sakuraTalk__pb2.inviteIntoGroupResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def kickoutFromGroup(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TalkService.TalkService/kickoutFromGroup',
+            sakuraTalk__pb2.kickoutFromGroupRequest.SerializeToString,
+            sakuraTalk__pb2.kickoutFromGroupResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

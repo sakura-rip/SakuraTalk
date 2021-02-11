@@ -37,6 +37,14 @@ func (cl *DBClient) FetchGroupAttribute(gid string, attributes bson.D) (*Group, 
 	return grp, nil
 }
 
+func (cl *DBClient) FetchGroupAttributes(mid string, attributes ...string) (*Group, error) {
+	var projections = bson.D{}
+	for _, attribute := range attributes {
+		projections = append(projections, bson.E{Key: attribute, Value: 1})
+	}
+	return cl.FetchGroupAttribute(mid, projections)
+}
+
 func (cl *DBClient) UpdateGroup(gid string, attrToUpdate bson.D) error {
 	_, err := cl.UserCol.UpdateOne(cl.Ctx, bson.M{"_id": gid}, bson.M{"$set": attrToUpdate})
 	return err

@@ -1,6 +1,7 @@
 package talkDatabase
 
 type Group struct {
+	GID         string   `bson:"_id"`
 	CreatorMID  string   `bson:"creator"`
 	CreatedTime int64    `bson:"createdTime"`
 	MemberMids  []string `bson:"members"`

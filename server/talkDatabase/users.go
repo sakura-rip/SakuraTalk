@@ -98,12 +98,8 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 //FetchUserGroupSettings　ユーザーごとのGroupの設定を取得する。
 //存在しない場合は、デフォルトの設定を返す
 func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, bool) {
-	rs, err := cl.FetchUserAttributes(mid, "groupSettings")
+	rs, err := cl.FetchUserAttributes(mid, "groupSettings."+gid)
 	if err != nil {
-		return nil, false
-	}
-	value, ok := rs.GroupSettings[gid]
-	if ok {
 		return &GroupSetting{
 			EnableNotification:        false,
 			EnableNotificationMention: true,
@@ -114,6 +110,7 @@ func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, bool
 			IsFavorite:                false,
 		}, false
 	}
+	value, _ := rs.GroupSettings[gid]
 	return &value, true
 }
 

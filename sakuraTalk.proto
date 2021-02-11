@@ -44,7 +44,7 @@ service TalkService {
 
   rpc registerPrimary(registerPrimaryRequest) returns (registerPrimaryResponse);
 
-  rpc getGroup(getGroupRequest) returns(getGroupResponse);
+  rpc getGroups(getGroupsRequest) returns(getGroupsResponse);
   rpc createGroup (createGroupRequest) returns (createGroupResponse);
   rpc updateGroup (updateGroupRequest) returns (updateGroupResponse);
   rpc inviteIntoGroup (inviteIntoGroupRequest) returns (inviteIntoGroupResponse);
@@ -340,11 +340,11 @@ message Group {
   repeated string inviteeIds = 16;
 }
 
-message getGroupRequest {
-  string groupID = 1;
+message getGroupsRequest {
+  repeated string groupID = 1;
 }
-message getGroupResponse {
- Group group = 1;
+message getGroupsResponse {
+ map<string, Group> groups = 1;
 }
 
 message createGroupRequest {

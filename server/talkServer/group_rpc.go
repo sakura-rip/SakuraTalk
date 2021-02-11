@@ -8,8 +8,7 @@ import (
 	"time"
 )
 
-func (t TalkHandler) GetGroup(ctx context.Context, request *service.GetGroupRequest) (*service.GetGroupResponse, error) {
-	panic("implement me")
+func (t TalkHandler) GetGroups(ctx context.Context, request *service.GetGroupsRequest) (*service.GetGroupsResponse, error) {
 }
 
 func (t TalkHandler) CreateGroup(ctx context.Context, request *service.CreateGroupRequest) (*service.CreateGroupResponse, error) {

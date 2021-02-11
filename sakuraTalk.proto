@@ -45,6 +45,10 @@ service TalkService {
   rpc registerPrimary(registerPrimaryRequest) returns (registerPrimaryResponse);
 
   rpc getGroup(getGroupRequest) returns(getGroupResponse);
+  rpc createGroup (createGroupRequest) returns (createGroupResponse);
+  rpc updateGroup (updateGroupRequest) returns (updateGroupResponse);
+  rpc inviteIntoGroup (inviteIntoGroupRequest) returns (inviteIntoGroupResponse);
+  rpc kickoutFromGroup (kickoutFromGroupRequest) returns (kickoutFromGroupResponse);
 }
 
 
@@ -342,3 +346,32 @@ message getGroupRequest {
 message getGroupResponse {
  Group group = 1;
 }
+
+message createGroupRequest {
+  string name = 1;
+}
+message createGroupResponse {
+  string gid = 1;
+}
+
+enum UpdateGroupKeys {
+  NAME = 0;
+}
+
+message updateGroupRequest {
+  repeated UpdateGroupKeys keys = 1;
+  Group group = 2;
+}
+message updateGroupResponse {}
+
+message inviteIntoGroupRequest {
+  string gid  = 1;
+  repeated string mids = 2;
+}
+message inviteIntoGroupResponse {}
+
+message kickoutFromGroupRequest {
+  string gid  = 1;
+  string mid = 2;
+}
+message kickoutFromGroupResponse {}

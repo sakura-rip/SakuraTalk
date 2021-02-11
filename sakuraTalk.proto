@@ -233,13 +233,8 @@ message getContactsResponse {
   map<string, Contact> contacts = 1;
 }
 
-enum ContactKey {
-  OVER_WRITTEN_NAME = 0;
-}
-
 message updateContactRequest {
-  repeated ContactKey keys = 1;
-  Contact contact = 2;
+  Contact contact = 1;
 }
 message updateContactResponse {}
 

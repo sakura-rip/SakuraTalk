@@ -70,14 +70,11 @@ func (cl *DBClient) FetchUserProfile(mid string) (*Profile, error) {
 //FetchUserContact　データーベースのなかからMIDごとのContactを取得する
 //存在しない場合、特にデフォルト値をいじらなければいけない部分はないので、そのままMIDをつけたContactを返す
 func (cl *DBClient) FetchUserContact(mid, contactMid string) (*Contact, error) {
-	rs, err := cl.FetchUserAttributes(mid, "contacts")
+	rs, err := cl.FetchUserAttributes(mid, "contacts."+contactMid)
 	if err != nil {
-		return nil, err
+		return NewContact(contactMid), err
 	}
-	value, ok := rs.Contacts[contactMid]
-	if !ok {
-		value = Contact{MID: contactMid}
-	}
+	value, _ := rs.Contacts[contactMid]
 	return &value, nil
 }
 

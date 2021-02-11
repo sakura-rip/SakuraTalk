@@ -97,15 +97,7 @@ func (cl *DBClient) FetchUserTag(mid, tagId string) (*Tag, error) {
 func (cl *DBClient) FetchUserGroupSettings(mid, gid string) (*GroupSetting, bool) {
 	rs, err := cl.FetchUserAttributes(mid, "groupSettings."+gid)
 	if err != nil {
-		return &GroupSetting{
-			EnableNotification:        false,
-			EnableNotificationMention: true,
-			EnableNotificationOnJoin:  true,
-			EnableNotificationOnKick:  true,
-			OverWrittenName:           "",
-			TagIds:                    []string{},
-			IsFavorite:                false,
-		}, false
+		return NewGroupSetting(), false
 	}
 	value, _ := rs.GroupSettings[gid]
 	return &value, true

@@ -52,7 +52,6 @@ type Profile struct {
 	WebSiteURL  string `bson:"webSiteURL"`
 
 	Location string `bson:"location"`
-	WebSite  string `bson:"website"`
 	BirthDay int64  `bson:"birthday"`
 	Status   string `bson:"status"`
 }
